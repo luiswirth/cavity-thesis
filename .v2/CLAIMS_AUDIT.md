@@ -34,7 +34,7 @@ All SOFTENED/CORRECTED edits are highlighted in the review build.
 | C9 | §4.1.2 Convergence | two-regime description of the convergence curves | **SOFTENED→sharpened** (KURZ 41a): adopted Kurz's explicit "crossover between two error regimes" wording. Data-backed reading of the figure. Semilog re-plot deferred (paper). |
 | C10 | §4.1.2 Noise | "growth is nearly a straight line … power-law dependence"; "covariation does not mean uncertainty tracks reconstruction error" | **KEEP-data** — straight line on log–log axes; the caution is correct. |
 | C11 | §4.1.4 k-sweep | "Every dip of σ_min coincides with an analytic resonance … k=2 sits at a local maximum" | **KEEP-data** — the coincidence is shown in @fig:sphere-ksweep. (Operator definition still owed → KURZ 37, substantive, pending.) |
-| C12 | §4.2.1 Uncertainty | "The lobes sit where the field hits the wall most steeply, so its normal component is large …" | **SOFTENED** (KURZ 39) to explicit conjecture; not verified against the boundary-normal component. Quantitative plot → paper backlog. |
+| C12 | §4.2.1 Uncertainty | "The lobes sit where the field hits the wall most steeply, so its normal component is large …" | **INVESTIGATED & REFUTED** (KURZ 39). Ran the numerical test: the posterior variance depends only on the conditioning geometry (Cholesky factor of the weight-space precision), so the uncertainty is identical for every transmitter (rel. diff = 0). The transmitter-dependent normal component cannot cause it; the alignment for the shown transmitter (corr 0.77) is coincidental and drops to 0.39 for another. New figure `ellipse_uncertainty_normal.svg`; reproducible via `cavity_benchmark.uncertainty_normal`. |
 | C13 | §4.2.2 Operator | "…because the boundary data constrains near-wall receivers more tightly than deep-interior ones" | **SOFTENED** (KURZ 40) to "suggesting that…" (Kurz's exact wording). |
 | C14 | §4.2.2 / §4.2.4 Convergence | "floors at ρ≈3e-11, confirming symmetric to that level"; BEM "decay is consistent with … established on the sphere" | **KEEP-data** — ρ floor is measured; BEM statement already hedged ("consistent with"). |
 | C15 | §4.2.5 Cross-validation | "9e-9 is an upper bound … at least this close"; "strong combined evidence that both compute the correct operator" | **KEEP-data/reasoned** — bound follows from the monotone decrease; conclusion hedged as "evidence", not proof. |
@@ -65,6 +65,6 @@ These are technical/structural, not covered by this softening pass:
 
 ## Explicitly deferred to the paper (require new computation)
 
-- Poynting-vector analysis (C1), uncertainty-vs-boundary-normal plot (C12),
+- Poynting-vector analysis (C1),
   semilog Ns-convergence plot (C9), condition-number theory (C21),
   quadrature-vs-conditioning study (C22), fast-BEM-fair cost comparison (C17).

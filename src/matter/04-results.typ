@@ -153,12 +153,19 @@ We repeat the qualitative inspection of the previous section, visualizing the EP
 
 ==== Uncertainty
 
-@fig:ellipse-field-std maps the posterior uncertainty over the same slice. The same effect appears to be at work, but the broken symmetry makes it richer. The uncertainty is again lowest in the interior and grows toward the wall, but now it breaks into separate lobes. #hl[One possible explanation, in line with the tangential-conditioning picture on the sphere, is that the lobes sit where the field would meet the wall most steeply, so that its normal component there is large, while the quiet valleys between them are where the field runs almost along the wall and the tangential conditioning already fixes it. We have not verified this reading against the boundary-normal field component, so we offer it as a conjecture only.] The scale is also an order of magnitude larger than on the sphere, of order $10^(-2)$.
+@fig:ellipse-field-std maps the posterior uncertainty over the same slice. The same effect appears to be at work, but the broken symmetry makes it richer. The uncertainty is lowest deep in the interior and near the conditioned wall, and forms separate off-axis lobes in between. The scale is also an order of magnitude larger than on the sphere, of order $10^(-2)$.
+
+#hl[A natural conjecture is that these lobes sit where the field meets the wall most steeply, so that its normal component there is large. We tested it, and it does not hold. The posterior variance depends only on the conditioning geometry, through the Cholesky factor of the weight-space precision, and not on the transmitter data, so the uncertainty pattern is identical for every transmitter: the two structurally different transmitters of @fig:ellipse-uncertainty-normal produce slices that agree to machine precision. A transmitter-dependent quantity such as the boundary-normal component therefore cannot cause it. For the transmitter shown in @fig:ellipse-field-std the lobes do align with the normal component, with a correlation of $0.77$, which is why the conjecture looked plausible; but for the second transmitter the same lobes align with its normal component only weakly, with a correlation of $0.39$, while the two transmitters' normal components barely agree with each other. The lobes are thus a geometric feature of where the tangential boundary conditioning leaves the interior field least determined, not a signature of the incident field.]
 
 #figure(
   image("../../res/epgp_ellipse_field_std.png", width: 50%),
   caption: [EPGP scattered-field uncertainty on the ellipsoidal cavity slice.],
 ) <fig:ellipse-field-std>
+
+#figure(
+  image("../../res/ellipse_uncertainty_normal.svg"),
+  caption: [#hl[Uncertainty-versus-normal-component test on the ellipsoid. Left: the posterior standard deviation of the scattered field, which depends only on the conditioning geometry and is identical for every transmitter. Right: the per-direction uncertainty-lobe intensity against the boundary normal component $|Ev dot nn|$ for two different transmitters. The fixed lobes track the normal component of the first transmitter, correlation $0.77$, but not the second, correlation $0.39$, so the alignment is coincidental rather than causal.]],
+) <fig:ellipse-uncertainty-normal>
 
 === EPGP Operator
 
