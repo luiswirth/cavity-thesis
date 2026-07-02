@@ -69,8 +69,8 @@ The scattering problem of interest is inspired by @cavity.
 It is an interior problem in a bounded cavity.
 
 The problem is set up as follows:\
-A dipole source $delta_t$ #hl[(subscript $t$ for transmitter)] is placed in the interior of a cavity $D$ and acts as a transmitter.
-It radiates an analytically known incident field $Ev^i$. The incident field hits the cavity boundary $partial D$ and is reflected by it, creating an unknown scattered field $Ev^s$. The scattered field is read back by another dipole $delta_r$ #hl[(subscript $r$ for receiver)] acting as the receiver.
+A dipole source $delta_t$ is placed in the interior of a cavity $D$ and acts as a transmitter.
+It radiates an analytically known incident field $Ev^i$. The incident field hits the cavity boundary $partial D$ and is reflected by it, creating an unknown scattered field $Ev^s$. The scattered field is read back by another dipole $delta_r$ acting as the receiver. #hl[The subscripts $t$ and $r$ stand for transmitter and receiver, respectively.]
 
 The total field is the superposition of the incident and scattered part,
 $
@@ -131,7 +131,7 @@ The object of study is the mapping from a transmitter dipole to the measured res
 
 Before introducing oscillating dipoles, we first consider the simpler oscillating monopole.
 
-An oscillating monopole $delta^1 = (zv, q)$ is a charge source #hl[with density] $rho(xv, t) = q delta_zv exp(-i omega t)$ at a point $zv in D$, with a charge $q in RR$ that gives its strength #hl[and $delta_zv$ the Dirac point mass (unit Dirac delta) centered at $zv$]. The scalar potential it generates is $q Phi$, where $Phi$ is the free-space fundamental solution
+An oscillating monopole $delta^1 = (zv, q)$ is a charge source #hl[with density] $rho(xv, t) = q delta_zv exp(-i omega t)$ at a point $zv in D$, with a charge $q in RR$ that gives its strength #hl[and $delta_zv$ the Dirac point mass centered at $zv$]. The scalar potential it generates is $q Phi$, where $Phi$ is the free-space fundamental solution
 $
   Phi(xv; zv) = 1/(4 pi) exp(i k r)/r
 $
@@ -224,7 +224,7 @@ $
   r(delta_t, delta_r) = cal(R)(Ev^s) = pv_r dot Ev^s (zv_r; delta_t)
 $
 
-Exchanging the two roles leaves the measured response unchanged. This is the Lorentz (Rayleigh--Carson) reciprocity property #hl[@colton[Sec. 6.6]], a consequence of the symmetry of the curl--curl Green's operator,
+Exchanging the two roles leaves the measured response unchanged. This is the Lorentz (Rayleigh--Carson) reciprocity property, a consequence of the symmetry of the curl--curl Green's operator#hl[, following #cite(<colton>, form: "prose", supplement: [Sec. 6.6])],
 $
   r(delta_t, delta_r) = r(delta_r, delta_t)
 $
@@ -324,7 +324,7 @@ $
   Lambda := { xv in RR^3 mid(:) norm(xv) = 1 } subset.eq D
 $
 
-We choose $N_Lambda = 32$ dipole locations using a low-discrepancy quasi-uniform Fibonacci sphere distribution #hl[@gonzalez, a deterministic point set that provides an approximately uniform sampling of the sphere.]
+We choose $N_Lambda = 32$ dipole locations using a low-discrepancy quasi-uniform Fibonacci sphere distribution#hl[, a deterministic point set that provides an approximately uniform sampling of the sphere, following #cite(<gonzalez>, form: "prose").]
 #hl[Explicitly, with the golden ratio $phi.alt = (1 + sqrt(5)) \/ 2$ and $k_i = i + 1 \/ 2$ for $i = 0, dots, N - 1$, the $N$ points on the unit sphere are]
 #hlb[$ z_i = 1 - (2 k_i) / N, quad theta_i = (2 pi) / phi.alt k_i, quad xv_i = (sqrt(1 - z_i^2) cos theta_i, sqrt(1 - z_i^2) sin theta_i, z_i). $ <eq:fib>]
 Together with the 2 polarizations per point, this gives $M = 2 N_Lambda = 64$ configurations.

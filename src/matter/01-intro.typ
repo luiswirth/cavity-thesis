@@ -28,8 +28,8 @@ never violate the law it is meant to obey, regardless of the data. When
 the governing law is known exactly, strong enforcement is therefore preferable.
 
 Among ML models, the *Gaussian process (GP)* is particularly well suited to
-strong enforcement. A GP #hl[@rasmussen[Ch. 2]] is a probabilistic model over functions that returns
-a full posterior distribution instead of just a point estimate. This enables
+strong enforcement. A GP is a probabilistic model over functions that returns
+a full posterior distribution instead of just a point estimate#hl[, as described by #cite(<rasmussen>, form: "prose", supplement: [Ch. 2])]. This enables
 *uncertainty quantification*: every prediction carries an estimate of its own reliability.
 If the GP prior is built so that its samples satisfy a PDE exactly, the model is
 strongly physics-informed and probabilistic at the same time.
@@ -73,10 +73,10 @@ Maxwell EPGP library *`maxwellgp`* from the ongoing work @felix.
 For comparison, we compute the reaction operator in a second, independent
 way, with a *boundary element method (BEM)* built on a *boundary integral
 formulation* of the same underlying boundary value problem. For this we use the
-BEM library *`Bembel`* #hl[@bembel]. The two solvers share only the problem setup and nothing
+BEM library *`Bembel`* #hl[of #cite(<bembel>, form: "prose")]. The two solvers share only the problem setup and nothing
 of their internal discretizations. #hl[All solver code and the experiment scripts
-are openly available on GitHub (Appendix A), so every result reported here is
-reproducible.]
+are openly available on GitHub, as listed in Appendix A, so every result reported
+here is reproducible.]
 
 We benchmark on two cavity geometries. For a *spherical cavity*, the scattered
 field and the reaction operator are available in closed form. This lets us

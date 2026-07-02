@@ -132,7 +132,7 @@ The posterior of the previous section is exact but not yet computable: the kerne
 
 ==== Finite Spectral Features
 
-We approximate the integral over $V_k$ by a finite sum over $N_s$ spectral directions $kv_j in V_k$, drawn from a Fibonacci sphere #hl[@eq:fib, a deterministic point set that gives approximately equal spacing between neighboring points while maintaining a nearly uniform surface-area distribution].
+We approximate the integral over $V_k$ by a finite sum over $N_s$ spectral directions $kv_j in V_k$, drawn from a Fibonacci sphere#hl[, a deterministic point set that gives approximately equal spacing between neighboring points while maintaining a nearly uniform surface-area distribution; the points are given explicitly in @eq:fib].
 For each direction we pick an orthonormal basis $av_(j 1), av_(j 2)$ of the transverse plane, recovering the projector as an outer-product sum,
 $
   amat(Pi)_(kv_j) = sum_(a = 1)^2 av_(j a) av_(j a)^herm
@@ -168,7 +168,7 @@ Substituting this discretized kernel into the function-space mean and applying t
 
 ==== Hyperparameters
 
-The model has three hyperparameters: the spectral directions $kv_j$, the prior weights $amat(W)$, and the regularization parameter $sigma_n$. In a Gaussian process these can be tuned by maximizing the marginal likelihood of the data, usually by gradient descent on its negative logarithm. We instead fix them on principled grounds. The directions come from the Fibonacci sphere, whose even coverage we prefer to keep. The prior weights are set to $amat(W) = amat(I)$, treating all spectral directions equally. The regularization parameter is held fixed, since #hl[maximizing the marginal likelihood drives it toward the numerical floor of the ill-conditioned feature system rather than toward a data-appropriate value (as discussed in the conclusion), not because the data are uninformative]. #hl[In all benchmark runs it is fixed to $sigma_n^2 = e^(-12) approx 6.1 times 10^(-6)$, that is $sigma_n = e^(-6) approx 2.5 times 10^(-3)$.]
+The model has three hyperparameters: the spectral directions $kv_j$, the prior weights $amat(W)$, and the regularization parameter $sigma_n$. In a Gaussian process these can be tuned by maximizing the marginal likelihood of the data, usually by gradient descent on its negative logarithm. We instead fix them on principled grounds. The directions come from the Fibonacci sphere, whose even coverage we prefer to keep. The prior weights are set to $amat(W) = amat(I)$, treating all spectral directions equally. The regularization parameter is held fixed, since #hl[maximizing the marginal likelihood drives it toward the numerical floor of the ill-conditioned feature system rather than toward a data-appropriate value, not because the data are uninformative but because of the ill-conditioning discussed in the conclusion]. #hl[In all benchmark runs it is fixed to $sigma_n^2 = e^(-12) approx 6.1 times 10^(-6)$, that is $sigma_n = e^(-6) approx 2.5 times 10^(-3)$.]
 
 === Implementation `maxwellgp`
 
@@ -342,7 +342,7 @@ $
   quad
   bv_i = integral_(partial D) avec(phi)_i dot avec(h)_times dif s
 $
-in which the single-layer operator $cal(V)$ is replaced by its Galerkin matrix $amat(V)$. Its entries are the single-layer bilinear form on pairs of basis functions. Integrating the gradients of the dyadic Green's function by parts onto the basis functions reduces it to a double surface integral over the scalar fundamental solution $Phi$ #hl[@buffa[Sec. 5]],
+in which the single-layer operator $cal(V)$ is replaced by its Galerkin matrix $amat(V)$. Its entries are the single-layer bilinear form on pairs of basis functions. Integrating the gradients of the dyadic Green's function by parts onto the basis functions reduces it to a double surface integral over the scalar fundamental solution $Phi$#hl[, following #cite(<buffa>, form: "prose", supplement: [Sec. 5])],
 $
   amat(V)_(a b) = i k integral_(partial D) integral_(partial D) Phi(xv, yv) (avec(phi)_a (xv) dot avec(phi)_b (yv) - 1/k^2 div_Gamma avec(phi)_a (xv) div_Gamma avec(phi)_b (yv)) dif s(yv) dif s(xv)
 $
