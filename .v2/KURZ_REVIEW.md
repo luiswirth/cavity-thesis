@@ -238,7 +238,7 @@ Each item: verbatim Kurz comment → where it lands → the fix.
 
 ## Chapter 3 — Methods (EPGP)
 
-- [ ] **21. [V2-DO] ⚠ SUBSTANTIVE: implicit unit-diagonal weight covariance (p.12)**
+- [x] **21. [V2-DO] ⚠ SUBSTANTIVE: implicit unit-diagonal weight covariance (p.12)**
   Verbatim: *"Doesn't this silently assume that there is a unit diagonal covariance
   in the latent weight space?"* (boxed, on K(x,y)=∫ Φ_k Φ_k^H dk)
   Where: §3.1.2, Gaussian Maxwell prior kernel eq. (57).
@@ -278,7 +278,7 @@ Each item: verbatim Kurz comment → where it lands → the fix.
   depend on the choice — IF that is in fact true, which it is for W=I. State this.
   This is answerable by reasoning, no computation. Cross-ref items 18, 26.
 
-- [ ] **25. [V2-DO] ⚠ SUBSTANTIVE + restructure: Weight-Space Posterior rewrite (p.13)**
+- [x] **25. [V2-DO] ⚠ SUBSTANTIVE + restructure: Weight-Space Posterior rewrite (p.13)**
   Verbatim: *"I get your point, but I find the presentation somewhat involved. I
   tried to re-write it, with the help of ChatGPT. Find the .pdf attached. Maybe
   this inspires some re-structuring."*
