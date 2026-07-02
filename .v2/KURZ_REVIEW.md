@@ -545,9 +545,12 @@ Each item: verbatim Kurz comment → where it lands → the fix.
 Move these to the paper / raise in team discussion. They require new
 computation, new figures, or deeper theory than a light V2 warrants.
 
-- **[PAPER-A] Poynting vector analysis** (from item 33) — compute and plot the
-  Poynting vector to substantiate energy-flow cancellation and the standing-wave
-  characterization on the sphere.
+- **[PAPER-A] Poynting vector analysis** (from item 33) — DONE. Computed the
+  time-averaged Poynting vector: the total field is a pure standing wave (S = 0
+  everywhere, net flux ~1e-13; independently, the field is real up to one global
+  phase), while the incident field carries outward flux. Confirms the energy-flow
+  cancellation. Restored as a demonstrated statement in §4.1.1. A Poynting
+  streamline figure was computed but not added to the thesis; available if wanted.
 - **[PAPER-B] Uncertainty vs. boundary-normal-component** (from item 39) —
   Investigated: the posterior variance is transmitter-independent (depends only
   on the conditioning geometry), so the normal-component lobe explanation is
