@@ -17,13 +17,13 @@ $
   \
   curl Hv &= +partial_t Dv
   quad quad
-  &&div Bv = 0
+  &&div Bv = 0,
 $
 together with the constitutive relations in vacuum,
 $
   Dv = epsilon Ev
   quad quad
-  Bv = mu Hv
+  Bv = mu Hv.
 $
 #hl[Here the electric field $Ev$, magnetic field $Hv$, electric flux density
 $Dv$, magnetic flux density $Bv$, permittivity $epsilon$, and permeability $mu$
@@ -33,30 +33,30 @@ We choose the time-harmonic ansatz
 $
   Ev(xv, t) = Re(Ev(xv) e^(-i omega t))
   \
-  Hv(xv, t) = Re(Hv(xv) e^(-i omega t))
+  Hv(xv, t) = Re(Hv(xv) e^(-i omega t)),
 $
 under which differentiation in time becomes complex multiplication,
 $
-  partial_t |-> -i omega
+  partial_t |-> -i omega.
 $
 This yields the time-harmonic Maxwell's equations in the frequency domain,
 $
   curl Ev &= +i omega mu Hv
   \
-  curl Hv &= -i omega epsilon Ev
+  curl Hv &= -i omega epsilon Ev.
 $
 
 Eliminating the magnetic field via
 $
-  Hv = 1/(i omega mu) curl Ev
+  Hv = 1/(i omega mu) curl Ev,
 $
 gives the curl--curl equation for the electric field $Ev$
 $
-  curl curl Ev - k^2 Ev = 0
+  curl curl Ev - k^2 Ev = 0,
 $
 with the wavenumber
 $
-  k = omega sqrt(epsilon mu) = omega / c
+  k = omega sqrt(epsilon mu) = omega / c.
 $
 
 This is a Helmholtz-type equation for the electric field, with the operator $cal(L) := curl curl - k^2$.
@@ -71,7 +71,7 @@ A #hl[transmitter dipole $delta_t$] is placed in the interior of a cavity $D$ an
 
 The total field is the superposition of the incident and scattered part,
 $
-  Ev = Ev^i + Ev^s
+  Ev = Ev^i + Ev^s,
 $
 where the scattered field satisfies the source-free curl--curl equation in the interior, while the incident field and the total field only satisfy it away from the source.
 
@@ -130,11 +130,11 @@ Before introducing oscillating dipoles, we first consider the simpler oscillatin
 
 An oscillating monopole $delta^1 = (zv, q)$ is a charge source #hl[with density] $rho(xv, t) = q delta_zv exp(-i omega t)$ at a point $zv in D$, with a charge $q in RR$ that gives its strength #hl[and the unit Dirac delta distribution $delta_zv$ centered at $zv$]. The scalar potential it generates is $q Phi$, with the free-space fundamental solution $Phi$
 $
-  Phi(xv; zv) = 1/(4 pi) exp(i k r)/r
+  Phi(xv; zv) = 1/(4 pi) exp(i k r)/r,
 $
 of the scalar Helmholtz equation
 $
-  (-Delta - k^2) Phi(dot; zv) = delta_zv
+  (-Delta - k^2) Phi(dot; zv) = delta_zv.
 $
 Here the distance to the source is $r := norm(rv)$, with separation vector $rv := xv - zv$.
 
@@ -142,22 +142,22 @@ An oscillating Hertzian dipole $delta^2 = (zv, pv)$ is a current source #hl[with
 
 The electric field $Ev^i$ radiated by a dipole is obtained by applying the curl--curl operator to the Hertz vector potential $Phi pv$
 $
-  Ev^i (xv; delta) = i/k curl_xv curl_xv (Phi(xv; zv) pv)
+  Ev^i (xv; delta) = i/k curl_xv curl_xv (Phi(xv; zv) pv).
 $
 
 We can rewrite this expression by factoring out the polarization $pv$ by linearity of the curl--curl operator,
 $
-  Ev^i (xv; delta) = amat(G)(xv; zv) pv
+  Ev^i (xv; delta) = amat(G)(xv; zv) pv.
 $
 
 This defines the free-space electric dyadic Green's function $amat(G)$, which is the Green's function of the operator $cal(L) = curl curl - k^2$,
 $
-  amat(G)(xv; zv) pv := i/k curl_xv curl_xv (Phi(xv; zv) pv)
+  amat(G)(xv; zv) pv := i/k curl_xv curl_xv (Phi(xv; zv) pv).
 $
 
 Its explicit form, #hl[derived in #cite(<tai>, form: "prose", supplement: [Ch. 4]),] is given by
 $
-  amat(G)(xv; zv) = i k Phi(xv; zv) [(1 + i/(k r) - 1/(k r)^2) amat(I) - (1 + (3 i)/(k r) - 3/(k r)^2) rn rn^transp]
+  amat(G)(xv; zv) = i k Phi(xv; zv) [(1 + i/(k r) - 1/(k r)^2) amat(I) - (1 + (3 i)/(k r) - 3/(k r)^2) rn rn^transp],
 $
 where $rn rn^transp$ is the outer product of the unit separation vector $rn := rv \/ r$ and $amat(I)$ is the $3 times 3$ identity matrix.
 
@@ -176,16 +176,16 @@ They enforce that the scattered field reflects the incident field such
 that their tangential components cancel on the cavity wall.
 Hence the total field $Ev = Ev^i + Ev^s$ satisfies the PEC condition
 $
-  pi_t Ev = 0 quad "on" partial D
+  pi_t Ev = 0 quad "on" partial D,
 $
 or equivalently, the scattered field satisfies the boundary condition
 $
-  avec(h) := pi_t Ev^s = -pi_t Ev^i quad "on" partial D
+  avec(h) := pi_t Ev^s = -pi_t Ev^i quad "on" partial D.
 $
 
 Here the tangential projection trace $pi_t$ onto $partial D$, with outward unit normal $nn$, is given by
 $
-  pi_t Ev := nn times (Ev times nn) = Ev - (Ev dot nn) nn
+  pi_t Ev := nn times (Ev times nn) = Ev - (Ev dot nn) nn.
 $
 
 ==== Interior BVP
@@ -195,7 +195,7 @@ the curl--curl equation is satisfied in the interior and the PEC boundary condit
 $
   curl curl Ev^s - k^2 Ev^s &= 0 quad "in" D
   \
-  pi_t Ev^s &= avec(h) quad "on" partial D
+  pi_t Ev^s &= avec(h) quad "on" partial D.
 $
 
 This BVP is well-defined only when $k^2$ is not a cavity resonance, i.e. not an eigenvalue of the curl--curl operator. Otherwise the BVP solution operator $cal(S): avec(h) |-> Ev^s$ becomes singular.
@@ -207,7 +207,7 @@ The receiver dipole $delta_r = (zv_r, pv_r)$ measures the scattered field $Ev^s$
 
 Mathematically this is a linear functional $cal(R): C^oo (D; CC^3) -> CC$ defined as
 $
-  cal(R)(Ev^s) := pv_r dot Ev^s (zv_r)
+  cal(R)(Ev^s) := pv_r dot Ev^s (zv_r).
 $
 
 
@@ -218,12 +218,12 @@ Their roles are complementary: the transmitter generates the incident field, and
 
 The measured response generated by a transmitter dipole $delta_t$ and measured by a receiver dipole $delta_r$ is
 $
-  r(delta_t, delta_r) = cal(R)(Ev^s) = pv_r dot Ev^s (zv_r; delta_t)
+  r(delta_t, delta_r) = cal(R)(Ev^s) = pv_r dot Ev^s (zv_r; delta_t).
 $
 
 Exchanging the two roles leaves the measured response unchanged. This is the Lorentz (Rayleigh--Carson) reciprocity property, a consequence of the symmetry of the curl--curl Green's operator#hl[, following #cite(<colton>, form: "prose", supplement: [Sec. 6.6])],
 $
-  r(delta_t, delta_r) = r(delta_r, delta_t)
+  r(delta_t, delta_r) = r(delta_r, delta_t).
 $
 
 === Reaction Operator
@@ -245,26 +245,26 @@ A tangential dipole density on $Lambda$ is a tangential vector field
 $
   avec(g): Lambda -> T Lambda
   quad
-  avec(g)(zv) in T_zv Lambda
+  avec(g)(zv) in T_zv Lambda,
 $
 assigning a dipole polarization $avec(g)(zv)$ to each point of $Lambda$.
 A single dipole $delta = (zv_0, pv)$ is the singular special case
 $
-  avec(g) = pv delta_(zv_0)
+  avec(g) = pv delta_(zv_0).
 $
 
 By linearity of the problem, the density excites a single incident field that superposes the fields of its constituent dipoles,
 $
-  Ev^i [avec(g)] (xv) = integral_Lambda Ev^i (xv; (zv, avec(g)(zv))) dif s(zv)
+  Ev^i [avec(g)] (xv) = integral_Lambda Ev^i (xv; (zv, avec(g)(zv))) dif s(zv),
 $
 which is reflected into a single scattered field,
 $
-  Ev^s [avec(g)] (xv) = integral_Lambda Ev^s (xv; (zv, avec(g)(zv))) dif s(zv)
+  Ev^s [avec(g)] (xv) = integral_Lambda Ev^s (xv; (zv, avec(g)(zv))) dif s(zv).
 $
 
 Reading the scattered field back on $Lambda$ gives the response density $avec(m): Lambda -> T Lambda$, the tangential projection trace of the scattered field.
 $
-  avec(m) := pi_t^Lambda Ev^s [avec(g)]
+  avec(m) := pi_t^Lambda Ev^s [avec(g)].
 $
 #hl[Here the trace $pi_t^Lambda$ is the same tangential projection as $pi_t$,
 but taken on the dipole surface $Lambda$ with its own unit normal $nn_Lambda$, so that
@@ -274,24 +274,24 @@ The reaction operator is a linear integral operator, defined as the map from the
 $
   cal(T): avec(g) |-> avec(m)
   \
-  (cal(T) avec(g))(xv) = integral_Lambda amat(T)(xv, zv) avec(g)(zv) dif s(zv)
+  (cal(T) avec(g))(xv) = integral_Lambda amat(T)(xv, zv) avec(g)(zv) dif s(zv).
 $
 
 Its integral kernel $amat(T)$ is the point-to-point reaction, the response at $xv$ to a unit dipole $pv$ at $zv$,
 $
   amat(T)(xv, zv): T_zv Lambda -> T_(xv) Lambda
   \
-  amat(T)(xv, zv) pv := pi_t^Lambda Ev^s (xv; (zv, pv))
+  amat(T)(xv, zv) pv := pi_t^Lambda Ev^s (xv; (zv, pv)).
 $
 
 Reciprocity makes the kernel and the operator complex-symmetric, not Hermitian: exchanging the two points and transposing leaves the kernel unchanged,
 $
-  amat(T)(xv, zv) = amat(T)(zv, xv)^transp
+  amat(T)(xv, zv) = amat(T)(zv, xv)^transp.
 $
 
 The scalar reaction is this kernel as a bilinear form in the two polarizations, one slot per dipole,
 $
-  r(delta_t, delta_r) = pv_r^transp amat(T)(zv_r, zv_t) pv_t
+  r(delta_t, delta_r) = pv_r^transp amat(T)(zv_r, zv_t) pv_t.
 $
 
 ==== Discretization
@@ -302,11 +302,11 @@ We enumerate the dipoles by a single index $i in {1, ..., M}$, writing $delta_i 
 
 The discretized operator is then a matrix $amat(T) in CC^(M times M)$, whose entries are the kernel evaluated at the two dipoles $delta_i$ and $delta_j$,
 $
-  amat(T)_(i j) = pn_i^transp amat(T)(zv_i, zv_j) pn_j = r(delta_j, delta_i)
+  amat(T)_(i j) = pn_i^transp amat(T)(zv_i, zv_j) pn_j = r(delta_j, delta_i),
 $
 inheriting the kernel's symmetry,
 $
-  amat(T) = amat(T)^transp
+  amat(T) = amat(T)^transp.
 $
 This matrix is the object of interest for the benchmark. Both solvers compute it, and the resulting operators are compared.
 
@@ -316,7 +316,7 @@ We now fix the concrete geometry of our benchmark problem. The geometry is mostl
 
 We fix $k = 2$. The dipole surface $Lambda$ is the unit sphere.
 $
-  Lambda := { xv in RR^3 mid(:) norm(xv) = 1 } subset.eq D
+  Lambda := { xv in RR^3 mid(:) norm(xv) = 1 } subset.eq D.
 $
 
 We choose $N_Lambda = 32$ dipole locations using a low-discrepancy quasi-uniform Fibonacci sphere distribution#hl[, a deterministic point set that provides an approximately uniform sampling of the sphere, following #cite(<gonzalez>, form: "prose").]
@@ -343,7 +343,7 @@ Its boundary $partial D$ is an ellipsoidal surface with semi-axes $avec(a) = (a_
 
 The interior of the ellipsoid is the domain $D$ in which the interior BVP is solved.
 $
-  D := { (x_1, x_2, x_3) in RR^3 mid(:) (x_1/a_1)^2 + (x_2/a_2)^2 + (x_3/a_3)^2 < 1 }
+  D := { (x_1, x_2, x_3) in RR^3 mid(:) (x_1/a_1)^2 + (x_2/a_2)^2 + (x_3/a_3)^2 < 1 }.
 $
 
 $Lambda$ is well-separated from $partial D$ with a minimum distance of $d_min = 3$.
@@ -361,7 +361,7 @@ Its boundary $partial D$ is a spherical surface with radius $R = 4$. It is obtai
 
 The interior of the sphere is the domain $D$ in which the interior BVP is solved.
 $
-  D := { xv in RR^3 mid(:) norm(xv) < R } quad R = 4
+  D := { xv in RR^3 mid(:) norm(xv) < R } quad R = 4.
 $
 
 #figure(
@@ -381,7 +381,7 @@ The interior fields expand in the regular Hansen multipoles, the TM-type $avec(N
 $
   pi_t avec(N)_(l m) = (psi_l'(k r))/(k r) avec(Psi)_(l m)
   wide
-  pi_t avec(M)_(l m) = j_l (k r) avec(Phi)_(l m)
+  pi_t avec(M)_(l m) = j_l (k r) avec(Phi)_(l m),
 $
 with the spherical Bessel function $j_l$ and the Riccati--Bessel function $psi_l (x) = x j_l (x)$. #hl[The prime in $psi_l'$ denotes the derivative of $psi_l$ with respect to its argument, $psi_l'(x) = dif / (dif x) (x j_l (x))$, not an operation on the index $l$.]
 
@@ -389,19 +389,19 @@ We expand the incident tangential trace on the cavity wall at $r = R$ in these h
 $
   p_(l m) = inner(pi_t Ev^i, avec(Psi)_(l m))_(r = R)
   wide
-  q_(l m) = inner(pi_t Ev^i, avec(Phi)_(l m))_(r = R)
+  q_(l m) = inner(pi_t Ev^i, avec(Phi)_(l m))_(r = R).
 $
 
 The scattered field expands in the same multipoles,
 $
-  Ev^s = sum_(l m) (a_(l m) avec(N)_(l m) + b_(l m) avec(M)_(l m))
+  Ev^s = sum_(l m) (a_(l m) avec(N)_(l m) + b_(l m) avec(M)_(l m)).
 $
 
 The PEC condition $pi_t Ev^s = -pi_t Ev^i$ on the cavity wall $partial D$ at $r = R$ fixes the coefficients,
 $
   a_(l m) = -(k R)/(psi_l'(k R)) p_(l m)
   wide
-  b_(l m) = -1/(j_l (k R)) q_(l m)
+  b_(l m) = -1/(j_l (k R)) q_(l m).
 $
 
 Evaluating the scattered field on the dipole surface $Lambda$ at $r = r_0$ and taking its tangential trace gives the measured response,
@@ -410,10 +410,10 @@ $
   = -sum_(l m) (
     R/r_0 (psi_l'(k r_0))/(psi_l'(k R)) p_(l m) avec(Psi)_(l m)
     + (j_l (k r_0))/(j_l (k R)) q_(l m) avec(Phi)_(l m)
-  )
+  ).
 $
 
 Projecting onto the receiver polarization gives the reference reaction operator,
 $
-  amat(T)_(i j) = pn_i dot pi_t^Lambda Ev^s (zv_i; delta_j)
+  amat(T)_(i j) = pn_i dot pi_t^Lambda Ev^s (zv_i; delta_j).
 $
