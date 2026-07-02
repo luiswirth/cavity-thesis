@@ -3,7 +3,7 @@
 
 = Cavity Scattering
 
-We present the interior electromagnetic scattering problem: the governing field equations, the cavity geometry, and the reaction operator that both solvers compute. #hl[The problem is posed throughout in three-dimensional space $RR^3$.]
+We present the interior electromagnetic scattering problem #hl[in three-dimensional space $RR^3$]: the governing field equations, the cavity geometry, and the reaction operator that both solvers compute.
 
 == Time-Harmonic Maxwell's Equations
 
@@ -320,7 +320,7 @@ $
 $
 
 We choose $N_Lambda = 32$ dipole locations using a low-discrepancy quasi-uniform Fibonacci sphere distribution#hl[, a deterministic point set that provides an approximately uniform sampling of the sphere, following #cite(<gonzalez>, form: "prose").]
-#hl[Explicitly, with the golden ratio $phi.alt = (1 + sqrt(5)) \/ 2$ and $k_i = i + 1 \/ 2$ for $i = 0, dots, N - 1$, the $N$ points on the unit sphere are]
+#hl[Explicitly, with the golden ratio $phi.alt = (1 + sqrt(5)) \/ 2$ and the index $k_i = i + 1 \/ 2$ for $i = 0, dots, N - 1$, the $N$ points on the unit sphere are]
 #hlb[$ z_i = 1 - (2 k_i) / N, quad theta_i = (2 pi) / phi.alt k_i, quad xv_i = (sqrt(1 - z_i^2) cos theta_i, sqrt(1 - z_i^2) sin theta_i, z_i). $ <eq:fib>]
 Together with the 2 polarizations per point, this gives $M = 2 N_Lambda = 64$ configurations.
 
@@ -383,7 +383,7 @@ $
   wide
   pi_t avec(M)_(l m) = j_l (k r) avec(Phi)_(l m),
 $
-with the spherical Bessel function $j_l$ and the Riccati--Bessel function $psi_l (x) = x j_l (x)$. #hl[The prime in $psi_l'$ denotes the derivative of $psi_l$ with respect to its argument, $psi_l'(x) = dif / (dif x) (x j_l (x))$, not an operation on the index $l$.]
+with the spherical Bessel function $j_l$ and the Riccati--Bessel function $psi_l (x) = x j_l (x)$. #hl[Here the prime denotes the derivative of the Riccati--Bessel function with respect to its argument, $psi_l'(x) = dif / (dif x) (x j_l (x))$.]
 
 We expand the incident tangential trace on the cavity wall at $r = R$ in these harmonics,
 $
