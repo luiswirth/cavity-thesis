@@ -37,7 +37,7 @@ It admits a closed-form reaction operator of unlimited accuracy, which serves as
 
 === EPGP Field
 
-We begin with a qualitative look at the EPGP solution for a single transmitter dipole at $zv = (0, 0, 1)$ on $Lambda$, polarized along $x$. Being a probabilistic solver, the EPGP returns a full posterior over the scattered field, a Gaussian summarized by its mean and its covariance: the mean is the point estimate of the field, and the covariance is its uncertainty. We visualize both on the $x z$-plane ($y = 0$) through the cavity, the dipole location marked in green. The field was computed at the highest grid resolution $N_s = 1024$, $N_b = 8192$.
+We begin with a qualitative look at the EPGP solution for a single transmitter dipole at $zv = (0, 0, 1)$ on $Lambda$, polarized along $x$. Being a probabilistic solver, the EPGP returns a full posterior over the scattered field, a Gaussian summarized by its mean and its covariance: the mean is the point estimate of the field, and the covariance is its uncertainty. We visualize both on the $x z$-plane at $y = 0$ through the cavity, the dipole location marked in green. The field was computed at the highest grid resolution $N_s = 1024$, $N_b = 8192$.
 
 ==== Mean
 
@@ -114,7 +114,7 @@ The BEM is deterministic, so it returns the operator without an uncertainty esti
 
 The benchmark fixes $k = 2$. A cavity resonance, where the interior boundary value problem is not uniquely solvable, would make the reconstruction ill-posed, so we check that $k = 2$ avoids one. We sweep $k$ and record $sigma_min$, the smallest singular value of the boundary tangential trace over the orthonormalized plane-wave feature space. It measures how nearly some interior field attains a zero boundary trace, so it collapses toward zero at a cavity resonance and is bounded away from it otherwise.
 
-@fig:sphere-ksweep shows the sweep on the sphere over $k in [1.5, 2.5]$. Every dip of $sigma_min$ coincides with an analytic resonance of the sphere (dashed), so the diagnostic locates resonances correctly. The benchmark wavenumber $k = 2$ sits at a local maximum, far from any resonance, confirming that it is non-resonant.
+@fig:sphere-ksweep shows the sweep on the sphere over $k in [1.5, 2.5]$. Every dip of $sigma_min$ coincides with an analytic resonance of the sphere, shown dashed, so the diagnostic locates resonances correctly. The benchmark wavenumber $k = 2$ sits at a local maximum, far from any resonance, confirming that it is non-resonant.
 
 #figure(
   image("../../res/sphere_epgp_ksweep.svg", width: 78%),
@@ -131,7 +131,7 @@ We repeat the qualitative inspection of the previous section, visualizing the EP
 
 ==== Mean
 
-@fig:ellipse-field shows the posterior mean field in the same layout as before: the real part of the $x$-component as a heatmap (top) and #hl[the LIC texture (bottom)], for the incident, scattered, and total field. The broken symmetry is clearly visible. The incident field is the same as before, since it is the same dipole, but the scattered field no longer shows the concentric wavefronts of the sphere. Instead it has a more intricate pattern, stretched along the long axis of the cavity, and the same is seen in #hl[the LIC texture]. The total field is again the sum of the two.
+@fig:ellipse-field shows the posterior mean field in the same layout as before: the real part of the $x$-component as a heatmap on top and #hl[the LIC texture below], for the incident, scattered, and total field. The broken symmetry is clearly visible. The incident field is the same as before, since it is the same dipole, but the scattered field no longer shows the concentric wavefronts of the sphere. Instead it has a more intricate pattern, stretched along the long axis of the cavity, and the same is seen in #hl[the LIC texture]. The total field is again the sum of the two.
 
 #figure(
   grid(
@@ -176,7 +176,7 @@ The BEM operator is the reference for this geometry. As for the EPGP, the absenc
 
 ==== Convergence
 
-@fig:ellipse-bem-conv plots the BEM reciprocity error $rho$ over the $p times m$ grid, and @tab:ellipse-bem lists every run with its degrees of freedom, runtime, memory, and conditioning. Here only $rho$ is available, which sees the antisymmetric part of the error and so cannot certify a convergence order, but its decay is consistent with the algebraic $h$-refinement and geometric $p$-refinement established on the sphere. The most refined run, $p = 5$, $m = 4$ ($4800$ DOFs), reaches $rho approx 1.4 times 10^(-10)$ and serves as the reference operator $amat(T)_"BEM"$ for this geometry.
+@fig:ellipse-bem-conv plots the BEM reciprocity error $rho$ over the $p times m$ grid, and @tab:ellipse-bem lists every run with its degrees of freedom, runtime, memory, and conditioning. Here only $rho$ is available, which sees the antisymmetric part of the error and so cannot certify a convergence order, but its decay is consistent with the algebraic $h$-refinement and geometric $p$-refinement established on the sphere. The most refined run, $p = 5$ and $m = 4$ with $4800$ degrees of freedom, reaches $rho approx 1.4 times 10^(-10)$ and serves as the reference operator $amat(T)_"BEM"$ for this geometry.
 
 #figure(
   image("../../res/bem_ellipse_convergence.svg", width: 94%),
@@ -206,7 +206,7 @@ Together with the independent certification of each solver on the analytic spher
 
 All runs were carried out on the Euler cluster#hl[#footnote[Euler is the central high-performance computing cluster of ETH Zürich; see #link("https://scicomp.ethz.ch/wiki/Euler")[`scicomp.ethz.ch/wiki/Euler`].]], each on a single exclusive AMD EPYC 7742 node with 128 cores, and wall time was recorded per run. For the EPGP the recorded time includes the JAX just-in-time compilation and the Python startup, so it is a conservative measure.
 
-@fig:ellipse-pareto plots reciprocity error against wall time for both solvers. The faint points are all grid runs and the solid line is each solver's Pareto front. The two fronts have very different shapes. The EPGP front is nearly vertical, between $approx 6$ and $18$ s: its reciprocity error improves by orders of magnitude at almost fixed wall time, because the cost is dominated by the one-off factorization. The BEM front is a staircase that descends only with large increases in wall time, reaching $rho approx 1.4 times 10^(-10)$ at $approx 1600$ s at the finest grid run ($p = 5$, $m = 4$).
+@fig:ellipse-pareto plots reciprocity error against wall time for both solvers. The faint points are all grid runs and the solid line is each solver's Pareto front. The two fronts have very different shapes. The EPGP front is nearly vertical, between $approx 6$ and $18$ s: its reciprocity error improves by orders of magnitude at almost fixed wall time, because the cost is dominated by the one-off factorization. The BEM front is a staircase that descends only with large increases in wall time, reaching $rho approx 1.4 times 10^(-10)$ at $approx 1600$ s at the finest grid run, with $p = 5$ and $m = 4$.
 
 At the same reciprocity error the EPGP is two to three orders of magnitude faster, reaching $rho approx 10^(-9)$ to $10^(-10)$ in about $10$ s. The BEM is cheaper only at loose tolerance. For any demanding accuracy the EPGP is the cheaper solver.
 

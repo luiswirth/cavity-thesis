@@ -7,7 +7,7 @@ We present the interior electromagnetic scattering problem: the governing field 
 
 == Time-Harmonic Maxwell's Equations
 
-The EPGP from @felix is built on the time-harmonic Maxwell's equations, which we briefly review here.
+The EPGP of #cite(<felix>, form: "prose") is built on the time-harmonic Maxwell's equations, which we briefly review here.
 
 We start with the source-free Maxwell's equations
 $
@@ -63,7 +63,7 @@ This is a Helmholtz-type equation for the electric field, with the operator $cal
 
 == Scattering Problem
 
-The scattering problem of interest is inspired by @cavity.
+The scattering problem of interest is inspired by #cite(<cavity>, form: "prose").
 It is an interior problem in a bounded cavity.
 
 The problem is set up as follows:\
@@ -128,7 +128,7 @@ The object of study is the mapping from a transmitter dipole to the measured res
 
 Before introducing oscillating dipoles, we first consider the simpler oscillating monopole.
 
-An oscillating monopole $delta^1 = (zv, q)$ is a charge source #hl[with density] $rho(xv, t) = q delta_zv exp(-i omega t)$ at a point $zv in D$, with a charge $q in RR$ that gives its strength #hl[and the unit Dirac delta distribution $delta_zv$ centered at $zv$]. The scalar potential it generates is $q Phi$, where $Phi$ is the free-space fundamental solution
+An oscillating monopole $delta^1 = (zv, q)$ is a charge source #hl[with density] $rho(xv, t) = q delta_zv exp(-i omega t)$ at a point $zv in D$, with a charge $q in RR$ that gives its strength #hl[and the unit Dirac delta distribution $delta_zv$ centered at $zv$]. The scalar potential it generates is $q Phi$, with the free-space fundamental solution $Phi$
 $
   Phi(xv; zv) = 1/(4 pi) exp(i k r)/r
 $
@@ -136,7 +136,7 @@ of the scalar Helmholtz equation
 $
   (-Delta - k^2) Phi(dot; zv) = delta_zv
 $
-Here $r := norm(rv)$ is the distance to the source, with separation vector $rv := xv - zv$.
+Here the distance to the source is $r := norm(rv)$, with separation vector $rv := xv - zv$.
 
 An oscillating Hertzian dipole $delta^2 = (zv, pv)$ is a current source #hl[with density] $Jv(xv, t) = pv delta_zv exp(-i omega t)$ at a point $zv in D$, together with a polarization $pv in RR^3$ that gives the dipole's orientation and strength.
 
@@ -183,7 +183,7 @@ $
   avec(h) := pi_t Ev^s = -pi_t Ev^i quad "on" partial D
 $
 
-Here $pi_t$ is the tangential projection trace onto $partial D$ with outward unit normal $nn$, given by
+Here the tangential projection trace $pi_t$ onto $partial D$, with outward unit normal $nn$, is given by
 $
   pi_t Ev := nn times (Ev times nn) = Ev - (Ev dot nn) nn
 $
@@ -284,7 +284,7 @@ $
   amat(T)(xv, zv) pv := pi_t^Lambda Ev^s (xv; (zv, pv))
 $
 
-Reciprocity makes the kernel and the operator complex-symmetric (not Hermitian): exchanging the two points and transposing leaves the kernel unchanged,
+Reciprocity makes the kernel and the operator complex-symmetric, not Hermitian: exchanging the two points and transposing leaves the kernel unchanged,
 $
   amat(T)(xv, zv) = amat(T)(zv, xv)^transp
 $
@@ -312,7 +312,7 @@ This matrix is the object of interest for the benchmark. Both solvers compute it
 
 == Geometry
 
-We now fix the concrete geometry of our benchmark problem. The geometry is mostly taken from @cavity.
+We now fix the concrete geometry of our benchmark problem. The geometry is mostly taken from #cite(<cavity>, form: "prose").
 
 We fix $k = 2$. The dipole surface $Lambda$ is the unit sphere.
 $
@@ -324,7 +324,7 @@ We choose $N_Lambda = 32$ dipole locations using a low-discrepancy quasi-uniform
 #hlb[$ z_i = 1 - (2 k_i) / N, quad theta_i = (2 pi) / phi.alt k_i, quad xv_i = (sqrt(1 - z_i^2) cos theta_i, sqrt(1 - z_i^2) sin theta_i, z_i). $ <eq:fib>]
 Together with the 2 polarizations per point, this gives $M = 2 N_Lambda = 64$ configurations.
 
-There are two cavity geometries: an ellipsoidal cavity and a spherical cavity. The ellipsoidal cavity is the original geometry from @cavity, while the spherical cavity is a new addition that allows for an analytic solution.
+There are two cavity geometries: an ellipsoidal cavity and a spherical cavity. The ellipsoidal cavity is the original geometry from #cite(<cavity>, form: "prose"), while the spherical cavity is a new addition that allows for an analytic solution.
 
 #let cavity-canvas(rx, ry) = cetz.canvas(length: 0.5cm, {
   import cetz.draw: *
@@ -337,7 +337,7 @@ There are two cavity geometries: an ellipsoidal cavity and a spherical cavity. T
 
 === Ellipsoidal Cavity
 
-The ellipsoidal cavity is the original geometry from @cavity. It is a smooth, convex, and simply connected domain.
+The ellipsoidal cavity is the original geometry from #cite(<cavity>, form: "prose"). It is a smooth, convex, and simply connected domain.
 
 Its boundary $partial D$ is an ellipsoidal surface with semi-axes $avec(a) = (a_1, a_2, a_3) = (4, 4, 6)$.
 
@@ -385,7 +385,7 @@ $
 $
 with the spherical Bessel function $j_l$ and the Riccati--Bessel function $psi_l (x) = x j_l (x)$. #hl[The prime in $psi_l'$ denotes the derivative of $psi_l$ with respect to its argument, $psi_l'(x) = dif / (dif x) (x j_l (x))$, not an operation on the index $l$.]
 
-We expand the incident tangential trace on the cavity wall ($r = R$) in these harmonics,
+We expand the incident tangential trace on the cavity wall at $r = R$ in these harmonics,
 $
   p_(l m) = inner(pi_t Ev^i, avec(Psi)_(l m))_(r = R)
   wide
@@ -397,14 +397,14 @@ $
   Ev^s = sum_(l m) (a_(l m) avec(N)_(l m) + b_(l m) avec(M)_(l m))
 $
 
-The PEC condition $pi_t Ev^s = -pi_t Ev^i$ on the cavity wall $partial D$ ($r = R$) fixes the coefficients,
+The PEC condition $pi_t Ev^s = -pi_t Ev^i$ on the cavity wall $partial D$ at $r = R$ fixes the coefficients,
 $
   a_(l m) = -(k R)/(psi_l'(k R)) p_(l m)
   wide
   b_(l m) = -1/(j_l (k R)) q_(l m)
 $
 
-Evaluating the scattered field on the dipole surface $Lambda$ ($r = r_0$) and taking its tangential trace gives the measured response,
+Evaluating the scattered field on the dipole surface $Lambda$ at $r = r_0$ and taking its tangential trace gives the measured response,
 $
   pi_t^Lambda Ev^s
   = -sum_(l m) (
