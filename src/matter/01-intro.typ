@@ -64,8 +64,7 @@ study.
 
 We construct a probabilistic EPGP surrogate of this reaction operator. Unlike a
 purely data-driven surrogate, it satisfies the time-harmonic Maxwell equations
-exactly by construction and reports its own uncertainty. Its plane-wave prior is
-well suited to the interior scattering problem. The surrogate is built with the
+exactly by construction and reports its own uncertainty. #hl[Its plane-wave prior spans exactly the source-free solutions of the interior Maxwell problem, matching the scattered field it must represent.] The surrogate is built with the
 Maxwell EPGP library *`maxwellgp`* from the ongoing work of #cite(<felix>, form: "prose").
 
 For comparison, we compute the reaction operator in a second, independent
