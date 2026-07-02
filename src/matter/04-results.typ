@@ -41,9 +41,9 @@ We begin with a qualitative look at the EPGP solution for a single transmitter d
 
 ==== Mean
 
-@fig:sphere-field shows the posterior mean field. The top row is the real part of the $x$-component as a heatmap, the bottom row #hl[a line-integral-convolution (LIC) texture whose streaks follow the local field direction]. The three columns are the incident, scattered, and total field. The incident field is the dipole near field, sharply localized at the source. Scattering off the wall produces the scattered field, and together they form the total field.
+@fig:sphere-field shows the posterior mean field. The top row is the real part of the $x$-component as a heatmap, the middle row #hl[a line-integral-convolution (LIC) texture whose streaks follow the local field direction, and the bottom row the time-averaged Poynting vector, which measures the flow of energy]. The three columns are the incident, scattered, and total field. The incident field is the dipole near field, sharply localized at the source. Scattering off the wall produces the scattered field, and together they form the total field.
 
-The figure matches physical expectations. The scattered wavefronts are concentric and the LIC texture forms smooth rings, and the spherical symmetry of the cavity is clearly visible. #hl[The total field is a pure standing wave. Its time-averaged Poynting vector $avec(S) = 1/2 Re(Ev times conj(Hv))$ vanishes throughout the cavity, whereas the incident dipole field alone carries a nonzero outward energy flux. The energy flow of the incident field is thus cancelled exactly, as required in a lossless cavity at a non-resonant frequency, where no net power can be radiated through the perfectly conducting wall or absorbed in the interior and the steady-state field is purely reactive.]
+The figure matches physical expectations. The scattered wavefronts are concentric and the LIC texture forms smooth rings, and the spherical symmetry of the cavity is clearly visible. #hl[The total field is a pure standing wave: its time-averaged Poynting vector $avec(S) = 1/2 Re(Ev times conj(Hv))$ vanishes throughout the cavity, while the incident dipole field alone carries a nonzero outward energy flux. The energy flow of the incident field is thus cancelled exactly, as a lossless cavity at a non-resonant frequency requires, where no net power can be radiated through the perfectly conducting wall or absorbed in the interior and the steady-state field stays purely reactive.]
 
 #figure(
   grid(
@@ -51,8 +51,9 @@ The figure matches physical expectations. The scattered wavefronts are concentri
     row-gutter: 6pt,
     image("../../res/epgp_sphere_field_real.png"),
     image("../../res/epgp_sphere_field_lic.png"),
+    image("../../res/epgp_sphere_field_poynting.png"),
   ),
-  caption: [EPGP field on the spherical cavity slice.],
+  caption: [EPGP field on the spherical cavity slice: the real part of the $x$-component, the line-integral-convolution texture, and the time-averaged Poynting vector, for the incident, scattered, and total field.],
 ) <fig:sphere-field>
 
 ==== Uncertainty
