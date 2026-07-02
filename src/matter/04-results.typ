@@ -25,7 +25,7 @@ $
 $
 
 We use the Frobenius norm to quantify distance between operators.
-The operator norm is bounded by the Frobenius norm #hl[@hornjohnson[p. 370]], so convergence in $epsilon$ implies convergence in the operator norm.
+The operator norm is bounded by the Frobenius norm, so convergence in $epsilon$ implies convergence in the operator norm#hl[, as shown in #cite(<hornjohnson>, form: "prose", supplement: [p. 370])].
 $
   norm(amat(T))_"op" <= norm(amat(T))_"F"
 $
@@ -79,7 +79,7 @@ This is because the posterior covariance is fixed only by where we condition and
 
 ==== Convergence
 
-We now quantify the operator's accuracy as the resolution grows. @fig:sphere-epgp-conv plots the reference error $epsilon$ against the number of spectral features $N_s$, one curve per boundary-point count $N_b$. #hl[The figure exhibits a crossover between two error regimes. For small $N_s$ all curves coincide: the error is dominated by truncation of the spectral representation and is essentially independent of the number of boundary observations. Once the spectral approximation is sufficiently rich (past $N_s approx 200$), the error becomes limited by the boundary discretization, producing an $N_b$-dependent floor.] The finest curve reaches $epsilon approx 1.3 times 10^(-10)$ at $N_s = 1024$ and $N_b = 8192$.
+We now quantify the operator's accuracy as the resolution grows. @fig:sphere-epgp-conv plots the reference error $epsilon$ against the number of spectral features $N_s$, one curve per boundary-point count $N_b$. #hl[The figure exhibits a crossover between two error regimes. For small $N_s$ all curves coincide: the error is dominated by truncation of the spectral representation and is essentially independent of the number of boundary observations. Once the spectral approximation is sufficiently rich, past $N_s approx 200$, the error becomes limited by the boundary discretization, producing an $N_b$-dependent floor.] The finest curve reaches $epsilon approx 1.3 times 10^(-10)$ at $N_s = 1024$ and $N_b = 8192$.
 
 #figure(
   image("../../res/epgp_sphere_convergence.svg", width: 55%),

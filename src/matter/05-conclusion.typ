@@ -39,7 +39,7 @@ We see two natural directions to extend this work, one that sharpens the EPGP's 
 
 ==== Spherical Designs and Lebedev Quadrature
 
-The EPGP draws its wavevector directions from a Fibonacci sphere, a quasi-Monte Carlo rule. A more principled choice is Lebedev quadrature #hl[@lebedev], which integrates spherical harmonics exactly up to a chosen degree. #hl[We expect it to reach the same kernel accuracy with fewer directions, giving a smaller system. Whether it also yields a better-conditioned system is an open question: good integration accuracy does not by itself imply a well-conditioned feature matrix, since the conditioning is governed by the correlations among the plane-wave features rather than by the accuracy of the quadrature. Should the conditioning improve, the lower condition number would in turn let the assumed noise drop further, which is the main obstacle to calibrated uncertainty.]
+The EPGP draws its wavevector directions from a Fibonacci sphere, a quasi-Monte Carlo rule. A more principled choice is the Lebedev quadrature #hl[of #cite(<lebedev>, form: "prose")], which integrates spherical harmonics exactly up to a chosen degree. #hl[We expect it to reach the same kernel accuracy with fewer directions, giving a smaller system. Whether it also yields a better-conditioned system is an open question: good integration accuracy does not by itself imply a well-conditioned feature matrix, since the conditioning is governed by the correlations among the plane-wave features rather than by the accuracy of the quadrature. Should the conditioning improve, the lower condition number would in turn let the assumed noise drop further, which is the main obstacle to calibrated uncertainty.]
 
 ==== Operator-Learning Perspective
 

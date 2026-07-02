@@ -9,8 +9,8 @@ generative AI tools were used in the preparation of this thesis.
 
 Generative AI assistants were used as a productivity aid for:
 - *Software development:* drafting, refactoring, and debugging parts of the
-  accompanying code (`maxwellgp`, `cavity-epgp`, `cavity-bem`, and
-  `cavity-benchmark`), and assisting with the plotting and benchmark harness.
+  accompanying code --- `maxwellgp`, `cavity-epgp`, `cavity-bem`, and
+  `cavity-benchmark` --- and assisting with the plotting and benchmark harness.
 - *Writing:* drafting, restructuring, and copy-editing the prose of this
   document, and assisting with Typst typesetting.
 
