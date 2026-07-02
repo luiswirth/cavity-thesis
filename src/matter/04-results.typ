@@ -25,7 +25,7 @@ $
 $
 
 We use the Frobenius norm to quantify distance between operators.
-The operator norm is bounded by the Frobenius norm #hl[(@hornjohnson[p. 370])], so convergence in $epsilon$ implies convergence in the operator norm.
+The operator norm is bounded by the Frobenius norm #hl[@hornjohnson[p. 370]], so convergence in $epsilon$ implies convergence in the operator norm.
 $
   norm(amat(T))_"op" <= norm(amat(T))_"F"
 $
