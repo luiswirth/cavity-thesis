@@ -95,7 +95,6 @@ $
 $
 Because the projector sits inside every feature, the prior is supported entirely on the solution space: every sample satisfies Maxwell exactly.
 
-#pagebreak(weak: true)
 === Conditioning and Posterior
 
 We turn the prior into a solver by conditioning on observations of the field.
@@ -189,8 +188,6 @@ Convergence is governed by two parameters, the number of spectral directions $N_
 
 The `cavity-epgp` layer specializes the BVP solver to the cavity scattering problem. The cavity enters only through the boundary data, and the prior is unchanged.
 Each transmitter dipole sets a scattered-field boundary trace $hv = -pi_t Ev^i$. Conditioning on it at the $N_b$ boundary points enforces the PEC condition and yields the posterior scattered field $Ev^s_star$, whose tangential trace at the receivers fills one column of the reaction operator.
-
-#pagebreak()
 
 The $M = 2 N_Lambda$ transmitters share the same $N_b$ conditioning points and differ only in their boundary values $hv$. The conditioning matrix $amat(A)$ is therefore identical across transmitters, and only the right-hand side changes. We factor $amat(A)$ once and reuse the factorization for all $M$ excitations. The posterior covariance depends only on the conditioning points, not on the boundary values, so it is shared by all transmitters and computed once.
 

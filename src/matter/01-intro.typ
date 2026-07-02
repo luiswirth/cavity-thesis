@@ -51,8 +51,6 @@ a more geometrically grounded construction than the generic one by @harkonen.
 The theoretical framework and a proof-of-concept exist but a convincing
 reference benchmark does not. This thesis provides that benchmark.
 
-#pagebreak(weak: true)
-
 == Cavity Scattering Benchmark
 
 As a benchmark we use an *interior electromagnetic scattering problem* in

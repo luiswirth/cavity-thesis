@@ -62,15 +62,13 @@ $
 
 This is a Helmholtz-type equation for the electric field, with the operator $cal(L) := curl curl - k^2$.
 
-#pagebreak()
 == Scattering Problem
 
 The scattering problem of interest is inspired by @cavity.
 It is an interior problem in a bounded cavity.
 
 The problem is set up as follows:\
-A dipole source $delta_t$ is placed in the interior of a cavity $D$ and acts as a transmitter.
-It radiates an analytically known incident field $Ev^i$. The incident field hits the cavity boundary $partial D$ and is reflected by it, creating an unknown scattered field $Ev^s$. The scattered field is read back by another dipole $delta_r$ acting as the receiver. #hl[The subscripts $t$ and $r$ stand for transmitter and receiver, respectively.]
+A #hl[transmitter dipole $delta_t$] is placed in the interior of a cavity $D$ and radiates an analytically known incident field $Ev^i$. The incident field hits the cavity boundary $partial D$ and is reflected by it, creating an unknown scattered field $Ev^s$. The scattered field is read back by a #hl[receiver dipole $delta_r$].
 
 The total field is the superposition of the incident and scattered part,
 $
@@ -131,7 +129,7 @@ The object of study is the mapping from a transmitter dipole to the measured res
 
 Before introducing oscillating dipoles, we first consider the simpler oscillating monopole.
 
-An oscillating monopole $delta^1 = (zv, q)$ is a charge source #hl[with density] $rho(xv, t) = q delta_zv exp(-i omega t)$ at a point $zv in D$, with a charge $q in RR$ that gives its strength #hl[and $delta_zv$ the Dirac point mass centered at $zv$]. The scalar potential it generates is $q Phi$, where $Phi$ is the free-space fundamental solution
+An oscillating monopole $delta^1 = (zv, q)$ is a charge source #hl[with density] $rho(xv, t) = q delta_zv exp(-i omega t)$ at a point $zv in D$, with a charge $q in RR$ that gives its strength #hl[and $delta_zv$ the unit Dirac delta distribution centered at $zv$]. The scalar potential it generates is $q Phi$, where $Phi$ is the free-space fundamental solution
 $
   Phi(xv; zv) = 1/(4 pi) exp(i k r)/r
 $
@@ -229,7 +227,6 @@ $
   r(delta_t, delta_r) = r(delta_r, delta_t)
 $
 
-#pagebreak(weak: true)
 === Reaction Operator
 
 A single transmit-receive pair yields one number, the reaction $r(delta_t, delta_r)$.
@@ -298,7 +295,6 @@ $
   r(delta_t, delta_r) = pv_r^transp amat(T)(zv_r, zv_t) pv_t
 $
 
-#pagebreak(weak: true)
 ==== Discretization
 
 To compute with $cal(T)$ we discretize it on a finite set of dipoles. Since each tangent space $T_zv Lambda$ is two-dimensional, we need a basis to coordinatize it. We sample $N_Lambda$ points on $Lambda$ and assign each an orthonormal tangent frame ${en_1(zv), en_2(zv)}$, computed from the outward normal via a reference-vector construction. #hl[That is, we fix a global reference vector $avec(c)$, remove its normal component to obtain the first tangent $en_1 prop avec(c) - (avec(c) dot nn) nn$, normalize it, and complete the frame by $en_2 = nn times en_1$; the reference $avec(c)$ is chosen not parallel to $nn$ at any sampled point.] Each point thus carries two dipoles, one per frame vector, for $M = 2 N_Lambda$ in total.
