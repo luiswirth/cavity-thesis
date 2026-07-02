@@ -383,7 +383,7 @@ $
   wide
   pi_t avec(M)_(l m) = j_l (k r) avec(Phi)_(l m),
 $
-with the spherical Bessel function $j_l$ and the Riccati--Bessel function $psi_l (x) = x j_l (x)$. #hl[Here the prime denotes the derivative of the Riccati--Bessel function with respect to its argument, $psi_l'(x) = dif / (dif x) (x j_l (x))$.]
+with the spherical Bessel function $j_l$ and the Riccati--Bessel function $psi_l (x) = x j_l (x)$#hl[, whose derivative is $psi_l'(x) = dif / (dif x) (x j_l (x))$].
 
 We expand the incident tangential trace on the cavity wall at $r = R$ in these harmonics,
 $
