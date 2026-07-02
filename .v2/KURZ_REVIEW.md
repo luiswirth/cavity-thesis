@@ -130,7 +130,7 @@ Each item: verbatim Kurz comment → where it lands → the fix.
 
 ## Chapter 2 — Cavity Scattering
 
-- [ ] **6. [V2-DO] Equations as sub-sentences; punctuation (p.5)**
+- [x] **6. [V2-DO] Equations as sub-sentences; punctuation (p.5)**
   Verbatim: *"Throughout, equations might be regarded as (sub-)sentences,
   therefore I would add commas here, a period after eq. (2) and so on..."*
   Where: §2.1, eqs (1)–(2) and throughout.

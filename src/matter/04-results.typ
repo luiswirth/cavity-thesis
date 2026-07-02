@@ -21,13 +21,13 @@ The reference error $epsilon$ is the distance to a trusted reference operator $a
 which is the analytic operator $amat(T)_"anal"$ on the sphere and the high-fidelity BEM operator $amat(T)_"BEM"$ on the ellipsoid.
 $
   rho := norm(amat(T) - amat(T)^transp) / norm(amat(T)) quad quad
-  epsilon := norm(amat(T) - amat(T)_"ref") / norm(amat(T)_"ref")
+  epsilon := norm(amat(T) - amat(T)_"ref") / norm(amat(T)_"ref").
 $
 
 We use the Frobenius norm to quantify distance between operators.
 The operator norm is bounded by the Frobenius norm, so convergence in $epsilon$ implies convergence in the operator norm#hl[, as shown in #cite(<hornjohnson>, form: "prose", supplement: [p. 370])].
 $
-  norm(amat(T))_"op" <= norm(amat(T))_"F"
+  norm(amat(T))_"op" <= norm(amat(T))_"F".
 $
 
 == Spherical Cavity
