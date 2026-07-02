@@ -89,11 +89,11 @@ Since the field is linear in the weight, a zero-mean Gaussian measure on the wei
 $
   Ev tilde cal(G P)(0, amat(K)).
 $
-#hl[We give the weight the covariance $amat(W)$, a positive-semidefinite operator on the weight space that sets how strongly each spectral direction is expressed a priori. The matrix covariance kernel is then]
+#hl[The weight has covariance $amat(W)$, a positive-semidefinite operator on the weight space that sets the prior strength of each spectral direction. The matrix covariance kernel is then]
 #hlb[$
   amat(K)(xv, yv) = integral_(V_k) amat(Phi)_kv (xv) amat(W) amat(Phi)_kv^herm (yv) dif kv.
 $]
-#hl[Carrying $amat(W)$ through the kernel keeps this prior assumption explicit rather than implicit. The isotropic default $amat(W) = amat(I)$ places equal prior weight on every spectral direction and recovers the plain feature kernel; we adopt it in the Hyperparameters section but keep $amat(W)$ general until then.] Because the projector sits inside every feature, the prior is supported entirely on the solution space: every sample satisfies Maxwell exactly.
+#hl[The isotropic choice $amat(W) = amat(I)$ weights all spectral directions equally and recovers the plain feature kernel; we adopt it in the Hyperparameters section but keep the weight covariance general here.] Because the projector sits inside every feature, the prior is supported entirely on the solution space: every sample satisfies Maxwell exactly.
 
 === Conditioning and Posterior
 
@@ -174,13 +174,13 @@ $]
 $]
 #hl[The precision $amat(A)$ is the prior precision $amat(W)^(-1)$ regularized by the data term $amat(Phi) amat(Phi)^herm \/ sigma_n^2$. Mapping the inferred weights back through the features gives the posterior mean field $Ev_star (xv) = amat(Phi)(xv)^herm avec(w)_star$.]
 
-#hl[This weight-space posterior is the function-space posterior in disguise. Under the same quadrature the prior kernel collapses to the finite feature product $amat(K)(xv, yv) = amat(Phi)(xv)^herm amat(W) amat(Phi)(yv)$, with the weight covariance $amat(W)$ now explicit. Substituting it into the function-space mean and covariance and applying the Woodbury matrix-inversion lemma reproduces the weight-space expressions above, so the two formulations give identical posterior means and covariances.]
+#hl[This weight-space posterior is the function-space posterior in disguise. Under the same quadrature the prior kernel collapses to the finite feature product $amat(K)(xv, yv) = amat(Phi)(xv)^herm amat(W) amat(Phi)(yv)$. Substituting it into the function-space mean and covariance and applying the Woodbury matrix-inversion lemma reproduces the weight-space expressions above, so the two formulations give identical posterior means and covariances.]
 
 #hl[The distinction is purely computational. The function-space solve inverts the $N_b times N_b$ Gram matrix $amat(K)_(b b) + sigma_n^2 amat(I)$, while the weight-space solve inverts the $F times F$ precision $amat(A)$. The EP construction makes the feature count $F = 2 N_s$ explicit and often modest, whereas the boundary value problem conditions on many points, so whenever $F < N_b$ the weight-space solve is the cheaper one, with a cost set by the number of features rather than the number of observations.]
 
 ==== Hyperparameters
 
-The model has three hyperparameters: the spectral directions $kv_j$, the prior weights $amat(W)$, and the regularization parameter $sigma_n$. In a Gaussian process these can be tuned by maximizing the marginal likelihood of the data, usually by gradient descent on its negative logarithm. We instead fix them on principled grounds. The directions come from the Fibonacci sphere, whose even coverage we prefer to keep. The prior weights are set to $amat(W) = amat(I)$, treating all spectral directions equally. The regularization parameter is held fixed, since #hl[maximizing the marginal likelihood drives it toward the numerical floor of the ill-conditioned feature system rather than toward a data-appropriate value, not because the data are uninformative but because of the ill-conditioning discussed in the conclusion]. #hl[In all benchmark runs it is fixed to $sigma_n^2 = e^(-12) approx 6.1 times 10^(-6)$, that is $sigma_n = e^(-6) approx 2.5 times 10^(-3)$.]
+The model has three hyperparameters: the spectral directions $kv_j$, the prior weights $amat(W)$, and the regularization parameter $sigma_n$. In a Gaussian process these can be tuned by maximizing the marginal likelihood of the data, usually by gradient descent on its negative logarithm. We instead fix them on principled grounds. The directions come from the Fibonacci sphere, whose even coverage we prefer to keep. The prior weights are set to $amat(W) = amat(I)$, treating all spectral directions equally. The regularization parameter is held fixed, since #hl[maximizing the marginal likelihood would drive it toward the floor set by the ill-conditioned feature system rather than toward a value that reflects the data, as discussed in the conclusion]. #hl[In all benchmark runs it is fixed to $sigma_n^2 = e^(-12) approx 6.1 times 10^(-6)$, that is $sigma_n = e^(-6) approx 2.5 times 10^(-3)$.]
 
 === Implementation `maxwellgp`
 
@@ -209,7 +209,7 @@ The $M = 2 N_Lambda$ transmitters share the same $N_b$ conditioning points and d
 
 == Boundary Element Method
 
-The boundary element method (BEM) is a deterministic, boundary-integral method, described in #cite(<colton>, form: "prose") and #cite(<buffa>, form: "prose"). Its ansatz is a single-layer potential, which satisfies Maxwell's equations exactly. It leaves the surface density unknown and enforces the boundary condition by solving the resulting electric field integral equation, yielding a single solution. #hl[The BEM is a well-established method and enters this work only as an independent reference framework; we therefore present it concisely by design, summarizing the formulation rather than developing it.]
+The boundary element method (BEM) is a deterministic, boundary-integral method, described in #cite(<colton>, form: "prose") and #cite(<buffa>, form: "prose"). Its ansatz is a single-layer potential, which satisfies Maxwell's equations exactly. It leaves the surface density unknown and enforces the boundary condition by solving the resulting electric field integral equation, yielding a single solution. #hl[The BEM is well established and serves here only as an independent reference, so we summarize its formulation rather than develop it in full.]
 
 === Formulation
 
