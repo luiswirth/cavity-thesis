@@ -25,10 +25,9 @@ $
   quad quad
   Bv = mu Hv
 $
-#hl[Here $Ev$ and $Hv$ are the electric and magnetic field, $Dv$ and $Bv$ the
-electric and magnetic flux densities, and $epsilon$ and $mu$ the vacuum
-permittivity and permeability. Definitions of all quantities appearing in the
-Maxwell system follow the standard conventions of #cite(<jackson>, form: "prose", supplement: [Ch. 6]).]
+#hl[Here the electric field $Ev$, magnetic field $Hv$, electric flux density
+$Dv$, magnetic flux density $Bv$, permittivity $epsilon$, and permeability $mu$
+are as defined by #cite(<jackson>, form: "prose", supplement: [Ch. 6]).]
 
 We choose the time-harmonic ansatz
 $
@@ -129,7 +128,7 @@ The object of study is the mapping from a transmitter dipole to the measured res
 
 Before introducing oscillating dipoles, we first consider the simpler oscillating monopole.
 
-An oscillating monopole $delta^1 = (zv, q)$ is a charge source #hl[with density] $rho(xv, t) = q delta_zv exp(-i omega t)$ at a point $zv in D$, with a charge $q in RR$ that gives its strength #hl[and $delta_zv$ the unit Dirac delta distribution centered at $zv$]. The scalar potential it generates is $q Phi$, where $Phi$ is the free-space fundamental solution
+An oscillating monopole $delta^1 = (zv, q)$ is a charge source #hl[with density] $rho(xv, t) = q delta_zv exp(-i omega t)$ at a point $zv in D$, with a charge $q in RR$ that gives its strength #hl[and the unit Dirac delta distribution $delta_zv$ centered at $zv$]. The scalar potential it generates is $q Phi$, where $Phi$ is the free-space fundamental solution
 $
   Phi(xv; zv) = 1/(4 pi) exp(i k r)/r
 $
@@ -267,8 +266,8 @@ Reading the scattered field back on $Lambda$ gives the response density $avec(m)
 $
   avec(m) := pi_t^Lambda Ev^s [avec(g)]
 $
-#hl[Here $pi_t^Lambda$ denotes the same tangential projection trace as $pi_t$,
-but taken on the dipole surface $Lambda$ with its own unit normal, so that
+#hl[Here the trace $pi_t^Lambda$ is the same tangential projection as $pi_t$,
+but taken on the dipole surface $Lambda$ with its own unit normal $nn_Lambda$, so that
 $pi_t^Lambda Ev = Ev - (Ev dot nn_Lambda) nn_Lambda$ at each point of $Lambda$.]
 
 The reaction operator is a linear integral operator, defined as the map from the excitation density to the response density,

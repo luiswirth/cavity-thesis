@@ -114,7 +114,7 @@ The posterior mean field is the regularized best fit to the data, tempered by th
 $
   Ev_star (xv) = amat(K)(xv, X_b) (amat(K)_(b b) + sigma_n^2 amat(I))^(-1) hv
 $
-#hl[Here $amat(K)_(b b) := amat(K)(X_b, X_b)$ is the Gram matrix of the kernel
+#hl[Here the Gram matrix $amat(K)_(b b) := amat(K)(X_b, X_b)$ is the kernel
 evaluated at all pairs of the $N_b$ observation points.]
 
 The posterior covariance is the Schur complement of the conditioning block, measuring how underdetermined the field remains after conditioning.
