@@ -28,7 +28,7 @@ never violate the law it is meant to obey, regardless of the data. When
 the governing law is known exactly, strong enforcement is therefore preferable.
 
 Among ML models, the *Gaussian process (GP)* is particularly well suited to
-strong enforcement. A GP #hl[(@rasmussen[Ch. 2])] is a probabilistic model over functions that returns
+strong enforcement. A GP #hl[@rasmussen[Ch. 2]] is a probabilistic model over functions that returns
 a full posterior distribution instead of just a point estimate. This enables
 *uncertainty quantification*: every prediction carries an estimate of its own reliability.
 If the GP prior is built so that its samples satisfy a PDE exactly, the model is
@@ -57,7 +57,7 @@ reference benchmark does not. This thesis provides that benchmark.
 
 As a benchmark we use an *interior electromagnetic scattering problem* in
 a cavity with *perfectly electrically conducting (PEC)* boundaries, #hl[a setup
-we adapt from the cavity-scattering problem of @cavity.] *Dipole
+we adapt from the cavity-scattering problem of #cite(<cavity>, form: "prose").] *Dipole
 sources* placed inside the cavity act as transmitters, exciting a field. It
 scatters off the PEC boundary, reflects back into the interior, and is measured
 at receivers. This defines a *reaction operator* that maps the dipole
