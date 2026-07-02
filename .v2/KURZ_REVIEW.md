@@ -155,7 +155,7 @@ Each item: verbatim Kurz comment → where it lands → the fix.
   Where: §2.2 / start of Ch. 2.
   Fix: state explicitly that the problem is posed in ℝ³ early in the chapter.
 
-- [ ] **9. [V2-DO] Scattered vs. total field read by receiver (p.6)**
+- [x] **9. [V2-DO] Scattered vs. total field read by receiver (p.6)**
   Verbatim: *"Is it the scattered or the total field that is read back by the
   receiver? Physically, it should be the total field. Of course, the incident
   field is known and simple and could be easily split off."*
@@ -187,7 +187,7 @@ Each item: verbatim Kurz comment → where it lands → the fix.
   Fix: cite a source for the closed-form dyadic Green's function (Tai 1994, or
   Colton & Kress, with specific location).
 
-- [ ] **14. [COPYEDIT] "smooth" / "vector" insertions (p.7)**
+- [x] **14. [COPYEDIT] "smooth" / "vector" insertions (p.7)**
   Verbatim (carets): *" smooth"*, *" vector"*
   Where: §2.2 / §2.3 domain and polarization descriptions.
   Fix: insert as marked. → copyedit cluster.
@@ -267,7 +267,7 @@ Each item: verbatim Kurz comment → where it lands → the fix.
   Fix: adopt his suggested gloss (or close to it) and cross-reference the explicit
   point formula from item 17. One formula, referenced twice.
 
-- [ ] **24. [V2-DO] ⚠ SUBSTANTIVE: how is the orthonormal basis selected? (p.13)**
+- [x] **24. [V2-DO] ⚠ SUBSTANTIVE: how is the orthonormal basis selected? (p.13)**
   Verbatim: *"How is the orthonormal basis exactly selected? It could still be
   rotated around the normal?"*
   Where: §3.1.4, "For each direction we pick an orthonormal basis a_j1, a_j2 of the
@@ -290,7 +290,7 @@ Each item: verbatim Kurz comment → where it lands → the fix.
   his version compresses. Making W explicit here also discharges item 21. This is
   the largest single prose task in V2 — its own commit.
 
-- [ ] **26. [V2-DO] ⚠ SUBSTANTIVE: Hyperparameters — four sub-questions (p.14)**
+- [x] **26. [V2-DO] ⚠ SUBSTANTIVE: Hyperparameters — four sub-questions (p.14)**
   Verbatim: *"1. This approach differs from what Félix did so far (if I remember
   correctly), I deem that interesting. We should discuss this in our team. 2. There
   is also the implicit prior covariance, see my remark above. 3. Which (fixed) value
@@ -305,7 +305,7 @@ Each item: verbatim Kurz comment → where it lands → the fix.
       answers the p.19 "is 10⁻³ small?" comment (item 30).
     - (4) basis rotation → discharged by item 24.
 
-- [ ] **27. [V2-DO] Praise, action = tighten intro framing (p.15)**
+- [x] **27. [V2-DO] Praise, action = tighten intro framing (p.15)**
   Verbatim: *"I like your account a lot. If one runs only the same chain of thoughts
   repeatedly (1. The original paper, 2. me, 3. Félix, 4. you) the essence becomes
   clearer during each sweep. I think this is a very good starting point for our
@@ -401,7 +401,7 @@ Each item: verbatim Kurz comment → where it lands → the fix.
   commit sprawl. Items with their own substantive content (17) keep their own commit
   for the non-caret part.
 
-- [ ] **37. [V2-DO] ⚠ reproducibility: define the σ_min operator (p.22)**
+- [x] **37. [V2-DO] ⚠ reproducibility: define the σ_min operator (p.22)**
   Verbatim: *"I have a reproducability issue here: can you please add the explicit
   definition of the operator whose smallest singular value is being plotted? ---
   Except from that, I deem this analysis strong and convincing."*
@@ -414,7 +414,7 @@ Each item: verbatim Kurz comment → where it lands → the fix.
 
 ## Chapter 4 — Results (ellipsoidal cavity)
 
-- [ ] **38. [V2-DO] praise, structure — no action (p.23)**
+- [x] **38. [V2-DO] praise, structure — no action (p.23)**
   Verbatim: *"I like the idea of first presenting the sphere and then comparing the
   ellipsoid against what we have learned / observed with the sphere."*
   Fix: none. Do not touch the structure.
@@ -524,7 +524,7 @@ Each item: verbatim Kurz comment → where it lands → the fix.
   Fix: add a footnote/reference identifying Euler as ETH Zürich's HPC cluster (link
   or citation), since external readers won't know the term.
 
-- [ ] **48. [V2-DO/discuss] Typst mention (p.32)**
+- [x] **48. [V2-DO/discuss] Typst mention (p.32)**
   Verbatim: *"This is interesting, I was not aware of 'Typst'. Can we discuss
   occasionally, please?"*
   Where: Appendix B.

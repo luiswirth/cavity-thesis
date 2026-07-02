@@ -67,7 +67,7 @@ The scattering problem of interest is inspired by #cite(<cavity>, form: "prose")
 It is an interior problem in a bounded cavity.
 
 The problem is set up as follows:\
-A #hl[transmitter dipole $delta_t$] is placed in the interior of a cavity $D$ and radiates an analytically known incident field $Ev^i$. The incident field hits the cavity boundary $partial D$ and is reflected by it, creating an unknown scattered field $Ev^s$. The scattered field is read back by a #hl[receiver dipole $delta_r$].
+A #hl[transmitter dipole $delta_t$] is placed in the interior of a cavity $D$ and radiates an analytically known incident field $Ev^i$. The incident field hits the cavity boundary $partial D$ and is reflected by it, creating an unknown scattered field $Ev^s$. A #hl[receiver dipole $delta_r$] then reads back the field. #hl[Physically the receiver responds to the total field $Ev = Ev^i + Ev^s$, but the incident field $Ev^i$ is known analytically and split off, leaving the scattered field $Ev^s$ as the quantity of interest.]
 
 The total field is the superposition of the incident and scattered part,
 $
@@ -138,7 +138,7 @@ $
 $
 Here the distance to the source is $r := norm(rv)$, with separation vector $rv := xv - zv$.
 
-An oscillating Hertzian dipole $delta^2 = (zv, pv)$ is a current source #hl[with density] $Jv(xv, t) = pv delta_zv exp(-i omega t)$ at a point $zv in D$, together with a polarization $pv in RR^3$ that gives the dipole's orientation and strength.
+An oscillating Hertzian dipole $delta^2 = (zv, pv)$ is a current source #hl[with density] $Jv(xv, t) = pv delta_zv exp(-i omega t)$ at a point $zv in D$, together with a polarization #hl[vector] $pv in RR^3$ that gives the dipole's orientation and strength.
 
 The electric field $Ev^i$ radiated by a dipole is obtained by applying the curl--curl operator to the Hertz vector potential $Phi pv$
 $
@@ -163,7 +163,7 @@ where $rn rn^transp$ is the outer product of the unit separation vector $rn := r
 
 === Scattered Field and curl--curl BVP
 
-Our cavity $D subset.eq RR^3$ is a bounded domain.
+Our cavity $D subset.eq RR^3$ is a #hl[smooth,] bounded domain.
 The incident field $Ev^i$ is reflected by the cavity boundary $partial D$
 and creates a scattered field $Ev^s$.
 
