@@ -379,11 +379,11 @@ We do not re-derive the analytic solution here. We refer to #hl[#cite(<tai>, for
 
 The interior fields expand in the regular Hansen multipoles, the TM-type $avec(N)_(l m)$ and the TE-type $avec(M)_(l m)$. On a sphere of radius $r$ their tangential traces reduce to the tangential vector spherical harmonics $avec(Psi)_(l m)$ and $avec(Phi)_(l m)$,
 $
-  pi_t avec(N)_(l m) = (psi_l'(k r))/(k r) avec(Psi)_(l m)
+  pi_t avec(N)_(l m) = (psi'_l (k r))/(k r) avec(Psi)_(l m)
   wide
   pi_t avec(M)_(l m) = j_l (k r) avec(Phi)_(l m),
 $
-with the spherical Bessel function $j_l$ and the Riccati--Bessel function $psi_l (x) = x j_l (x)$#hl[, whose derivative is $psi_l'(x) = dif / (dif x) (x j_l (x))$].
+with the spherical Bessel function $j_l$ and the Riccati--Bessel function $psi_l (x) = x j_l (x)$#hl[, whose derivative is $psi'_l (x) = dif / (dif x) (x j_l (x))$].
 
 We expand the incident tangential trace on the cavity wall at $r = R$ in these harmonics,
 $
@@ -399,7 +399,7 @@ $
 
 The PEC condition $pi_t Ev^s = -pi_t Ev^i$ on the cavity wall $partial D$ at $r = R$ fixes the coefficients,
 $
-  a_(l m) = -(k R)/(psi_l'(k R)) p_(l m)
+  a_(l m) = -(k R)/(psi'_l (k R)) p_(l m)
   wide
   b_(l m) = -1/(j_l (k R)) q_(l m).
 $
@@ -408,7 +408,7 @@ Evaluating the scattered field on the dipole surface $Lambda$ at $r = r_0$ and t
 $
   pi_t^Lambda Ev^s
   = -sum_(l m) (
-    R/r_0 (psi_l'(k r_0))/(psi_l'(k R)) p_(l m) avec(Psi)_(l m)
+    R/r_0 (psi'_l (k r_0))/(psi'_l (k R)) p_(l m) avec(Psi)_(l m)
     + (j_l (k r_0))/(j_l (k R)) q_(l m) avec(Phi)_(l m)
   ).
 $
