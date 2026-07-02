@@ -23,7 +23,7 @@ All SOFTENED/CORRECTED edits are highlighted in the review build.
 
 | # | Location | Claim | Disposition |
 |---|----------|-------|-------------|
-| C1 | §4.1.1 Mean | "both … are traveling waves carrying energy, but their energy flows cancel, so the total field is a pure standing wave" | **SOFTENED** (KURZ 33). No Poynting vector computed; reframed as an interpretation consistent with the ringlike figure, explicitly not demonstrated. Poynting analysis → paper backlog. |
+| C1 | §4.1.1 Mean | "both … are traveling waves carrying energy, but their energy flows cancel, so the total field is a pure standing wave" | **INVESTIGATED & CONFIRMED** (KURZ 33). Computed the time-averaged Poynting vector S = ½Re(E×H*) with H from Maxwell. Total field: S = 0 everywhere (traveling fraction 0.000, net radial flux ~1e-13); incident field alone: outward flux (fraction 0.93). Independent check: total field is real up to one global phase (arg(E·E) spread 0.000) — a pure standing wave. Restored as a demonstrated statement in §4.1.1. |
 | C2 | §4.1.1 Mean | "field lines via LIC" (×3 across sphere+ellipsoid) | **CORRECTED** terminology (KURZ 32): LIC is a texture whose streaks follow the local field direction, not field lines. |
 | C3 | §4.1.1 Mean | "incident field is the dipole near field, sharply localized at the source"; "wavefronts are concentric"; "smooth rings" | **KEEP-data** — directly visible in @fig:sphere-field. |
 | C4 | §4.1.1 Uncertainty | "The reason is that we condition only on the tangential part … normal component is left free … uncertainty fades toward the center" | **SOFTENED** (KURZ 35) to "a possible explanation". Mechanism not proven. |
