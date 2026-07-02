@@ -34,19 +34,19 @@ a full posterior distribution instead of just a point estimate#hl[, as described
 If the GP prior is built so that its samples satisfy a PDE exactly, the model is
 strongly physics-informed and probabilistic at the same time.
 
-The *Ehrenpreis--Palamodov (EP)* principle @ehrenpreis provides a constructive route to such
+The *Ehrenpreis--Palamodov (EP)* principle of #cite(<ehrenpreis>, form: "prose") provides a constructive route to such
 priors for *linear PDEs with constant coefficients* inspired by the *inverse
 Fourier transform*. It represents every solution as a superposition of *plane waves*
 with wavevectors on the *characteristic variety* of the operator and amplitudes
 in the *kernel of the symbol*. Its GP realization,
-the *Ehrenpreis--Palamodov Gaussian Process (EPGP)* @harkonen, uses a Gaussian prior based on this principle. The prior and the posterior both lie exactly in the solution space of the operator.
+the *Ehrenpreis--Palamodov Gaussian Process (EPGP)* of #cite(<harkonen>, form: "prose"), uses a Gaussian prior based on this principle. The prior and the posterior both lie exactly in the solution space of the operator.
 
 A particularly well-understood PDE system is *Maxwell's equations*, which
 govern *electromagnetism (EM)*. Building a principled EPGP for these equations
-is part of an ongoing effort @felix, which constructs EPGP priors for the
+is part of the ongoing effort of #cite(<felix>, form: "prose"), which constructs EPGP priors for the
 *time-harmonic* Maxwell system from a geometric perspective based on
 *differential forms*, the *de Rham complex*, and *Hertz potentials*. This yields
-a more geometrically grounded construction than the generic one by @harkonen.
+a more geometrically grounded construction than the generic one of #cite(<harkonen>, form: "prose").
 
 The theoretical framework and a proof-of-concept exist but a convincing
 reference benchmark does not. This thesis provides that benchmark.
@@ -66,7 +66,7 @@ We construct a probabilistic EPGP surrogate of this reaction operator. Unlike a
 purely data-driven surrogate, it satisfies the time-harmonic Maxwell equations
 exactly by construction and reports its own uncertainty. Its plane-wave prior is
 well suited to the interior scattering problem. The surrogate is built with the
-Maxwell EPGP library *`maxwellgp`* from the ongoing work @felix.
+Maxwell EPGP library *`maxwellgp`* from the ongoing work of #cite(<felix>, form: "prose").
 
 For comparison, we compute the reaction operator in a second, independent
 way, with a *boundary element method (BEM)* built on a *boundary integral

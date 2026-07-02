@@ -38,7 +38,7 @@ $
 The variety collects the wavevectors at which the symbol is singular,
 and the kernel condition restricts each amplitude to the directions the symbol annihilates.
 
-Rather than carry the kernel constraint, we remove it by projection. Writing $amat(Pi)_kv$ for the orthogonal projector onto $ker P(kv)$, any unconstrained weight $avec(w)(kv)$ yields an admissible amplitude $av(kv) = amat(Pi)_kv avec(w)(kv)$. Folding the projector into a matrix-valued feature map,
+Rather than carry the kernel constraint, we remove it by projection. Writing the orthogonal projector onto $ker P(kv)$ as $amat(Pi)_kv$, any unconstrained weight $avec(w)(kv)$ yields an admissible amplitude $av(kv) = amat(Pi)_kv avec(w)(kv)$. Folding the projector into a matrix-valued feature map,
 $
   amat(Phi)_kv (xv) = amat(Pi)_kv exp(i kv dot xv)
 $
@@ -171,9 +171,9 @@ The model has three hyperparameters: the spectral directions $kv_j$, the prior w
 
 === Implementation `maxwellgp`
 
-The prior and posterior above are implemented in the `maxwellgp` library @felix (Python/JAX), general and problem-independent.
+The prior and posterior above are implemented in the `maxwellgp` library of #cite(<felix>, form: "prose"), written in Python and JAX, general and problem-independent.
 The observation functional $cal(R)$ is supplied to the library and realized through the feature map. Only $cal(R)$ changes between applications, while the plane-wave features, the prior weights, the directions, and the posterior solve are identical.
-We refer to @felix for the full theory.
+We refer to #cite(<felix>, form: "prose") for the full theory.
 
 === EPGP for Boundary Value Problems
 
@@ -196,7 +196,7 @@ The $M = 2 N_Lambda$ transmitters share the same $N_b$ conditioning points and d
 
 == Boundary Element Method
 
-The boundary element method (BEM) is a deterministic, boundary-integral method @colton @buffa. Its ansatz is a single-layer potential, which satisfies Maxwell's equations exactly. It leaves the surface density unknown and enforces the boundary condition by solving the resulting electric field integral equation, yielding a single solution. #hl[The BEM is a well-established method and enters this work only as an independent reference framework; we therefore present it concisely by design, summarizing the formulation rather than developing it.]
+The boundary element method (BEM) is a deterministic, boundary-integral method, described in #cite(<colton>, form: "prose") and #cite(<buffa>, form: "prose"). Its ansatz is a single-layer potential, which satisfies Maxwell's equations exactly. It leaves the surface density unknown and enforces the boundary condition by solving the resulting electric field integral equation, yielding a single solution. #hl[The BEM is a well-established method and enters this work only as an independent reference framework; we therefore present it concisely by design, summarizing the formulation rather than developing it.]
 
 === Formulation
 
@@ -312,7 +312,7 @@ Evaluating the resulting scattered field at the receivers and projecting onto th
 
 === Implementation `Bembel`
 
-The formulation is discretized with the `Bembel` library @bembel, described by its authors as:
+The formulation is discretized with the `Bembel` library of #cite(<bembel>, form: "prose"), described by its authors as:
 
 #quote(block: true, attribution: [@bembel])[
   \[Bembel is\] the C++ library featuring higher order isogeometric Galerkin boundary element
@@ -360,7 +360,7 @@ To reconcile this, we conjugate the Bembel output to restore the $e^(+i k r)$ co
 
 ==== Refinement and Convergence
 
-Convergence is governed by the polynomial degree $p$ and the refinement level $m$ (mesh width $h$).
+Convergence is governed by the polynomial degree $p$ and the refinement level $m$, equivalently the mesh width $h$.
 For a smooth boundary and smooth solution, $h$-refinement converges algebraically and $p$-refinement geometrically.
 The ill-conditioning of the first-kind operator worsens under mesh refinement.
 
