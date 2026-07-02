@@ -59,7 +59,7 @@ The figure matches physical expectations. The scattered wavefronts are concentri
 
 The mean is paired with a posterior uncertainty, the standard deviation of the field about that mean. Only the scattered field is inferred and thus carries uncertainty. The incident field is exact, so the total field's uncertainty is identical to the scattered field's. @fig:sphere-field-std maps this standard deviation over the same slice. #hl[It is on the order of $10^(-3)$ in the chosen normalization, in which the dipole sources carry unit polarization, so it bears the same physical dimension as the field it quantifies.] It forms concentric rings that grow from the center toward the wall.
 
-That the uncertainty is largest at the wall may look backwards, since the wall is where we condition. #hl[A possible explanation is that] we condition only on the tangential part of the field. At the wall the tangential part is fixed, while the part pointing straight out of the wall, the normal component, is left free, and #hl[on this reading] that free part stays uncertain. In the interior there is no such free direction: the field equations tie the components together and the plane-wave prior fills in the field from the boundary data, #hl[which would explain why] the uncertainty fades toward the center. The map thus shows how well the boundary data determines the field, not the size of the true reconstruction error.
+#hl[This pattern is fixed by the conditioning geometry alone, independent of the measured data. The map therefore shows how well the boundary data determine the field, not the size of the true reconstruction error.]
 
 #figure(
   image("../../res/epgp_sphere_field_std.png", width: 40%),
@@ -153,23 +153,16 @@ We repeat the qualitative inspection of the previous section, visualizing the EP
 
 ==== Uncertainty
 
-@fig:ellipse-field-std maps the posterior uncertainty over the same slice. The same effect appears to be at work, but the broken symmetry makes it richer. The uncertainty is lowest deep in the interior and near the conditioned wall, and forms separate off-axis lobes in between. The scale is also an order of magnitude larger than on the sphere, of order $10^(-2)$.
-
-#hl[A natural conjecture is that these lobes sit where the field meets the wall most steeply, so that its normal component there is large. We tested it, and it does not hold. The posterior variance depends only on the conditioning geometry, through the Cholesky factor of the weight-space precision, and not on the transmitter data, so the uncertainty pattern is identical for every transmitter: the two structurally different transmitters of @fig:ellipse-uncertainty-normal produce slices that agree to machine precision. A transmitter-dependent quantity such as the boundary-normal component therefore cannot cause it. For the transmitter shown in @fig:ellipse-field-std the lobes do align with the normal component, with a correlation of $0.77$, which is why the conjecture looked plausible; but for the second transmitter the same lobes align with its normal component only weakly, with a correlation of $0.39$, while the two transmitters' normal components barely agree with each other. The lobes are thus a geometric feature of where the tangential boundary conditioning leaves the interior field least determined, not a signature of the incident field.]
+@fig:ellipse-field-std maps the posterior uncertainty over the same slice. The broken symmetry makes it richer than on the sphere: instead of concentric rings the standard deviation forms separate off-axis lobes, and its scale is an order of magnitude larger, of order $10^(-2)$. #hl[As on the sphere, the pattern is fixed by the conditioning geometry alone and reports how well the boundary data determine the field rather than the true reconstruction error.]
 
 #figure(
   image("../../res/epgp_ellipse_field_std.png", width: 50%),
   caption: [EPGP scattered-field uncertainty on the ellipsoidal cavity slice.],
 ) <fig:ellipse-field-std>
 
-#figure(
-  image("../../res/ellipse_uncertainty_normal.svg"),
-  caption: [#hl[Uncertainty-versus-normal-component test on the ellipsoid. Left: the posterior standard deviation of the scattered field, which depends only on the conditioning geometry and is identical for every transmitter. Right: the per-direction uncertainty-lobe intensity against the boundary normal component $|Ev dot nn|$ for two different transmitters. The fixed lobes track the normal component of the first transmitter, correlation $0.77$, but not the second, correlation $0.39$, so the alignment is coincidental rather than causal.]],
-) <fig:ellipse-uncertainty-normal>
-
 === EPGP Operator
 
-As on the sphere, @fig:ellipse-operator shows the operator magnitude beside the posterior uncertainty. The magnitude $|amat(T)|$ keeps the same diagonal structure of strong self- and near-coupling. The uncertainty, however, is no longer uniform: the elongated geometry breaks the equivalence of receivers, so $sigma$ now varies from receiver to receiver, visible as the horizontal banding. It grows for receivers deeper inside the cavity, toward the elongated $z$-axis and away from the wall, #hl[suggesting that the boundary data constrains receivers close to the wall more strongly than those deeper inside the cavity].
+As on the sphere, @fig:ellipse-operator shows the operator magnitude beside the posterior uncertainty. The magnitude $|amat(T)|$ keeps the same diagonal structure of strong self- and near-coupling. The uncertainty, however, is no longer uniform: the elongated geometry breaks the equivalence of receivers, so $sigma$ now varies from receiver to receiver, visible as the horizontal banding. It grows for receivers deeper inside the cavity, toward the elongated $z$-axis and away from the wall. #hl[As in the field maps, this uncertainty is set by where we condition and evaluate, not by the measured data.]
 
 #figure(
   image("../../res/ellipse_uq_operator.png", width: 90%),

@@ -548,12 +548,16 @@ computation, new figures, or deeper theory than a light V2 warrants.
 - **[PAPER-A] Poynting vector analysis** (from item 33) — compute and plot the
   Poynting vector to substantiate energy-flow cancellation and the standing-wave
   characterization on the sphere.
-- **[PAPER-B] Uncertainty vs. boundary-normal-component plot** (from item 39) —
-  DONE (moved out of backlog, incorporated into V2). The numerical test refuted
-  the lobe explanation: the posterior variance depends only on the conditioning
-  geometry, so the uncertainty is identical for every transmitter and cannot be
-  caused by the transmitter-dependent normal component. See §4.2.1,
-  Fig. ellipse_uncertainty_normal, and `cavity_benchmark.uncertainty_normal`.
+- **[PAPER-B] Uncertainty vs. boundary-normal-component** (from item 39) —
+  Investigated: the posterior variance is transmitter-independent (depends only
+  on the conditioning geometry), so the normal-component lobe explanation is
+  refuted (corr 0.77 for one transmitter, 0.39 for another; a single near-
+  resonant mode also fails, corr 0.30). No proven mechanistic interpretation of
+  the lobe pattern. DECISION: strip all uncertainty interpretation and the
+  normal-component thread from the thesis (sphere and ellipsoid); report only
+  facts. Investigation kept for the paper; the analysis script was removed from
+  cavity-benchmark to keep the code repos untouched (recoverable from git
+  history / the session).
 - **[PAPER-C] Implicit prior covariance W** (from items 21, 26.2) — the deeper
   modelling question of what prior over the latent weights is actually implied, how
   it differs from Félix's construction (26.1), and whether W=I is the right choice.
