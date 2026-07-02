@@ -132,7 +132,7 @@ $]
 
 == Ellipsoidal Cavity
 
-The ellipsoidal cavity has semi-axes $(4, 4, 6)$, keeping the same interior surface $Lambda$ and wavenumber $k = 2$. Unlike the sphere, it admits no analytic operator: the ellipsoid does not separate the vector Helmholtz equation in any standard coordinate system, so no closed-form eigenfunction expansion exists. The high-fidelity BEM solution therefore serves as the reference.
+The ellipsoidal cavity has semi-axes $(4, 4, 6)$, keeping the same interior surface $Lambda$ and wavenumber $k = 2$. Unlike the sphere, it admits no analytic operator, so the high-fidelity BEM solution serves as the reference.
 
 === EPGP Field
 
