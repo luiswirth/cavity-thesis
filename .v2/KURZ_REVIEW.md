@@ -565,16 +565,39 @@ computation, new figures, or deeper theory than a light V2 warrants.
   modelling question of what prior over the latent weights is actually implied, how
   it differs from Félix's construction (26.1), and whether W=I is the right choice.
   Team discussion.
-- **[PAPER-D] Condition-number theory** (from item 46.3) — proper analysis of how
-  the conditioning of A depends on the spectrum of ΦΦ^H and on σ_n; replace the
-  heuristic 1/σ_n² statement with the real dependence.
+- **[PAPER-D] Condition-number theory** (from item 46.3) — INVESTIGATED
+  (`.v2/paper_investigations.py`, tangential features on the sphere R=4, k=2).
+  With W=I, A = I + ΦΦ^H/σ_n², so eig(A) = 1 + λ_i/σ_n² and
+  cond(A) = (1 + λ_max/σ_n²)/(1 + λ_min/σ_n²), where λ_i are the eigenvalues of
+  the F×F feature Gram ΦΦ^H. Three regimes, not one:
+    (i)  σ_n² ≳ λ_max  → cond ≈ 1 (over-regularized);
+    (ii) λ_min ≲ σ_n² ≲ λ_max → cond ≈ λ_max/σ_n²  — the 1/σ_n² law holds ONLY here;
+    (iii) σ_n² ≲ λ_min → cond saturates at cond(ΦΦ^H) = λ_max/λ_min, σ_n-independent.
+  Numbers: N_s=256, N_b=1024 gives λ_max≈2.5e4, λ_min≈2e-5, cond(ΦΦ^H)≈1.2e9;
+  the thesis default σ_n²=e^-12≈6.1e-6 already sits in the saturation regime, so
+  the realistic runs are governed by the feature-Gram spectrum, not by σ_n — exactly
+  the thesis claim (C21), now quantified. The real driver is λ_min collapsing as the
+  features become overcomplete (λ_min falls ~8.6→2e-5 from N_s=128→256). Paper: turn
+  this into a cond(A)-vs-σ_n figure over N_s, and the λ_min(N_s) decay.
 - **[PAPER-E] Quadrature vs. conditioning** (from item 46.4) — whether a better
   quadrature (Lebedev / spherical designs) actually improves feature-matrix
   conditioning, which is not implied by integration accuracy alone.
 - **[PAPER-F] Fast-BEM-fair cost comparison** (from item 43) — how to present the
   EPGP-vs-BEM speed result honestly given that fast/compressed BEM was not tested.
-- **[PAPER-G] Basis-rotation robustness** (from items 24, 26.4) — if not fully
-  settled by the Π_k-invariance argument in V2, a numerical robustness check.
+- **[PAPER-G] Basis-rotation robustness** (from items 24, 26.4) — DONE, the
+  numerical check confirms the Π_k-invariance argument
+  (`.v2/paper_investigations.py`). Rebuilding the features with the transverse
+  frame (e1,e2) rotated in-plane by a random per-direction angle, and with a
+  completely independent random transverse frame, leaves the quantities the GP
+  posterior actually depends on unchanged to machine precision (W=I):
+    kernel Gram Φ^H Φ (full trace)      rel diff 7e-16 (rotation), 7e-13 (random frame)
+    tangential kernel Gram              rel diff 7e-13
+    eig(ΦΦ^H) — hence cond(A)           rel diff 7e-13
+    transverse projector e1e1^T+e2e2^T  basis-independent to 7e-11
+  Reason: rotating (e1,e2) mixes each direction's two polarization features by an
+  orthogonal 2×2 O_r; Φ → blkdiag(O_r)Φ leaves Φ^H Φ invariant and only conjugates
+  ΦΦ^H (same spectrum). So prior, posterior, and conditioning are all basis-free.
+  Claim holds; no thesis change needed.
 - **[PAPER-H] Exponential convergence in Ns** (from item 41) — if the semilog plot
   is deferred, confirm/characterize exponential Ns-convergence at large Nb.
 - **[PAPER-I] Team discussion items** — Félix-vs-your hyperparameter approach (26.1),
