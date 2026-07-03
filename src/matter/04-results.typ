@@ -25,7 +25,7 @@ $
 $
 
 We use the Frobenius norm to quantify distance between operators.
-The operator norm is bounded by the Frobenius norm, so convergence in $epsilon$ implies convergence in the operator norm#hl[, as shown in #cite(<hornjohnson>, form: "prose", supplement: [p. 370])].
+The operator norm is bounded by the Frobenius norm, so convergence in $epsilon$ implies convergence in the operator norm#hl[ #cite(<hornjohnson>, supplement: [p. 370])].
 $
   norm(amat(T))_"op" <= norm(amat(T))_"F".
 $
@@ -113,7 +113,7 @@ The BEM is deterministic, so it returns the operator without an uncertainty esti
 
 === Wavenumber Sweep
 
-The benchmark fixes $k = 2$. A cavity resonance, where the interior boundary value problem is not uniquely solvable, would make the reconstruction ill-posed, so we check that $k = 2$ avoids one. #hl[We detect resonances with the subspace-angle diagnostic of #cite(<betcke>, form: "prose"). At wavenumber $k$ we evaluate the $F$ plane-wave features both on the boundary and in the interior: the matrix $amat(Phi)_b in CC^(3 N_b times F)$ collects their tangential traces at $N_b$ boundary points, and $amat(Phi)_i in CC^(6 N_i times F)$ their full six-component fields at $N_i$ interior points. We orthonormalize the columns of the stacked matrix by a thin QR factorization and partition the orthonormal factor conformally,]
+The benchmark fixes $k = 2$. A cavity resonance, where the interior boundary value problem is not uniquely solvable, would make the reconstruction ill-posed, so we check that $k = 2$ avoids one. #hl[We detect resonances with the subspace-angle diagnostic #cite(<betcke>). At wavenumber $k$ we evaluate the $F$ plane-wave features both on the boundary and in the interior: the matrix $amat(Phi)_b in CC^(3 N_b times F)$ collects their tangential traces at $N_b$ boundary points, and $amat(Phi)_i in CC^(6 N_i times F)$ their full six-component fields at $N_i$ interior points. We orthonormalize the columns of the stacked matrix by a thin QR factorization and partition the orthonormal factor conformally,]
 #hlb[$
   mat(amat(Phi)_b; amat(Phi)_i) = amat(Q) amat(R), quad amat(Q) = mat(amat(Q)_b; amat(Q)_i),
 $]
