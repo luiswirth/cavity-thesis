@@ -186,7 +186,6 @@ The model has three hyperparameters: the spectral directions $kv_j$, the prior w
 
 The prior and posterior above are implemented in the `maxwellgp` library of #cite(<felix>, form: "prose"), written in Python and JAX, general and problem-independent.
 The observation functional $cal(R)$ is supplied to the library and realized through the feature map. Only $cal(R)$ changes between applications, while the plane-wave features, the prior weights, the directions, and the posterior solve are identical.
-We refer to #cite(<felix>, form: "prose") for the full theory.
 
 === EPGP for Boundary Value Problems
 
@@ -353,7 +352,7 @@ $
   quad
   bv_i = integral_(partial D) avec(phi)_i dot avec(h)_times dif s,
 $
-in which the single-layer operator $cal(V)$ is replaced by its Galerkin matrix $amat(V)$. Its entries are the single-layer bilinear form on pairs of basis functions. Integrating the gradients of the dyadic Green's function by parts onto the basis functions reduces it to a double surface integral over the scalar fundamental solution $Phi$#hl[, following #cite(<buffa>, form: "prose", supplement: [Sec. 5])],
+in which the single-layer operator $cal(V)$ is replaced by its Galerkin matrix $amat(V)$. Its entries are the single-layer bilinear form on pairs of basis functions. Integrating the gradients of the dyadic Green's function by parts onto the basis functions reduces it to a double surface integral over the scalar fundamental solution $Phi$#hl[ #cite(<buffa>, supplement: [Sec. 5])],
 $
   amat(V)_(a b) = i k integral_(partial D) integral_(partial D) Phi(xv, yv) (avec(phi)_a (xv) dot avec(phi)_b (yv) - 1/k^2 div_Gamma avec(phi)_a (xv) div_Gamma avec(phi)_b (yv)) dif s(yv) dif s(xv).
 $

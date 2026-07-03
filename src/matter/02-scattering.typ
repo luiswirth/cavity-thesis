@@ -27,7 +27,7 @@ $
 $
 #hl[Here the electric field $Ev$, magnetic field $Hv$, electric flux density
 $Dv$, magnetic flux density $Bv$, permittivity $epsilon$, and permeability $mu$
-are as defined by #cite(<jackson>, form: "prose", supplement: [Ch. 6]).]
+carry their standard meanings #cite(<jackson>, supplement: [Ch. 6]).]
 
 We choose the time-harmonic ansatz
 $
@@ -155,7 +155,7 @@ $
   amat(G)(xv; zv) pv := i/k curl_xv curl_xv (Phi(xv; zv) pv).
 $
 
-Its explicit form, #hl[derived in #cite(<tai>, form: "prose", supplement: [Ch. 4]),] is given by
+Its explicit form#hl[ #cite(<tai>, supplement: [Ch. 4])] is given by
 $
   amat(G)(xv; zv) = i k Phi(xv; zv) [(1 + i/(k r) - 1/(k r)^2) amat(I) - (1 + (3 i)/(k r) - 3/(k r)^2) rn rn^transp],
 $
@@ -221,7 +221,7 @@ $
   r(delta_t, delta_r) = cal(R)(Ev^s) = pv_r dot Ev^s (zv_r; delta_t).
 $
 
-Exchanging the two roles leaves the measured response unchanged. This is the Lorentz (Rayleigh--Carson) reciprocity property, a consequence of the symmetry of the curl--curl Green's operator#hl[, following #cite(<colton>, form: "prose", supplement: [Sec. 6.6])],
+Exchanging the two roles leaves the measured response unchanged. This is the Lorentz (Rayleigh--Carson) reciprocity property, a consequence of the symmetry of the curl--curl Green's operator#hl[ #cite(<colton>, supplement: [Sec. 6.6])],
 $
   r(delta_t, delta_r) = r(delta_r, delta_t).
 $
@@ -319,7 +319,7 @@ $
   Lambda := { xv in RR^3 mid(:) norm(xv) = 1 } subset.eq D.
 $
 
-We choose $N_Lambda = 32$ dipole locations using a low-discrepancy quasi-uniform Fibonacci sphere distribution#hl[, a deterministic point set that provides an approximately uniform sampling of the sphere, following #cite(<gonzalez>, form: "prose").]
+We choose $N_Lambda = 32$ dipole locations using a low-discrepancy quasi-uniform Fibonacci sphere distribution#hl[, a deterministic point set that provides an approximately uniform sampling of the sphere #cite(<gonzalez>).]
 #hl[Explicitly, with the golden ratio $phi.alt = (1 + sqrt(5)) \/ 2$ and the index $k_i = i + 1 \/ 2$ for $i = 0, dots, N - 1$, the $N$ points on the unit sphere are]
 #hlb[$ z_i = 1 - (2 k_i) / N, quad theta_i = (2 pi) / phi.alt k_i, quad xv_i = (sqrt(1 - z_i^2) cos theta_i, sqrt(1 - z_i^2) sin theta_i, z_i). $ <eq:fib>]
 Together with the 2 polarizations per point, this gives $M = 2 N_Lambda = 64$ configurations.
@@ -375,7 +375,7 @@ Thanks to the spherical symmetry, the interior BVP is separable and hence has a 
 Therefore both scattered field $Ev^s$ and the reaction operator $amat(T)$ have analytic formulas,
 which serve as exact reference solutions to validate both numerical solvers.
 
-We do not re-derive the analytic solution here. We refer to #hl[#cite(<tai>, form: "prose", supplement: [Ch. 10])] for the full derivation and record the resulting formulas below.
+We do not re-derive the analytic solution here#hl[ #cite(<tai>, supplement: [Ch. 10])] and record the resulting formulas below.
 
 The interior fields expand in the regular Hansen multipoles, the TM-type $avec(N)_(l m)$ and the TE-type $avec(M)_(l m)$. On a sphere of radius $r$ their tangential traces reduce to the tangential vector spherical harmonics $avec(Psi)_(l m)$ and $avec(Phi)_(l m)$,
 $
