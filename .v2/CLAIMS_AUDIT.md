@@ -54,14 +54,17 @@ All SOFTENED/CORRECTED edits are highlighted in the review build.
 
 ---
 
-## Still-owed substantive items (not pure softening; pending)
+## Substantive items — DONE
 
-These are technical/structural, not covered by this softening pass:
-- **KURZ 21 / 25** — make the prior weight covariance W explicit and restructure
-  the Weight-Space Posterior per Kurz's rewrite.
-- **KURZ 24** — how the transverse basis is selected + Π_k-invariance argument.
-- **KURZ 37** — explicit definition of the σ_min operator (reproducibility).
-- **KURZ 9** — scattered vs. total field read by the receiver (physics clarity).
+All the structural items that were pending after the softening pass are now
+in the thesis:
+- **KURZ 21 / 25** — DONE. Weight-space posterior rewritten as Bayesian linear
+  regression with W kept explicit in kernel and precision (§3.1.2–3.1.4).
+- **KURZ 24** — DONE. Transverse-basis selection + Π_k-invariance argument in
+  §3.1.4; the invariance is confirmed numerically (see PAPER-G in KURZ_REVIEW).
+- **KURZ 37** — DONE. σ_min operator defined via the stacked-QR construction
+  (§4.1.4, eq. 88–89).
+- **KURZ 9** — DONE. Scattered-vs-total field distinction stated in §2.2.
 
 ## Explicitly deferred to the paper (require new computation)
 
