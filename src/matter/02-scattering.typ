@@ -128,7 +128,7 @@ The object of study is the mapping from a transmitter dipole to the measured res
 
 Before introducing oscillating dipoles, we first consider the simpler oscillating monopole.
 
-An oscillating monopole $delta^1 = (zv, q)$ is a charge source #hl[with density] $rho(xv, t) = q delta_zv exp(-i omega t)$ at a point $zv in D$, with a charge $q in RR$ that gives its strength #hl[and the unit Dirac delta distribution $delta_zv$ centered at $zv$]. The scalar potential it generates is $q Phi$, with the free-space fundamental solution $Phi$
+An oscillating monopole $delta^1 = (zv, q)$ is a charge source #hl[with density] $rho(xv, t) = q delta_zv exp(-i omega t)$ at a point $zv in D$, with #hl[the unit Dirac delta distribution $delta_zv$ centered at $zv$ and] a charge $q in RR$ that gives its strength. The scalar potential it generates is $q Phi$, with the free-space fundamental solution $Phi$
 $
   Phi(xv; zv) = 1/(4 pi) exp(i k r)/r,
 $
