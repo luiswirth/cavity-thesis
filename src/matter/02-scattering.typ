@@ -3,11 +3,11 @@
 
 = Cavity Scattering
 
-We present the interior electromagnetic scattering problem #hl[in three-dimensional space $RR^3$]: the governing field equations, the cavity geometry, and the reaction operator that both solvers compute.
+We present the interior electromagnetic scattering problem: the governing field equations, the cavity geometry, and the reaction operator that both solvers compute.
 
 == Time-Harmonic Maxwell's Equations
 
-The EPGP of #cite(<felix>, form: "prose") is built on the time-harmonic Maxwell's equations, which we briefly review here.
+The EPGP of #cite(<felix>, form: "prose") is built on the time-harmonic Maxwell's equations #hl[in three-dimensional space $RR^3$], which we briefly review here.
 
 We start with the source-free Maxwell's equations
 $
