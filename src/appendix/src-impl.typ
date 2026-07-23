@@ -2,20 +2,18 @@
 
 = Implementation Source Code
 
-All software for this thesis is open-source on GitHub. Each repository carries a
-README documenting its purpose, setup, and usage, so the code remains the single
-source of truth and this thesis does not restate implementation details. The
-numerical results reported here are reproducible from these repositories through
-the scripts described in their READMEs.
+All software for this thesis is open-source on GitHub.
+Each repository carries a README documenting its purpose, setup, and usage,
+so the code remains the single source of truth and this thesis does not restate implementation details.
+The numerical results reported here are reproducible from these repositories through the scripts described in their READMEs.
 
-To pin the thesis to a fixed state, the links below point to the `semester-thesis`
-git tag of each repository. Later development continues on the main branch without
-affecting these references.
+To pin the thesis to a fixed state, the links below point to the `semester-thesis` git tag of each repository.
+Later development continues on the main branch without affecting these references.
 
 == `maxwellgp`
 
-The general Maxwell-constrained EPGP library: plane-wave feature maps, the GP
-regression core, and tangential-trace conditioning.
+The general Maxwell-constrained EPGP library:
+plane-wave feature maps, the GP regression core, and tangential-trace conditioning.
 
 #[
   #set text(size: 20pt)
@@ -25,8 +23,8 @@ regression core, and tangential-trace conditioning.
 
 == `cavity-epgp`
 
-A thin cavity-specific layer over `maxwellgp`, owning the analytic dipole physics
-and the reaction-operator assembly.
+A thin cavity-specific layer over `maxwellgp`,
+owning the analytic dipole physics and the reaction-operator assembly.
 
 #[
   #set text(size: 20pt)
