@@ -3,26 +3,47 @@
 = Methods
 
 This chapter describes the two solvers used to compute the cavity reaction operator $amat(T)$.
-Both represent the scattered field as a superposition of exact solutions of the interior curl--curl equation, so Maxwell's equations hold by construction and only the PEC boundary condition remains to be enforced.
-Beyond this shared structure, the two solvers are numerically independent: they share only the problem setup (cavity geometry, wavenumber, dipole configurations) and none of their internal discretizations.
+Both represent the scattered field as a superposition of exact solutions of the
+interior curl--curl equation, so Maxwell's equations hold by construction and
+only the PEC boundary condition remains to be enforced.
+Beyond this shared structure, the two solvers are numerically independent:
+they share only the problem setup (cavity geometry, wavenumber, dipole
+configurations) and none of their internal discretizations.
 
-EPGP is probabilistic, returning a posterior distribution over the solution space. It uses a volume plane-wave superposition ansatz and enforces the boundary condition by conditioning on boundary data at scattered collocation points, with no mesh required. BEM is deterministic, returning a single solution. It discretizes the cavity wall into a surface mesh, represents the field via a boundary single-layer potential, and enforces the boundary condition by solving a boundary integral equation.
+EPGP is probabilistic, returning a posterior distribution over the solution
+space. It uses a volume plane-wave superposition ansatz and enforces the
+boundary condition by conditioning on boundary data at scattered collocation
+points, with no mesh required. BEM is deterministic, returning a single
+solution. It discretizes the cavity wall into a surface mesh, represents the
+field via a boundary single-layer potential, and enforces the boundary condition
+by solving a boundary integral equation.
 
 == Ehrenpreis--Palamodov Gaussian Process
 
-The Ehrenpreis--Palamodov Gaussian Process (EPGP) is a probabilistic, spectral method. Its ansatz is a superposition of transverse plane waves, which satisfy Maxwell's equations exactly. It places a Gaussian prior on the plane-wave amplitude density and enforces the boundary condition by conditioning on the boundary data, yielding a posterior distribution over the solution space.
+The Ehrenpreis--Palamodov Gaussian Process (EPGP) is a probabilistic, spectral
+method. Its ansatz is a superposition of transverse plane waves, which satisfy
+Maxwell's equations exactly. It places a Gaussian prior on the plane-wave
+amplitude density and enforces the boundary condition by conditioning on the
+boundary data, yielding a posterior distribution over the solution space.
 
 === Fundamental Principle
 
-A linear PDE with constant coefficients takes the form $L uv = 0$, where $L = L[partial_1, dots, partial_n]$ is a matrix-valued polynomial in the partial derivatives. The Fourier transform turns differentiation into multiplication, $partial_j |-> i k_j$, so $L$ acts on plane waves by its symbol,
+A linear PDE with constant coefficients takes the form $L uv = 0$, where $L
+= L[partial_1, dots, partial_n]$ is a matrix-valued polynomial in the partial
+derivatives. The Fourier transform turns differentiation into multiplication,
+$partial_j |-> i k_j$, so $L$ acts on plane waves by its symbol,
 $
   L (av exp(i kv dot xv)) = P(kv) av exp(i kv dot xv),
 $
-where $P(kv) := L[i k_1, dots, i k_n]$ is an ordinary matrix polynomial in the wavevector $kv$.
-A plane wave is therefore a solution exactly when its amplitude lies in the kernel of the symbol, $P(kv) av = 0$.
+where $P(kv) := L[i k_1, dots, i k_n]$ is an ordinary matrix polynomial in the
+wavevector $kv$.
+A plane wave is therefore a solution exactly when its amplitude lies in the
+kernel of the symbol, $P(kv) av = 0$.
 
-The Ehrenpreis--Palamodov fundamental principle reverses this reasoning. It states that _all_ solutions $uv$ of linear PDEs with constant coefficients
-can be recovered by an inverse Fourier transform, as a continuous superposition of such plane-wave solutions
+The Ehrenpreis--Palamodov fundamental principle reverses this reasoning. It
+states that _all_ solutions $uv$ of linear PDEs with constant coefficients can
+be recovered by an inverse Fourier transform, as a continuous superposition of
+such plane-wave solutions
 $
   uv(xv) = integral_(V) av(kv) exp(i kv dot xv) dif kv,
 $
@@ -35,10 +56,14 @@ $
   av(kv) in ker P(kv).
 $
 
-The variety collects the wavevectors at which the symbol is singular,
-and the kernel condition restricts each amplitude to the directions the symbol annihilates.
+The variety collects the wavevectors at which the symbol is singular, and
+the kernel condition restricts each amplitude to the directions the symbol
+annihilates.
 
-Rather than carry the kernel constraint, we remove it by projection. Writing the orthogonal projector onto $ker P(kv)$ as $amat(Pi)_kv$, any unconstrained weight $avec(w)(kv)$ yields an admissible amplitude $av(kv) = amat(Pi)_kv avec(w)(kv)$. Folding the projector into a matrix-valued feature map,
+We can remove the kernel constraint by projection. Writing the
+orthogonal projector onto $ker P(kv)$ as $amat(Pi)_kv$, any unconstrained weight
+$avec(w)(kv)$ yields an admissible amplitude $av(kv) = amat(Pi)_kv avec(w)(kv)$.
+Folding the projector into a matrix-valued feature map,
 $
   amat(Phi)_kv (xv) = amat(Pi)_kv exp(i kv dot xv),
 $
@@ -49,7 +74,8 @@ $
 
 ==== Time-Harmonic Maxwell's Equations
 
-We specialize to the time-harmonic Maxwell's equations, equivalently the curl--curl Helmholtz equation. Its symbol, with the wavenumber $k$, is
+We specialize to the time-harmonic Maxwell's equations, equivalently the
+curl--curl Helmholtz equation. Its symbol, with the wavenumber $k$, is
 $
   P(kv) = (norm(kv)^2 - k^2) amat(I) - kv kv^transp,
 $
@@ -57,7 +83,8 @@ whose determinant vanishes on a $k$-scaled 2-sphere, the characteristic variety
 $
   V_k = { kv in RR^3 mid(:) norm(kv) = k } = k SS^2.
 $
-On the variety the symbol is singular and reduces to a scaled rank-one projector onto the wavevector,
+On the variety the symbol is singular and reduces to a scaled rank-one projector
+onto the wavevector,
 $
   P(kv) = -kv kv^transp
   quad kv in V_k,
@@ -67,16 +94,20 @@ $
   ker P(kv) = { av in CC^3 mid(:) kv dot av = 0 }.
 $
 
- Enforcing Maxwell's equations therefore amounts to a transversality constraint on the amplitude,
+Enforcing Maxwell's equations therefore amounts to a transversality constraint
+on the amplitude,
 $
   av(kv) perp kv.
 $
 
-The orthogonal projector onto the kernel is the transverse complement of that rank-one projector,
+The orthogonal projector onto the kernel is the transverse complement of that
+rank-one projector,
 $
   amat(Pi)_kv = amat(I) - (kv kv^transp)/norm(kv)^2.
 $
-The general feature map and EP representation thus specialize to a superposition of transverse plane waves with a free weight,
+
+The general feature map and EP representation thus specialize to a superposition
+of transverse plane waves with a free weight,
 $
   amat(Phi)_kv (xv) = amat(Pi)_kv exp(i kv dot xv)
   quad
@@ -85,21 +116,30 @@ $
 
 === Gaussian Maxwell Prior
 
-Since the field is linear in the weight, a zero-mean Gaussian measure on the weight makes the field a zero-mean Gaussian process,
+Since the field is linear in the weight, a zero-mean Gaussian measure on the
+weight makes the field a zero-mean Gaussian process,
 $
   Ev tilde cal(G P)(0, amat(K)).
 $
-#hl[The weight has covariance $amat(W)$, a positive-semidefinite operator on the weight space that sets the prior strength of each spectral direction. The matrix covariance kernel is then]
+#hl[The weight has covariance $amat(W)$, a positive-semidefinite operator on the
+weight space that sets the prior strength of each spectral direction. The matrix
+covariance kernel is then]
 #hlb[$
   amat(K)(xv, yv) = integral_(V_k) amat(Phi)_kv (xv) amat(W) amat(Phi)_kv^herm (yv) dif kv.
 $]
-#hl[The isotropic choice $amat(W) = amat(I)$ weights all spectral directions equally and recovers the plain feature kernel; we adopt it in the Hyperparameters section but keep the weight covariance general here.] Because the projector sits inside every feature, the prior is supported entirely on the solution space: every sample satisfies Maxwell exactly.
+#hl[The isotropic choice $amat(W) = amat(I)$ weights all spectral
+directions equally and recovers the plain feature kernel; we adopt it in the
+Hyperparameters section but keep the weight covariance general here.] Because
+the projector sits inside every feature, the prior is supported entirely on the
+solution space: every sample satisfies Maxwell exactly.
 
 === Conditioning and Posterior
 
 We turn the prior into a solver by conditioning on observations of the field.
-An observation is a linear functional $cal(R)$ of the field, for instance its value or its tangential trace at a point.
-We condition on $N_b$ observations at points $X_b$, collected with their measured values in a data vector $hv$.
+An observation is a linear functional $cal(R)$ of the field, for instance its
+value or its tangential trace at a point.
+We condition on $N_b$ observations at points $X_b$, collected with their
+measured values in a data vector $hv$.
 
 After conditioning the posterior is again a Gaussian process
 $
@@ -108,31 +148,43 @@ $
 with posterior mean $Ev_star$ and posterior covariance $amat(K)_star$.
 
 We introduce a Tikhonov regularization parameter $sigma_n^2 > 0$.
-It trades off fitting the data against trusting the prior: as $sigma_n^2 -> 0$ the posterior mean interpolates the observations exactly, while $sigma_n^2 > 0$ relaxes this to a regression that smooths the fit.
+It trades off fitting the data against trusting the prior: as $sigma_n^2 -> 0$
+the posterior mean interpolates the observations exactly, while $sigma_n^2 > 0$
+relaxes this to a regression that smooths the fit.
 
-The posterior mean field is the regularized best fit to the data, tempered by the prior and the regularization.
+The posterior mean field is the regularized best fit to the data, tempered by
+the prior and the regularization.
 $
   Ev_star (xv) = amat(K)(xv, X_b) (amat(K)_(b b) + sigma_n^2 amat(I))^(-1) hv.
 $
 #hl[Here the Gram matrix $amat(K)_(b b) := amat(K)(X_b, X_b)$ is the kernel
 evaluated at all pairs of the $N_b$ observation points.]
 
-The posterior covariance is the Schur complement of the conditioning block, measuring how underdetermined the field remains after conditioning.
+The posterior covariance is the Schur complement of the conditioning block,
+measuring how underdetermined the field remains after conditioning.
 $
   amat(K)_star (xv, yv) = amat(K)(xv, yv)
   - amat(K)(xv, X_b) (amat(K)_(b b) + sigma_n^2 amat(I))^(-1) amat(K)(X_b, yv).
 $
 
-This is exact, infinite-dimensional GP regression: prior and posterior both live on the solution space.
+This is exact, infinite-dimensional GP regression: prior and posterior both live
+on the solution space.
 
 === Discretization
 
-The posterior of the previous section is exact but not yet computable: the kernel entries are integrals over $V_k$ with no closed form. We discretize the EP integral by quadrature, which both makes the kernel computable and expresses the field through explicit finite features.
+The posterior of the previous section is exact but not yet computable: the
+kernel entries are integrals over $V_k$ with no closed form. We discretize the
+EP integral by quadrature, which both makes the kernel computable and expresses
+the field through explicit finite features.
 
 ==== Finite Spectral Features
 
-We approximate the integral over $V_k$ by a finite sum over $N_s$ spectral directions $kv_j in V_k$, drawn from a Fibonacci sphere#hl[, a deterministic point set that gives approximately equal spacing between neighboring points while maintaining a nearly uniform surface-area distribution; the points are given explicitly in @eq:fib].
-For each direction we pick an orthonormal basis $av_(j 1), av_(j 2)$ of the transverse plane, recovering the projector as an outer-product sum,
+We approximate the integral over $V_k$ by a finite sum over $N_s$ spectral
+directions $kv_j in V_k$, drawn from a Fibonacci sphere distribution defined
+in @eq:fib.
+
+For each direction we pick an orthonormal basis $av_(j 1), av_(j 2)$ of the
+transverse plane, recovering the projector as an outer-product sum,
 $
   amat(Pi)_(kv_j) = sum_(a = 1)^2 av_(j a) av_(j a)^herm.
 $
@@ -208,7 +260,15 @@ The $M = 2 N_Lambda$ transmitters share the same $N_b$ conditioning points and d
 
 == Boundary Element Method
 
-The boundary element method (BEM) is a deterministic, boundary-integral method, described in #cite(<colton>, form: "prose") and #cite(<buffa>, form: "prose"). Its ansatz is a single-layer potential, which satisfies Maxwell's equations exactly. It leaves the surface density unknown and enforces the boundary condition by solving the resulting electric field integral equation, yielding a single solution. #hl[The BEM is well established and serves here only as an independent reference, so we summarize its formulation rather than develop it in full.]
+The boundary element method (BEM) is a deterministic, boundary-integral method,
+described in #cite(<colton>, form: "prose") and #cite(<buffa>, form: "prose").
+Its ansatz is a single-layer potential, which satisfies Maxwell's equations
+exactly. It leaves the surface density unknown and enforces the boundary
+condition by solving the resulting electric field integral equation, yielding
+a single solution.
+
+BEM is well established and serves only as the framework for the reference solution.
+For this reason, we will only present the main ideas, rather than develop it in full.
 
 === Formulation
 
@@ -328,8 +388,8 @@ Evaluating the resulting scattered field at the receivers and projecting onto th
 The formulation is discretized with the `Bembel` library of #cite(<bembel>, form: "prose"), described by its authors as:
 
 #quote(block: true, attribution: [@bembel])[
-  \[Bembel is\] the C++ library featuring higher order isogeometric Galerkin boundary element
-  methods for Laplace, Helmholtz, and Maxwell problems. Bembel is compatible with geometries
+  \[`Bembel` is\] the C++ library featuring higher order isogeometric Galerkin boundary element
+  methods for Laplace, Helmholtz, and Maxwell problems. `Bembel` is compatible with geometries
   from the Octave NURBS package, and provides an interface to the Eigen template library for
   linear algebra operations. For computational efficiency, it applies an embedded fast
   multipole method tailored to the isogeometric analysis framework and a parallel matrix
@@ -338,7 +398,7 @@ The formulation is discretized with the `Bembel` library of #cite(<bembel>, form
 
 ==== Geometry
 
-Bembel uses a NURBS boundary representation, where our cavity geometries can be represented exactly. We use a NURBS representation of a sphere and scale it to the cavity semi-axes for both our geometries.
+`Bembel` uses a NURBS boundary representation, where our cavity geometries can be represented exactly. We use a NURBS representation of a sphere and scale it to the cavity semi-axes for both our geometries.
 
 ==== Galerkin Discretization
 
@@ -357,19 +417,24 @@ $
   amat(V)_(a b) = i k integral_(partial D) integral_(partial D) Phi(xv, yv) (avec(phi)_a (xv) dot avec(phi)_b (yv) - 1/k^2 div_Gamma avec(phi)_a (xv) div_Gamma avec(phi)_b (yv)) dif s(yv) dif s(xv).
 $
 
-The surface divergence $div_Gamma avec(phi)$ appears in the bilinear form, so the basis must keep it square-integrable. This requires div-conforming elements, whose normal component is continuous across element edges. Bembel uses div-conforming isogeometric B-splines, the higher-order spline analogue of Raviart--Thomas elements, matching the $H^(-1/2)(div_Gamma, partial D)$ trace space of $cal(V)$.
+The surface divergence $div_Gamma avec(phi)$ appears in the bilinear form,
+so the basis must keep it square-integrable. This requires div-conforming
+elements, whose normal component is continuous across element edges. `Bembel`
+uses div-conforming isogeometric B-splines, the higher-order spline analogue of
+Raviart--Thomas elements, matching the $H^(-1/2)(div_Gamma, partial D)$ trace
+space of $cal(V)$.
 
 ==== Linear Solver
 
-Bembel provides no preconditioner, such as a Calderón projector, so an iterative solver is unattractive. We rely on direct solves instead.
+`Bembel` provides no preconditioner, such as a Calderón projector, so an iterative solver is unattractive. We rely on direct solves instead.
 
 Furthermore we do not use any matrix compression techniques like fast-multipole or hierarchical matrices, because we need high-fidelity reference solutions to compare with the EPGP solutions.
 Hence we assemble the dense matrix and solve it by a direct LU factorization.
 
 ==== Time-Harmonic Convention
 
-Bembel uses the opposite time-harmonic convention to ours, $e^(-i k r)$ instead of $e^(+i k r)$.
-To reconcile this, we conjugate the Bembel output to restore the $e^(+i k r)$ convention.
+`Bembel` uses the opposite time-harmonic convention to ours, $e^(-i k r)$ instead of $e^(+i k r)$.
+To reconcile this, we conjugate the `Bembel` output to restore the $e^(+i k r)$ convention.
 
 ==== Refinement and Convergence
 

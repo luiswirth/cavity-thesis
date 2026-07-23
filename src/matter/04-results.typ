@@ -58,7 +58,7 @@ The figure matches physical expectations. The scattered wavefronts are concentri
 
 ==== Uncertainty
 
-The mean is paired with a posterior uncertainty, the standard deviation of the field about that mean. Only the scattered field is inferred and thus carries uncertainty. The incident field is exact, so the total field's uncertainty is identical to the scattered field's. @fig:sphere-field-std maps this standard deviation over the same slice. #hl[It is on the order of $10^(-3)$ in the chosen normalization, in which the dipole sources carry unit polarization, so it bears the same physical dimension as the field it quantifies.] It forms concentric rings that grow from the center toward the wall.
+The mean is paired with a posterior uncertainty, the standard deviation of the field about that mean. Only the scattered field is inferred and thus carries uncertainty. The incident field is exact, so the total field's uncertainty is identical to the scattered field's. @fig:sphere-field-std maps this standard deviation over the same slice as @fig:sphere-field. #hl[It is on the order of $10^(-3)$ in the chosen normalization, in which the dipole sources carry unit polarization, so it bears the same physical dimension as the field it quantifies.] It forms concentric rings that grow from the center toward the wall.
 
 #hl[This pattern is fixed by the conditioning geometry alone, independent of the measured data. The map therefore shows how well the boundary data determine the field, not the size of the true reconstruction error.]
 
