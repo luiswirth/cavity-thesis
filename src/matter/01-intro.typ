@@ -85,7 +85,7 @@ This thesis makes the following contributions.
 - Maxwell EPGP library:
   Improved existing JAX implementation `maxwellgp`, fixed bugs, added support for tangential traces, posterior covariance computation, and sampling.
 - Cavity EPGP solver:
-  Built a probabilistic EPGP solver `cavity-maxwell` for the cavity reaction operator in Python using `maxwellgp`, relying on the analytic dipole Green's function.
+  Built a probabilistic EPGP solver `cavity-maxwellgp` for the cavity reaction operator in Python using `maxwellgp`, relying on the analytic dipole Green's function.
 - Cavity BEM solver:
   Built a deterministic boundary element solver `cavity-bem` for the cavity reaction operator in C++ using `Bembel`, relying on an indirect single-layer formulation.
 - Analytic spherical cavity solution:
