@@ -2,7 +2,9 @@
 
 Guidance for working on this thesis. Layout, build and the results pipeline are
 in the README. The wider project, of which this thesis is one component, is
-described in the `maxwellgp-project` workspace.
+described in the `maxwellgp-project` workspace. General writing and code
+guidelines are in the global `~/.claude/CLAUDE.md`, which is authoritative; this
+file carries only what is specific to the thesis.
 
 The thesis was submitted 2026-07-01. The only remaining work is the V2 revision
 requested by Kurz, and it is low priority; the paper takes precedence.
@@ -22,26 +24,21 @@ prove an interpretive claim, soften the claim to a conjecture instead. Items
 tagged `[PAPER]` in that file are out of scope here and have been migrated to a
 `SIAM_Journal` issue.
 
-## Writing style
+## Writing
 
-Concision is the mandate: this is pass/fail, not publication prose.
+Concision is the mandate: this is pass/fail, not publication prose. Lean, direct
+register, short declarative sentences, everything stated once.
 
 - Voice: impersonal, with the authorial "we" where appropriate.
-- Lean, direct register. Short declarative sentences. State everything once.
-- Plain technical language. Avoid essayistic wording.
 - Present tense for method and results, past tense for what was actually run.
-- US spelling, Oxford `-ize`/`-ization`.
 - Fixed spellings: EPGP, PEC, wavenumber as one word.
-- Headings and titles are short noun phrases with no leading article.
-- Captions are minimal. The prose describes the figure; reference it there.
-- No emphasis by bold or italic in prose.
-- Block equations for load-bearing statements, inline math for incidental
-  quantities. No trailing punctuation in display math.
+- Headings are short noun phrases with no leading article.
+- Do not use bold or italic to stress a word. Bold is wanted in one place only:
+  marking a term central to this thesis where it is first introduced. Do not
+  bold foil or contrast terms mentioned only for context, and do not introduce
+  an abbreviation for a term that is never reused.
 - Name equations in prose rather than citing them by number. No forward
   references.
-- Typst labels only where cross-referenced; strip orphans.
-- Solver sections contain only solver-specific equations. Do not restate shared
-  definitions.
 - Result numbers appear only in the results chapter. The abstract is the sole
   exception.
 - Place a mathematical symbol immediately after the noun it names, never before.
@@ -49,24 +46,14 @@ Concision is the mandate: this is pass/fail, not publication prose.
   rather than in a separate note.
 - Keep the description of experimental findings separate from interpretation,
   and state any unverified interpretation as explicit conjecture.
+- Solver sections contain only solver-specific equations. Do not restate shared
+  definitions.
+- Typst labels only where cross-referenced; strip orphans.
+- Prefer Typst code mode `{...}` over content mode `[...]` where the body is
+  mostly commands, so no stray hashes.
 
-Avoid AI-giveaway style: no em-dashes for asides, use commas, colons,
-parentheses or separate sentences; do not overuse semicolons; avoid "not just X
-but Y" constructions, rule-of-three padding, and hedging filler.
-
-## Typst source
-
-- ASCII source only. Dashes via `--` and `---`, never unicode glyphs.
-- Prefer code mode `{...}` over content mode `[...]` where the body is mostly
-  commands. No stray hashes.
-- Break lines semantically, one unit of meaning per line. Never wrap to a
-  column, never reflow.
-
-## References
-
-Give a specific locator (section, equation, or page) and verify every one
-against the source. Never invent or guess a citation. Citations are a single
-final pass, not chased while drafting.
+Citations are a single final pass, not chased while drafting. Give a specific
+locator and verify every one against the source.
 
 ## Domain caveat
 
@@ -79,7 +66,5 @@ the two directly.
 
 - `./watch.sh` runs continuously and auto-compiles. Never run `./build.sh`
   merely to check that the document compiles.
-- Never push a thesis that does not compile; a GitHub Action deploys on push.
-- Luis reviews figures himself. Do not render images to inspect them.
-- The repository is tagged `semester-thesis` at the submitted state, and the
-  appendix links to that tag.
+- The repository is tagged `semester-thesis` at the submitted state and the
+  appendix links to that tag. It must not move; a finished V2 gets its own tag.
