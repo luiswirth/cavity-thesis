@@ -23,7 +23,7 @@ regression core, and tangential-trace conditioning.
   #weblink("https://github.com/luiswirth/maxwellgp/tree/semester-thesis")[`github:luiswirth/maxwellgp`]
 ]
 
-== `cavity-maxwell`
+== `cavity-maxwellgp`
 
 A thin cavity-specific layer over `maxwellgp`, owning the analytic dipole physics
 and the reaction-operator assembly.
@@ -31,7 +31,7 @@ and the reaction-operator assembly.
 #[
   #set text(size: 20pt)
   #set align(center)
-  #weblink("https://github.com/luiswirth/cavity-maxwell/tree/semester-thesis")[`github:luiswirth/cavity-maxwell`]
+  #weblink("https://github.com/luiswirth/cavity-maxwellgp/tree/semester-thesis")[`github:luiswirth/cavity-maxwellgp`]
 ]
 
 == `cavity-bem`
