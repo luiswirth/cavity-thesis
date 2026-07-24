@@ -11,7 +11,7 @@ later corrections appear on the main branch.
 #[
   #set text(size: 20pt)
   #set align(center)
-  #weblink("https://github.com/luiswirth/epgp-thesis/tree/semester-thesis")[`github:luiswirth/epgp-thesis`]
+  #weblink("https://github.com/luiswirth/cavity-thesis/tree/semester-thesis")[`github:luiswirth/cavity-thesis`]
 ]
 
 To compile the document into a PDF, the Typst compiler needs to be installed and

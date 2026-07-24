@@ -15,4 +15,4 @@ jobs:
     uses: luiswirth/typst-deploy/.github/workflows/typst-deploy.yml@v1
     with:
       entry_file: src/main.typ
-      output_name: epgp-thesis.pdf
+      output_name: cavity-thesis.pdf

@@ -10,8 +10,8 @@ original PDF — everything is here. The verbatim comment is given for every
 item so you can always see the ground truth and overrule the triage if the
 fix misreads intent.
 
-The thesis source is Typst. The repo is `epgp-thesis`
-(github:luiswirth/epgp-thesis). Build with `./build.sh` from the root.
+The thesis source is Typst. The repo is `cavity-thesis`
+(github:luiswirth/cavity-thesis). Build with `./build.sh` from the root.
 
 ---
 
