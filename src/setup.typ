@@ -1,93 +1,18 @@
-#import "setup-math.typ": *
+#import "@local/dottyp:0.1.0": *
+#import "@local/dottyp:0.1.0": aliases
+#import aliases: *
 
-//#let fgcolor = white
-//#let bgcolor = black
-#let fgcolor = black
-#let bgcolor = white
+// Sans text with the serif math face, which is how this thesis has always been
+// set: dottyp's sans set pairs sans text with sans math.
+#let thesis-fonts = (
+  text: "New Computer Modern Sans",
+  math: "New Computer Modern Math",
+)
 
-#let thesis-template(doc) = {
-  show: math-template
-  
-  set page(fill: bgcolor)
-  set text(fill: fgcolor)
-
-  set page(paper: "a4")
-  set page(margin: 2cm)
-
-  set text(font: "New Computer Modern Sans")
-  set text(size: 10pt)
-
-  set par(justify: true, leading: 0.65em)
-  set list(spacing: 0.65em)
-  set enum(spacing: 0.65em)
-
-  doc
+// Render a CSV scientific-notation string "a.bce-0d" as $a.bc times 10^(-d)$.
+#let sci(s) = {
+  let parts = s.split("e")
+  let mant = calc.round(float(parts.at(0)), digits: 2)
+  let exp = int(parts.at(1).trim("+"))
+  $#mant times 10^#exp$
 }
-
-
-#let section-style(
-  label: none,
-  heading-numbering: none,
-  page-numbering: "1",
-  reset-pagecount: false,
-  outline-subheadings: true,
-) = doc => {
-  set page(numbering: page-numbering)
-  if reset-pagecount { counter(page).update(1) }
-
-  set heading(numbering: heading-numbering)
-  counter(heading).update(0)
-
-  show heading.where(level: 2): set heading(outlined: outline-subheadings)
-  show heading.where(level: 3): set heading(outlined: outline-subheadings)
-  show heading.where(level: 4): set heading(numbering: none)
-
-  show heading: it => {
-    if it.level == 1 {
-      pagebreak(weak: true)
-      v(50pt)
-      if label != none {
-        text(size: 18pt)[#label #counter(heading).display()]
-        v(0pt)
-      }
-      text(size: 25pt)[#it.body]
-      v(20pt)
-    } else {
-      let size = 22pt - 3pt * (it.level - 1)
-      block(sticky: true, above: size, below: size, {
-        set text(size, weight: "bold")
-        if it.numbering != none {
-          counter(heading).display()
-          h(size, weak: true)
-        }
-        it.body
-      })
-    }
-  }
-
-  doc
-}
-
-#let preface-style = section-style(
-  page-numbering: "I",
-)
-#let body-style = section-style(
-  label: "Chapter",
-  heading-numbering: "1.1.1",
-  reset-pagecount: true,
-)
-#let appendix-style = section-style(
-  label: "Appendix",
-  heading-numbering: "A.1.1",
-  outline-subheadings: false,
-)
-#let postface-style = section-style(
-  page-numbering: "i",
-  reset-pagecount: true,
-)
-
-
-#let weblink(..args) = text(
-  fill: blue,
-  link(..args)
-)
