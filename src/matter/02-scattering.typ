@@ -375,8 +375,6 @@ with the golden ratio $phi = (1 + sqrt(5)) \/ 2$.
 Together with the 2 polarizations per point, this gives $M = 2 N_Lambda = 64$ configurations.
 
 There are two cavity geometries: an ellipsoidal cavity and a spherical cavity.
-The ellipsoidal cavity is the original geometry from #cite(<cavity>, form: "prose"),
-while the spherical cavity is a new addition that allows for an analytic solution.
 
 #let cavity-canvas(rx, ry) = cetz.canvas(length: 0.5cm, {
   import cetz.draw: *
