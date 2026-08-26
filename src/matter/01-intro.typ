@@ -6,12 +6,14 @@
 
 *Machine learning (ML)* is increasingly used as a tool in the sciences and engineering,
 where the systems of interest obey well-established physical laws.
-This has given rise to the field of *scientific machine learning (SciML)*, also known as *AI4Science*.
+This has given rise to the field of *scientific machine learning (SciML)*,
+also known as *AI4Science*.
 Purely data-driven models ignore this known physical structure
 and must rediscover the laws from data alone,
 which is wasteful and typically inaccurate outside the regime they were trained on.
 The more principled approach embeds established physical knowledge into the model from the outset.
-This idea appears under several names, such as *first-principles AI (FPAI)*, *physics-informed ML* or *hybrid modeling*,
+This idea appears under several names, such as *first-principles AI (FPAI)*,
+*physics-informed ML* or *hybrid modeling*,
 which all refer to essentially the same idea:
 letting the governing equations constrain the model rather than learning them from data.
 
@@ -42,10 +44,12 @@ Its GP realization, the *Ehrenpreis--Palamodov Gaussian Process (EPGP)* of #cite
 uses a Gaussian prior based on this principle.
 The prior and the posterior both lie exactly in the solution space of the operator.
 
-A particularly well-understood PDE system is *Maxwell's equations*, which govern *electromagnetism (EM)*.
+A particularly well-understood PDE system is *Maxwell's equations*,
+which govern *electromagnetism (EM)*.
 Building a principled EPGP for these equations is part of the ongoing effort of #cite(<felix>, form: "prose"),
 which constructs EPGP priors for the *time-harmonic* Maxwell system
-from a geometric perspective based on *differential forms*, the *de Rham complex*, and *Hertz potentials*.
+from a geometric perspective based on *differential forms*,
+the *de Rham complex*, and *Hertz potentials*.
 This yields a more geometrically grounded construction than the generic one of #cite(<harkonen>, form: "prose").
 
 The theoretical framework and a proof-of-concept exist but a convincing reference benchmark does not.
@@ -57,7 +61,8 @@ This thesis provides that benchmark.
 As a benchmark we use an *interior electromagnetic scattering problem* in a cavity with *perfectly electrically conducting (PEC)* boundaries,
 a setup we adapt from the cavity-scattering problem of #cite(<cavity>, form: "prose").
 *Dipole sources* placed inside the cavity act as transmitters, exciting a field.
-It scatters off the PEC boundary, reflects back into the interior, and is measured at receivers.
+It scatters off the PEC boundary, reflects back into the interior,
+and is measured at receivers.
 This defines a *reaction operator* that maps the dipole excitations to the corresponding field responses.
 This operator is the object of study.
 
@@ -73,10 +78,14 @@ with a *boundary element method (BEM)* built on a *boundary integral formulation
 For this we use the BEM library *`Bembel`* #cite(<bembel>).
 The two solvers share only the problem setup and nothing of their internal discretizations.
 
-We benchmark on two cavity geometries. For a *spherical cavity*, the scattered field and the reaction operator are available in closed form.
-This lets us validate the EPGP and the BEM solver independently, each against the *analytic solution*, and thereby establish that both are correct.
-For an *ellipsoidal cavity* no closed-form solution exists, so we must rely on numerical methods alone.
-Since both solvers were already certified against the analytic solution on the sphere, their close agreement here is strong evidence that both are correct.
+We benchmark on two cavity geometries.
+For a *spherical cavity*, the scattered field and the reaction operator are available in closed form.
+This lets us validate the EPGP and the BEM solver independently,
+each against the *analytic solution*, and thereby establish that both are correct.
+For an *ellipsoidal cavity* no closed-form solution exists,
+so we must rely on numerical methods alone.
+Since both solvers were already certified against the analytic solution on the sphere,
+their close agreement here is strong evidence that both are correct.
 
 == Contributions
 
@@ -97,4 +106,5 @@ This thesis makes the following contributions.
   Reported a 2D convergence grid and an accuracy-runtime trade-off.
   Performed uncertainty quantification of the EPGP surrogate.
 
-All solver code and the experiment scripts are openly available on GitHub, as listed in Appendix A, so every result reported here is reproducible.
+All solver code and the experiment scripts are openly available on GitHub,
+as listed in Appendix A, so every result reported here is reproducible.

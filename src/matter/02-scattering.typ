@@ -3,12 +3,15 @@
 
 = Cavity Scattering
 
-We present the interior electromagnetic scattering problem: the governing field equations, the cavity geometry, and the reaction operator that both solvers compute.
+We present the interior electromagnetic scattering problem:
+the governing field equations, the cavity geometry,
+and the reaction operator that both solvers compute.
 
 
 == Time-Harmonic Maxwell's Equations
 
-The EPGP of #cite(<felix>, form: "prose") is built on the time-harmonic Maxwell's equations, which we briefly review here.
+The EPGP of #cite(<felix>, form: "prose") is built on the time-harmonic Maxwell's equations,
+which we briefly review here.
 
 We start with the source-free Maxwell's equations in three-dimensional space $RR^3$
 $
@@ -26,7 +29,9 @@ $
   quad quad
   Bv = mu Hv.
 $
-Here the electric field $Ev$, magnetic field $Hv$, electric flux density $Dv$, magnetic flux density $Bv$, permittivity $epsilon$, and permeability $mu$ carry their standard meanings #cite(<jackson>, supplement: [Ch. 6]).
+Here the electric field $Ev$, magnetic field $Hv$,
+electric flux density $Dv$, magnetic flux density $Bv$,
+permittivity $epsilon$, and permeability $mu$ carry their standard meanings #cite(<jackson>, supplement: [Ch. 6]).
 
 We choose the time-harmonic ansatz
 $
@@ -59,18 +64,23 @@ $
   k = omega sqrt(epsilon mu) = omega / c.
 $
 
-This is a Helmholtz-type equation for the electric field, with the operator $cal(L) := curl curl - k^2$.
+This is a Helmholtz-type equation for the electric field,
+with the operator $cal(L) := curl curl - k^2$.
 
 
 == Scattering Problem
 
-The scattering problem of interest is inspired by #cite(<cavity>, form: "prose"). It is an interior problem in a bounded cavity.
+The scattering problem of interest is inspired by #cite(<cavity>, form: "prose").
+It is an interior problem in a bounded cavity.
 
 The problem is set up as follows:\
 A transmitter dipole $delta_t$ is placed in the interior of a cavity $D$ and radiates an analytically known incident field $Ev^i$.
-The incident field hits the cavity boundary $partial D$ and is reflected by it, creating an unknown scattered field $Ev^s$.
+The incident field hits the cavity boundary $partial D$ and is reflected by it,
+creating an unknown scattered field $Ev^s$.
 A receiver dipole $delta_r$ then reads back the field.
-Physically the receiver sees the total field $Ev = Ev^i + Ev^s$ which is a superposition of the incident and scattered part, but the incident field is split off, leaving the scattered field as the quantity of interest, which satisfies the source-free curl--curl equation in the interior.
+Physically the receiver sees the total field $Ev = Ev^i + Ev^s$ which is a superposition of the incident and scattered part,
+but the incident field is split off, leaving the scattered field as the quantity of interest,
+which satisfies the source-free curl--curl equation in the interior.
 
 The object of study is the mapping from a induced excitation at a receiver dipole to a measured reaction at a receiver dipole.
 
@@ -126,7 +136,8 @@ The object of study is the mapping from a induced excitation at a receiver dipol
 
 Before introducing oscillating dipoles, we first consider the simpler oscillating monopole.
 
-An oscillating monopole $delta^1 = (zv, q)$ is a charge source with density $rho(xv, t) = q delta_zv exp(-i omega t)$ at a point $zv in D$, with the unit Dirac delta distribution $delta_zv$ centered at $zv$ and a charge $q in RR$ that gives its strength.
+An oscillating monopole $delta^1 = (zv, q)$ is a charge source with density $rho(xv, t) = q delta_zv exp(-i omega t)$ at a point $zv in D$,
+with the unit Dirac delta distribution $delta_zv$ centered at $zv$ and a charge $q in RR$ that gives its strength.
 The scalar potential it generates is $q Phi$, with the free-space fundamental solution $Phi$
 $
   Phi(xv; zv) = 1/(4 pi) exp(i k r)/r,
@@ -137,7 +148,8 @@ $
 $
 Here the distance to the source is $r := norm(rv)$, with separation vector $rv := xv - zv$.
 
-An oscillating Hertzian dipole $delta^2 = (zv, pv)$ is a current source with density $Jv(xv, t) = pv delta_zv exp(-i omega t)$ at a point $zv in D$, together with a polarization vector $pv in RR^3$ that gives the dipole's orientation and strength.
+An oscillating Hertzian dipole $delta^2 = (zv, pv)$ is a current source with density $Jv(xv, t) = pv delta_zv exp(-i omega t)$ at a point $zv in D$,
+together with a polarization vector $pv in RR^3$ that gives the dipole's orientation and strength.
 
 The electric field $Ev^i$ radiated by a dipole is obtained by applying the curl--curl operator to the Hertz vector potential $Phi pv$
 $
@@ -149,7 +161,8 @@ $
   Ev^i (xv; delta) = amat(G)(xv; zv) pv.
 $
 
-This defines the free-space electric dyadic Green's function $amat(G)$, which is the Green's function of the operator $cal(L) = curl curl - k^2$,
+This defines the free-space electric dyadic Green's function $amat(G)$,
+which is the Green's function of the operator $cal(L) = curl curl - k^2$,
 $
   amat(G)(xv; zv) pv := i/k curl_xv curl_xv (Phi(xv; zv) pv).
 $
@@ -167,7 +180,8 @@ Our cavity $D subset.eq RR^3$ is a smooth, bounded domain.
 The incident field $Ev^i$ is reflected by the cavity boundary $partial D$ and creates a scattered field $Ev^s$.
 
 The transmitter dipole thus determines both the incident field $Ev^i (xv; delta_t)$ and the scattered field $Ev^s (xv; delta_t)$.
-The incident field is known analytically, but the scattered field is unknown and gives rise to a boundary value problem that must be solved.
+The incident field is known analytically,
+but the scattered field is unknown and gives rise to a boundary value problem that must be solved.
 
 
 ==== PEC Boundary Condition
@@ -183,7 +197,8 @@ $
   avec(h) := pi_t Ev^s = -pi_t Ev^i quad "on" partial D.
 $
 
-Here the tangential projection trace $pi_t$ onto $partial D$, with outward unit normal $nn$, is given by
+Here the tangential projection trace $pi_t$ onto $partial D$,
+with outward unit normal $nn$, is given by
 $
   pi_t Ev := nn times (Ev times nn) = Ev - (Ev dot nn) nn.
 $
@@ -198,13 +213,16 @@ $
   pi_t Ev^s &= avec(h) quad "on" partial D.
 $
 
-This BVP is well-defined only when $k^2$ is not a cavity resonance, i.e. not an eigenvalue of the curl--curl operator.
+This BVP is well-defined only when $k^2$ is not a cavity resonance,
+i.e. not an eigenvalue of the curl--curl operator.
 Otherwise the BVP solution operator $cal(S): avec(h) |-> Ev^s$ becomes singular.
 
 
 === Receiver Dipole and Measurement
 
-The receiver dipole $delta_r = (zv_r, pv_r)$ measures the scattered field $Ev^s$ at its location $zv_r$, by projecting it onto its polarization vector $pv_r$, yielding a single complex scalar.
+The receiver dipole $delta_r = (zv_r, pv_r)$ measures the scattered field $Ev^s$ at its location $zv_r$,
+by projecting it onto its polarization vector $pv_r$,
+yielding a single complex scalar.
 
 Mathematically this is a linear functional $cal(R): C^oo (D; CC^3) -> CC$ defined as
 $
@@ -214,7 +232,8 @@ $
 ==== Reciprocity
 
 There are two dipoles, one transmitter and one receiver.
-Their roles are complementary: the transmitter generates the incident field, and the receiver measures the scattered field.
+Their roles are complementary: the transmitter generates the incident field,
+and the receiver measures the scattered field.
 
 The measured response generated by a transmitter dipole $delta_t$ and measured by a receiver dipole $delta_r$ is
 $
@@ -222,7 +241,8 @@ $
 $
 
 Exchanging the two roles leaves the measured response unchanged.
-This is the Lorentz (Rayleigh--Carson) reciprocity property, a consequence of the symmetry of the curl--curl Green's operator #cite(<colton>, supplement: [Sec. 6.6]),
+This is the Lorentz (Rayleigh--Carson) reciprocity property,
+a consequence of the symmetry of the curl--curl Green's operator #cite(<colton>, supplement: [Sec. 6.6]),
 $
   r(delta_t, delta_r) = r(delta_r, delta_t).
 $
@@ -233,10 +253,12 @@ A single transmit-receive pair yields one number, the reaction $r(delta_t, delta
 We now extend to a whole ensemble of dipoles.
 
 Transmitter and receiver are the same kind of object, both dipoles.
-By reciprocity their roles are interchangeable, so there is no reason to keep two separate families.
+By reciprocity their roles are interchangeable,
+so there is no reason to keep two separate families.
 A single set of dipoles serves both as transmitters and as receivers.
 
-We restrict all dipoles to a common surface $Lambda subset.eq D$, with locations $zv in Lambda$ and polarization vectors $pv in T_zv Lambda$ tangent to it.
+We restrict all dipoles to a common surface $Lambda subset.eq D$,
+with locations $zv in Lambda$ and polarization vectors $pv in T_zv Lambda$ tangent to it.
 
 Acting together, this set of dipoles excites the field and reads it back.
 We are interested in the map from the full excitation to the full response, the reaction operator.
@@ -264,27 +286,33 @@ $
   Ev^s [avec(g)] (xv) = integral_Lambda Ev^s (xv; (zv, avec(g)(zv))) dif s(zv).
 $
 
-Reading the scattered field back on $Lambda$ gives the response density $avec(m): Lambda -> T Lambda$, the tangential projection trace of the scattered field.
+Reading the scattered field back on $Lambda$ gives the response density $avec(m): Lambda -> T Lambda$,
+the tangential projection trace of the scattered field.
 $
   avec(m) := pi_t^Lambda Ev^s [avec(g)].
 $
-Here the trace $pi_t^Lambda$ is the same tangential projection as $pi_t$, but taken on the dipole surface $Lambda$ with its own unit normal $nn_Lambda$, so that $pi_t^Lambda Ev = Ev - (Ev dot nn_Lambda) nn_Lambda$ at each point of $Lambda$.
+Here the trace $pi_t^Lambda$ is the same tangential projection as $pi_t$,
+but taken on the dipole surface $Lambda$ with its own unit normal $nn_Lambda$,
+so that $pi_t^Lambda Ev = Ev - (Ev dot nn_Lambda) nn_Lambda$ at each point of $Lambda$.
 
-The reaction operator is a linear integral operator, defined as the map from the excitation density to the response density,
+The reaction operator is a linear integral operator,
+defined as the map from the excitation density to the response density,
 $
   cal(T): avec(g) |-> avec(m)
   \
   (cal(T) avec(g))(xv) = integral_Lambda amat(T)(xv, zv) avec(g)(zv) dif s(zv).
 $
 
-Its integral kernel $amat(T)$ is the point-to-point reaction, the response at $xv$ to a unit dipole $pv$ at $zv$,
+Its integral kernel $amat(T)$ is the point-to-point reaction,
+the response at $xv$ to a unit dipole $pv$ at $zv$,
 $
   amat(T)(xv, zv): T_zv Lambda -> T_(xv) Lambda
   \
   amat(T)(xv, zv) pv := pi_t^Lambda Ev^s (xv; (zv, pv)).
 $
 
-Reciprocity makes the kernel and the operator complex-symmetric (not Hermitian): exchanging the two points and transposing leaves the kernel unchanged,
+Reciprocity makes the kernel and the operator complex-symmetric (not Hermitian):
+exchanging the two points and transposing leaves the kernel unchanged,
 $
   amat(T)(xv, zv) = amat(T)(zv, xv)^transp.
 $
@@ -312,11 +340,15 @@ $
   en_2 = nn times en_1.
 $
 
-We have two polarization vectors per point, each point thus carries two dipoles, one per polarization, giving $M = 2 N_Lambda$ dipoles in total.
-We enumerate the dipoles by a single index $i in {1, ..., M}$, writing $delta_i = (zv_i, pn_i)$ for the dipole with location $zv_i$ and unit polarization vector $pn_i$.
+We have two polarization vectors per point,
+each point thus carries two dipoles, one per polarization,
+giving $M = 2 N_Lambda$ dipoles in total.
+We enumerate the dipoles by a single index $i in {1, ..., M}$,
+writing $delta_i = (zv_i, pn_i)$ for the dipole with location $zv_i$ and unit polarization vector $pn_i$.
 Consecutive pairs share a location.
 
-The discretized operator is then a matrix $amat(T) in CC^(M times M)$, whose entries are the kernel evaluated at the two dipoles $delta_i$ and $delta_j$,
+The discretized operator is then a matrix $amat(T) in CC^(M times M)$,
+whose entries are the kernel evaluated at the two dipoles $delta_i$ and $delta_j$,
 $
   amat(T)_(i j) = pn_i^transp amat(T)(zv_i, zv_j) pn_j = r(delta_j, delta_i),
 $
@@ -338,7 +370,8 @@ $
   Lambda := { xv in RR^3 mid(:) norm(xv) = 1 } subset.eq D.
 $
 
-We choose $N_Lambda = 32$ dipole locations drawn from a low-discrepancy quasi-uniform Fibonacci sphere distribution, which is a deterministic point set that provides approximately equal spacing between neighboring points while maintaining a nearly uniform surface-area distribution.
+We choose $N_Lambda = 32$ dipole locations drawn from a low-discrepancy quasi-uniform Fibonacci sphere distribution,
+which is a deterministic point set that provides approximately equal spacing between neighboring points while maintaining a nearly uniform surface-area distribution.
 
 One standard constructions gives the $N$ points $xv_i in SS^2$ on the unit
 sphere $j = 0, dots, N_Lambda - 1$ as
@@ -353,7 +386,8 @@ with the golden ratio $phi = (1 + sqrt(5)) \/ 2$.
 Together with the 2 polarizations per point, this gives $M = 2 N_Lambda = 64$ configurations.
 
 There are two cavity geometries: an ellipsoidal cavity and a spherical cavity.
-The ellipsoidal cavity is the original geometry from #cite(<cavity>, form: "prose"), while the spherical cavity is a new addition that allows for an analytic solution.
+The ellipsoidal cavity is the original geometry from #cite(<cavity>, form: "prose"),
+while the spherical cavity is a new addition that allows for an analytic solution.
 
 #let cavity-canvas(rx, ry) = cetz.canvas(length: 0.5cm, {
   import cetz.draw: *
