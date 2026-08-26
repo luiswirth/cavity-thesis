@@ -329,7 +329,7 @@ $
 To compute with $cal(T)$ we discretize it on a finite set of dipoles.
 Since each tangent space $T_zv Lambda$ is two-dimensional, we need a basis to coordinatize it.
 We sample $N_Lambda$ points on $Lambda$ and assign each an orthonormal tangent basis ${en_1 (zv), en_2 (zv)}$.
-The basis is built from a pivot vector $avec(c)$, the coordinate axis least aligned with the outward normal $nn_Lambda (zv)$:
+The basis is built from a pivot vector $avec(c)$, a coordinate axis kept away from parallel to the outward normal $nn_Lambda (zv)$:
 the cross products $en_1 prop avec(c) times nn_Lambda$ and $en_2 = nn_Lambda times en_1$ are both tangent to $Lambda$ and mutually orthogonal.
 
 We have two polarization vectors per point,
@@ -362,14 +362,14 @@ $
   Lambda := { xv in RR^3 mid(:) norm(xv) = 1 } subset.eq D.
 $
 
-We choose $N_Lambda = 32$ dipole locations drawn from a low-discrepancy quasi-uniform Fibonacci sphere distribution,
-which is a deterministic point set that provides approximately equal spacing between neighboring points while maintaining a nearly uniform surface-area distribution.
+We choose $N_Lambda = 32$ dipole locations drawn from a low-discrepancy quasi-uniform Fibonacci sphere distribution.
+This is a deterministic point set that spaces neighboring points approximately equally while covering the surface area nearly uniformly.
 
 A standard construction #cite(<gonzalez>) places the points $xv_j in SS^2$, for $j = 0, dots, N_Lambda - 1$, at
 $
   z_j = 1 - (2 (j + 1/2)) / N_Lambda, quad
   xv_j = (sqrt(1 - z_j^2) cos(2 pi j\/phi), sqrt(1 - z_j^2) sin(2 pi j\/phi), z_j),
-$ <eq:fib>
+$
 with the golden ratio $phi = (1 + sqrt(5)) \/ 2$.
 
 Together with the 2 polarizations per point, this gives $M = 2 N_Lambda = 64$ configurations.

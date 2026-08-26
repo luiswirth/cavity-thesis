@@ -180,21 +180,16 @@ the field through explicit finite features.
 ==== Finite Spectral Features
 
 We approximate the integral over $V_k$ by a finite sum over $N_s$ spectral
-directions $kv_j in V_k$, drawn from a Fibonacci sphere distribution defined
-in @eq:fib.
+directions $kv_j in V_k$, drawn from the same Fibonacci sphere construction as the dipole locations.
 
-For each direction we pick an orthonormal basis $av_(j 1), av_(j 2)$ of the
-transverse plane, recovering the projector as an outer-product sum,
+For each direction we pick an orthonormal basis $av_(j 1), av_(j 2)$ of the transverse plane,
+taking as pivot the coordinate axis $avec(c)_j$ least aligned with $kv_j$
+and setting $av_(j 1) prop kv_j times avec(c)_j$ and $av_(j 2) prop kv_j times av_(j 1)$.
+This recovers the projector as an outer-product sum,
 $
-  amat(Pi)_(kv_j) = sum_(a = 1)^2 av_(j a) av_(j a)^herm.
+  amat(Pi)_(kv_j) = sum_(a = 1)^2 av_(j a) av_(j a)^herm,
 $
-Concretely, for each $kv_j$ we take as pivot the coordinate axis $avec(c)_j$ least aligned with $kv_j$ and set $av_(j 1) prop kv_j times avec(c)_j$ and $av_(j 2) prop kv_j times av_(j 1)$.
-This fixes the basis only up to a rotation about $kv_j$,
-but that freedom is immaterial: the outer-product sum equals the transverse projector $amat(Pi)_(kv_j) = amat(I) - kv_j kv_j^herm \/ norm(kv_j)^2$,
-which is independent of the basis.
-With the isotropic weights $amat(W) = amat(I)$ the kernel sees the features only through this projector,
-so the prior and the posterior do not depend on the choice of transverse basis.
-Each spectral direction contributes two scalar plane-wave features $avec(phi)_(j a) (xv) = av_(j a) exp(i kv_j dot xv)$,
+so each spectral direction contributes two scalar plane-wave features $avec(phi)_(j a) (xv) = av_(j a) exp(i kv_j dot xv)$,
 giving $F = 2 N_s$ features in total.
 The field becomes a finite superposition with one scalar coefficient per feature,
 $
@@ -208,6 +203,11 @@ $
 $
 Every feature is a transverse plane wave,
 so this finite prior is still supported entirely on the solution space.
+
+The choice of transverse basis does not matter.
+Any other orthonormal pair spanning the same plane gives the same outer-product sum,
+and with isotropic weights $amat(W) = amat(I)$ the kernel sees the features only through it,
+so prior and posterior are unchanged.
 
 ==== Weight-Space Posterior
 
@@ -327,9 +327,8 @@ Its ansatz is a single-layer potential, which satisfies Maxwell's equations
 exactly. It leaves the surface density unknown and enforces the boundary
 condition by solving the resulting electric field integral equation, yielding
 a single solution.
-
-BEM is well established and serves only as the framework for the reference solution.
-For this reason, we will only present the main ideas, rather than develop it in full.
+BEM is well established and serves here only as the framework for the reference solution,
+so we present the main ideas rather than develop it in full.
 
 === Formulation
 
