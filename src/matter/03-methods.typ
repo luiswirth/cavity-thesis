@@ -211,51 +211,54 @@ so this finite prior is still supported entirely on the solution space.
 
 ==== Weight-Space Posterior
 
-The explicit features open a second, weight-space view of the same posterior,
-complementary to the function-space view of the previous section.
+The explicit features admit a second, equivalent form of the same posterior.
 Rather than conditioning the process through its kernel,
-we infer the weight vector $avec(w)$ directly.
-Both views yield the same posterior; which one is cheaper depends only on whether there are fewer features or fewer observations.
+we infer the weight vector $avec(w)$ in the expansion
+$
+  Ev(xv) = amat(Phi)(xv)^herm avec(w),
+  quad
+  avec(w) tilde cal(C N)(0, amat(W)).
+$
 
 Evaluating the features at the observation points through $cal(R)$ gives the design matrix
 $
   amat(Phi) = amat(Phi)(X_b) in CC^(F times N_b),
 $
-whose columns hold the feature values at the conditioning points.
-Each observation is a noisy linear readout of the weight,
-so the data vector obeys the observation model
+so that the observation model becomes
 $
-  hv = amat(Phi)^herm avec(w) + avec(eta), quad avec(eta) tilde cal(C N)(0, sigma_n^2 amat(I)),
+  hv = amat(Phi)^herm avec(w) + avec(eta),
+  quad
+  avec(eta) tilde cal(C N)(0, sigma_n^2 amat(I)),
 $
 in which the regularization $sigma_n^2$ of the previous section reappears as the observation-noise variance.
-Together with the Gaussian weight prior $avec(w) tilde cal(C N)(0, amat(W))$,
-this is a standard Bayesian linear regression for the weight.
-
-Its solution is the Gaussian weight posterior
+This is a standard Bayesian linear regression for $avec(w)$.
+Its posterior is Gaussian,
 $
   avec(w) | hv tilde cal(C N)(avec(w)_star, amat(A)^(-1)),
 $
 with posterior precision and mean
 $
-  amat(A) = amat(W)^(-1) + amat(Phi) amat(Phi)^herm \/ sigma_n^2 in CC^(F times F),
+  amat(A) = amat(W)^(-1) + 1/sigma_n^2 amat(Phi) amat(Phi)^herm,
   quad
-  avec(w)_star = amat(A)^(-1) amat(Phi) hv \/ sigma_n^2.
+  avec(w)_star = 1/sigma_n^2 amat(A)^(-1) amat(Phi) hv.
 $
-The precision $amat(A)$ is the prior precision $amat(W)^(-1)$ regularized by the data term $amat(Phi) amat(Phi)^herm \/ sigma_n^2$.
 Mapping the inferred weights back through the features gives the posterior mean field $Ev_star (xv) = amat(Phi)(xv)^herm avec(w)_star$.
 
-This weight-space posterior is the function-space posterior in disguise.
-Under the same quadrature the prior kernel collapses to the finite feature product $amat(K)(xv, yv) = amat(Phi)(xv)^herm amat(W) amat(Phi)(yv)$.
-Substituting it into the function-space mean and covariance and applying the Woodbury matrix-inversion lemma reproduces the weight-space expressions above,
+Under the same quadrature the prior kernel collapses to the finite feature product
+$
+  amat(K)(xv, yv) = amat(Phi)(xv)^herm amat(W) amat(Phi)(yv),
+$
+which is the discretization used in the function-space formulation.
+Substituting it into the function-space posterior and applying the Woodbury matrix identity reproduces the expressions above,
 so the two formulations give identical posterior means and covariances.
 
-The distinction is purely computational.
+The distinction is computational.
 The function-space solve inverts the $N_b times N_b$ Gram matrix $amat(K)_(b b) + sigma_n^2 amat(I)$,
 while the weight-space solve inverts the $F times F$ precision $amat(A)$.
-The EP construction makes the feature count $F = 2 N_s$ explicit and often modest,
-whereas the boundary value problem conditions on many points,
-so whenever $F < N_b$ the weight-space solve is the cheaper one,
-with a cost set by the number of features rather than the number of observations.
+Since the explicit-polarization construction gives $F = 2 N_s$ features,
+the weight-space solve is the cheaper one whenever $F < N_b$,
+trading a cost set by the number of observations for one set by the number of features.
+
 
 ==== Hyperparameters
 
