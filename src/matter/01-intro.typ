@@ -1,4 +1,4 @@
-#import "../setup-math.typ": *
+#import "../setup.typ": *
 
 = Introduction
 

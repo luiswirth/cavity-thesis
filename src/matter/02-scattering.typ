@@ -1,4 +1,4 @@
-#import "../setup-math.typ": *
+#import "../setup.typ": *
 #import "@preview/cetz:0.4.2"
 
 = Cavity Scattering
