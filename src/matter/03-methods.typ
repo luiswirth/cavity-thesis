@@ -121,15 +121,15 @@ weight makes the field a zero-mean Gaussian process,
 $
   Ev tilde cal(G P)(0, amat(K)).
 $
-#hl[The weight has covariance $amat(W)$, a positive-semidefinite operator on the
+The weight has covariance $amat(W)$, a positive-semidefinite operator on the
 weight space that sets the prior strength of each spectral direction. The matrix
-covariance kernel is then]
-#hlb[$
+covariance kernel is then
+$
   amat(K)(xv, yv) = integral_(V_k) amat(Phi)_kv (xv) amat(W) amat(Phi)_kv^herm (yv) dif kv.
-$]
-#hl[The isotropic choice $amat(W) = amat(I)$ weights all spectral
+$
+The isotropic choice $amat(W) = amat(I)$ weights all spectral
 directions equally and recovers the plain feature kernel; we adopt it in the
-Hyperparameters section but keep the weight covariance general here.] Because
+Hyperparameters section but keep the weight covariance general here. Because
 the projector sits inside every feature, the prior is supported entirely on the
 solution space: every sample satisfies Maxwell exactly.
 
@@ -157,8 +157,8 @@ the prior and the regularization.
 $
   Ev_star (xv) = amat(K)(xv, X_b) (amat(K)_(b b) + sigma_n^2 amat(I))^(-1) hv.
 $
-#hl[Here the Gram matrix $amat(K)_(b b) := amat(K)(X_b, X_b)$ is the kernel
-evaluated at all pairs of the $N_b$ observation points.]
+Here the Gram matrix $amat(K)_(b b) := amat(K)(X_b, X_b)$ is the kernel
+evaluated at all pairs of the $N_b$ observation points.
 
 The posterior covariance is the Schur complement of the conditioning block,
 measuring how underdetermined the field remains after conditioning.
@@ -188,7 +188,7 @@ transverse plane, recovering the projector as an outer-product sum,
 $
   amat(Pi)_(kv_j) = sum_(a = 1)^2 av_(j a) av_(j a)^herm.
 $
-#hl[Concretely, for each $kv_j$ we take as pivot the coordinate axis $avec(c)_j$ least aligned with $kv_j$ and set $av_(j 1) prop kv_j times avec(c)_j$ and $av_(j 2) prop kv_j times av_(j 1)$. This fixes the basis only up to a rotation about $kv_j$, but that freedom is immaterial: the outer-product sum equals the transverse projector $amat(Pi)_(kv_j) = amat(I) - kv_j kv_j^herm \/ norm(kv_j)^2$, which is independent of the basis. With the isotropic weights $amat(W) = amat(I)$ the kernel sees the features only through this projector, so the prior and the posterior do not depend on the choice of transverse basis.]
+Concretely, for each $kv_j$ we take as pivot the coordinate axis $avec(c)_j$ least aligned with $kv_j$ and set $av_(j 1) prop kv_j times avec(c)_j$ and $av_(j 2) prop kv_j times av_(j 1)$. This fixes the basis only up to a rotation about $kv_j$, but that freedom is immaterial: the outer-product sum equals the transverse projector $amat(Pi)_(kv_j) = amat(I) - kv_j kv_j^herm \/ norm(kv_j)^2$, which is independent of the basis. With the isotropic weights $amat(W) = amat(I)$ the kernel sees the features only through this projector, so the prior and the posterior do not depend on the choice of transverse basis.
 Each spectral direction contributes two scalar plane-wave features $avec(phi)_(j a) (xv) = av_(j a) exp(i kv_j dot xv)$, giving $F = 2 N_s$ features in total. The field becomes a finite superposition with one scalar coefficient per feature,
 $
   Ev (xv) = sum_(j = 1)^(N_s) sum_(a = 1)^2 w_(j a) avec(phi)_(j a) (xv).
@@ -202,37 +202,37 @@ Every feature is a transverse plane wave, so this finite prior is still supporte
 
 ==== Weight-Space Posterior
 
-#hl[The explicit features open a second, weight-space view of the same posterior, complementary to the function-space view of the previous section. Rather than conditioning the process through its kernel, we infer the weight vector $avec(w)$ directly. Both views yield the same posterior; which one is cheaper depends only on whether there are fewer features or fewer observations.]
+The explicit features open a second, weight-space view of the same posterior, complementary to the function-space view of the previous section. Rather than conditioning the process through its kernel, we infer the weight vector $avec(w)$ directly. Both views yield the same posterior; which one is cheaper depends only on whether there are fewer features or fewer observations.
 
-#hl[Evaluating the features at the observation points through $cal(R)$ gives the design matrix]
-#hlb[$
+Evaluating the features at the observation points through $cal(R)$ gives the design matrix
+$
   amat(Phi) = amat(Phi)(X_b) in CC^(F times N_b),
-$]
-#hl[whose columns hold the feature values at the conditioning points. Each observation is a noisy linear readout of the weight, so the data vector obeys the observation model]
-#hlb[$
+$
+whose columns hold the feature values at the conditioning points. Each observation is a noisy linear readout of the weight, so the data vector obeys the observation model
+$
   hv = amat(Phi)^herm avec(w) + avec(eta), quad avec(eta) tilde cal(C N)(0, sigma_n^2 amat(I)),
-$]
-#hl[in which the regularization $sigma_n^2$ of the previous section reappears as the observation-noise variance. Together with the Gaussian weight prior $avec(w) tilde cal(C N)(0, amat(W))$, this is a standard Bayesian linear regression for the weight.]
+$
+in which the regularization $sigma_n^2$ of the previous section reappears as the observation-noise variance. Together with the Gaussian weight prior $avec(w) tilde cal(C N)(0, amat(W))$, this is a standard Bayesian linear regression for the weight.
 
-#hl[Its solution is the Gaussian weight posterior]
-#hlb[$
+Its solution is the Gaussian weight posterior
+$
   avec(w) | hv tilde cal(C N)(avec(w)_star, amat(A)^(-1)),
-$]
-#hl[with posterior precision and mean]
-#hlb[$
+$
+with posterior precision and mean
+$
   amat(A) = amat(W)^(-1) + amat(Phi) amat(Phi)^herm \/ sigma_n^2 in CC^(F times F),
   quad
   avec(w)_star = amat(A)^(-1) amat(Phi) hv \/ sigma_n^2.
-$]
-#hl[The precision $amat(A)$ is the prior precision $amat(W)^(-1)$ regularized by the data term $amat(Phi) amat(Phi)^herm \/ sigma_n^2$. Mapping the inferred weights back through the features gives the posterior mean field $Ev_star (xv) = amat(Phi)(xv)^herm avec(w)_star$.]
+$
+The precision $amat(A)$ is the prior precision $amat(W)^(-1)$ regularized by the data term $amat(Phi) amat(Phi)^herm \/ sigma_n^2$. Mapping the inferred weights back through the features gives the posterior mean field $Ev_star (xv) = amat(Phi)(xv)^herm avec(w)_star$.
 
-#hl[This weight-space posterior is the function-space posterior in disguise. Under the same quadrature the prior kernel collapses to the finite feature product $amat(K)(xv, yv) = amat(Phi)(xv)^herm amat(W) amat(Phi)(yv)$. Substituting it into the function-space mean and covariance and applying the Woodbury matrix-inversion lemma reproduces the weight-space expressions above, so the two formulations give identical posterior means and covariances.]
+This weight-space posterior is the function-space posterior in disguise. Under the same quadrature the prior kernel collapses to the finite feature product $amat(K)(xv, yv) = amat(Phi)(xv)^herm amat(W) amat(Phi)(yv)$. Substituting it into the function-space mean and covariance and applying the Woodbury matrix-inversion lemma reproduces the weight-space expressions above, so the two formulations give identical posterior means and covariances.
 
-#hl[The distinction is purely computational. The function-space solve inverts the $N_b times N_b$ Gram matrix $amat(K)_(b b) + sigma_n^2 amat(I)$, while the weight-space solve inverts the $F times F$ precision $amat(A)$. The EP construction makes the feature count $F = 2 N_s$ explicit and often modest, whereas the boundary value problem conditions on many points, so whenever $F < N_b$ the weight-space solve is the cheaper one, with a cost set by the number of features rather than the number of observations.]
+The distinction is purely computational. The function-space solve inverts the $N_b times N_b$ Gram matrix $amat(K)_(b b) + sigma_n^2 amat(I)$, while the weight-space solve inverts the $F times F$ precision $amat(A)$. The EP construction makes the feature count $F = 2 N_s$ explicit and often modest, whereas the boundary value problem conditions on many points, so whenever $F < N_b$ the weight-space solve is the cheaper one, with a cost set by the number of features rather than the number of observations.
 
 ==== Hyperparameters
 
-The model has three hyperparameters: the spectral directions $kv_j$, the prior weights $amat(W)$, and the regularization parameter $sigma_n$. In a Gaussian process these can be tuned by maximizing the marginal likelihood of the data, usually by gradient descent on its negative logarithm. We instead fix them on principled grounds. The directions come from the Fibonacci sphere, whose even coverage we prefer to keep. The prior weights are set to $amat(W) = amat(I)$, treating all spectral directions equally. The regularization parameter is held fixed, since #hl[maximizing the marginal likelihood would drive it toward the floor set by the ill-conditioned feature system rather than toward a value that reflects the data, as discussed in the conclusion]. #hl[In all benchmark runs it is fixed to $sigma_n^2 = e^(-12) approx 6.1 times 10^(-6)$, that is $sigma_n = e^(-6) approx 2.5 times 10^(-3)$.]
+The model has three hyperparameters: the spectral directions $kv_j$, the prior weights $amat(W)$, and the regularization parameter $sigma_n$. In a Gaussian process these can be tuned by maximizing the marginal likelihood of the data, usually by gradient descent on its negative logarithm. We instead fix them on principled grounds. The directions come from the Fibonacci sphere, whose even coverage we prefer to keep. The prior weights are set to $amat(W) = amat(I)$, treating all spectral directions equally. The regularization parameter is held fixed, since maximizing the marginal likelihood would drive it toward the floor set by the ill-conditioned feature system rather than toward a value that reflects the data, as discussed in the conclusion. In all benchmark runs it is fixed to $sigma_n^2 = e^(-12) approx 6.1 times 10^(-6)$, that is $sigma_n = e^(-6) approx 2.5 times 10^(-3)$.
 
 === Implementation `maxwellgp`
 
@@ -331,7 +331,7 @@ This is an electric field integral equation (EFIE) in indirect single-layer form
 As a first-kind Fredholm integral equation, it is inherently ill-conditioned.
 
 
-The electric field solution is obtained by applying the single-layer potential to the density, and the BVP solution operator is then #hl[formally]
+The electric field solution is obtained by applying the single-layer potential to the density, and the BVP solution operator is then formally
 $
   cal(S) = Psi_"SL" cal(V)^(-1).
 $
@@ -412,7 +412,7 @@ $
   quad
   bv_i = integral_(partial D) avec(phi)_i dot avec(h)_times dif s,
 $
-in which the single-layer operator $cal(V)$ is replaced by its Galerkin matrix $amat(V)$. Its entries are the single-layer bilinear form on pairs of basis functions. Integrating the gradients of the dyadic Green's function by parts onto the basis functions reduces it to a double surface integral over the scalar fundamental solution $Phi$#hl[ #cite(<buffa>, supplement: [Sec. 5])],
+in which the single-layer operator $cal(V)$ is replaced by its Galerkin matrix $amat(V)$. Its entries are the single-layer bilinear form on pairs of basis functions. Integrating the gradients of the dyadic Green's function by parts onto the basis functions reduces it to a double surface integral over the scalar fundamental solution $Phi$ #cite(<buffa>, supplement: [Sec. 5]),
 $
   amat(V)_(a b) = i k integral_(partial D) integral_(partial D) Phi(xv, yv) (avec(phi)_a (xv) dot avec(phi)_b (yv) - 1/k^2 div_Gamma avec(phi)_a (xv) div_Gamma avec(phi)_b (yv)) dif s(yv) dif s(xv).
 $
