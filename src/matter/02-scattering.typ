@@ -75,6 +75,7 @@ It is an interior problem in a bounded cavity.
 
 The problem is set up as follows:\
 A transmitter dipole $delta_t$ is placed in the interior of a cavity $D$ and radiates an analytically known incident field $Ev^i$.
+Throughout, the subscripts $t$ and $r$ mark the transmitter and the receiver.
 The incident field hits the cavity boundary $partial D$ and is reflected by it,
 creating an unknown scattered field $Ev^s$.
 A receiver dipole $delta_r$ then reads back the field.
@@ -82,7 +83,7 @@ Physically the receiver sees the total field $Ev = Ev^i + Ev^s$ which is a super
 but the incident field is split off, leaving the scattered field as the quantity of interest,
 which satisfies the source-free curl--curl equation in the interior.
 
-The object of study is the mapping from a induced excitation at a receiver dipole to a measured reaction at a receiver dipole.
+The object of study is the mapping from a transmitter dipole to the measured response at a receiver dipole.
 
 #align(center)[
   #block(
@@ -328,17 +329,9 @@ $
 To compute with $cal(T)$ we discretize it on a finite set of dipoles.
 Since each tangent space $T_zv Lambda$ is two-dimensional, we need a basis to coordinatize it.
 We sample $N_Lambda$ points on $Lambda$ and assign each an orthonormal tangent basis ${en_1 (zv), en_2 (zv)}$.
-
-TODO:
-The tangent basis is constructed by choosing some reference vector $avec(c)$ that is not parallel to the outward normal $nn_Lambda (zv)$.
-Then the first tangent vector is obtained by taking the trace of the reference vector on Lambda and normalizing it,
-$
-  en_1 prop pi_t^Lambda avec(c).
-$
-The second is obtained by applying the cross product with the normal vector from the left to the first basis vector,
-$
-  en_2 = nn times en_1.
-$
+The basis comes from a fixed reference vector $avec(c)$ that is nowhere parallel to the outward normal $nn_Lambda$:
+projecting it onto the tangent plane and normalizing gives $en_1 prop pi_t^Lambda avec(c)$,
+and $en_2 = nn_Lambda times en_1$ completes the pair.
 
 We have two polarization vectors per point,
 each point thus carries two dipoles, one per polarization,
@@ -373,13 +366,10 @@ $
 We choose $N_Lambda = 32$ dipole locations drawn from a low-discrepancy quasi-uniform Fibonacci sphere distribution,
 which is a deterministic point set that provides approximately equal spacing between neighboring points while maintaining a nearly uniform surface-area distribution.
 
-One standard constructions gives the $N$ points $xv_i in SS^2$ on the unit
-sphere $j = 0, dots, N_Lambda - 1$ as
+A standard construction #cite(<gonzalez>) places the points $xv_j in SS^2$, for $j = 0, dots, N_Lambda - 1$, at
 $
   z_j = 1 - (2 (j + 1/2)) / N_Lambda, quad
-  rv_j = sqrt(1 - z_j^2), quad
-  phi.alt_j = 2 pi j/phi, quad
-  xv_j = (rv_j cos phi.alt_j, rv_j sin phi.alt_j, z_j),
+  xv_j = (sqrt(1 - z_j^2) cos(2 pi j\/phi), sqrt(1 - z_j^2) sin(2 pi j\/phi), z_j),
 $ <eq:fib>
 with the golden ratio $phi = (1 + sqrt(5)) \/ 2$.
 
@@ -444,8 +434,8 @@ a closed form solution. Therefore both scattered field $Ev^s$ and the reaction
 operator $amat(T)$ have analytic formulas, which serve as exact reference
 solutions to validate both numerical solvers.
 
-We do not re-derive the analytic solution here #cite(<tai>, supplement: [Ch. 10])
-and record the resulting formulas below.
+We do not re-derive the analytic solution here.
+We refer to #cite(<tai>, supplement: [Ch. 10]) for the full derivation and record the resulting formulas below.
 
 The interior fields expand in the regular Hansen multipoles, the TM-type
 $avec(N)_(l m)$ and the TE-type $avec(M)_(l m)$. On a sphere of radius $r$

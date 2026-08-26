@@ -27,7 +27,7 @@ Unphysical phenomena, such as spurious modes or phantom charges, cannot arise.
 The model can never violate the law it is meant to obey, regardless of the data.
 When the governing law is known exactly, strong enforcement is therefore preferable.
 
-Among ML models, the *Gaussian process (GP)* #cite(<rasmussen>) is particularly well suited to strong enforcement.
+Among ML models, the *Gaussian process (GP)* #cite(<rasmussen>, supplement: [Ch. 2]) is particularly well suited to strong enforcement.
 A GP is a probabilistic model over functions that returns a full posterior distribution instead of just a point estimate.
 This enables *uncertainty quantification*:
 Every prediction carries an estimate of its own reliability.
