@@ -188,31 +188,48 @@ transverse plane, recovering the projector as an outer-product sum,
 $
   amat(Pi)_(kv_j) = sum_(a = 1)^2 av_(j a) av_(j a)^herm.
 $
-Concretely, for each $kv_j$ we take as pivot the coordinate axis $avec(c)_j$ least aligned with $kv_j$ and set $av_(j 1) prop kv_j times avec(c)_j$ and $av_(j 2) prop kv_j times av_(j 1)$. This fixes the basis only up to a rotation about $kv_j$, but that freedom is immaterial: the outer-product sum equals the transverse projector $amat(Pi)_(kv_j) = amat(I) - kv_j kv_j^herm \/ norm(kv_j)^2$, which is independent of the basis. With the isotropic weights $amat(W) = amat(I)$ the kernel sees the features only through this projector, so the prior and the posterior do not depend on the choice of transverse basis.
-Each spectral direction contributes two scalar plane-wave features $avec(phi)_(j a) (xv) = av_(j a) exp(i kv_j dot xv)$, giving $F = 2 N_s$ features in total. The field becomes a finite superposition with one scalar coefficient per feature,
+Concretely, for each $kv_j$ we take as pivot the coordinate axis $avec(c)_j$ least aligned with $kv_j$ and set $av_(j 1) prop kv_j times avec(c)_j$ and $av_(j 2) prop kv_j times av_(j 1)$.
+This fixes the basis only up to a rotation about $kv_j$,
+but that freedom is immaterial: the outer-product sum equals the transverse projector $amat(Pi)_(kv_j) = amat(I) - kv_j kv_j^herm \/ norm(kv_j)^2$,
+which is independent of the basis.
+With the isotropic weights $amat(W) = amat(I)$ the kernel sees the features only through this projector,
+so the prior and the posterior do not depend on the choice of transverse basis.
+Each spectral direction contributes two scalar plane-wave features $avec(phi)_(j a) (xv) = av_(j a) exp(i kv_j dot xv)$,
+giving $F = 2 N_s$ features in total.
+The field becomes a finite superposition with one scalar coefficient per feature,
 $
   Ev (xv) = sum_(j = 1)^(N_s) sum_(a = 1)^2 w_(j a) avec(phi)_(j a) (xv).
 $
 
-These coefficients carry the prior. Gathering them in $avec(w) in CC^F$, the Gaussian measure becomes a finite complex Gaussian,
+These coefficients carry the prior.
+Gathering them in $avec(w) in CC^F$, the Gaussian measure becomes a finite complex Gaussian,
 $
   avec(w) tilde cal(C N)(0, amat(W)).
 $
-Every feature is a transverse plane wave, so this finite prior is still supported entirely on the solution space.
+Every feature is a transverse plane wave,
+so this finite prior is still supported entirely on the solution space.
 
 ==== Weight-Space Posterior
 
-The explicit features open a second, weight-space view of the same posterior, complementary to the function-space view of the previous section. Rather than conditioning the process through its kernel, we infer the weight vector $avec(w)$ directly. Both views yield the same posterior; which one is cheaper depends only on whether there are fewer features or fewer observations.
+The explicit features open a second, weight-space view of the same posterior,
+complementary to the function-space view of the previous section.
+Rather than conditioning the process through its kernel,
+we infer the weight vector $avec(w)$ directly.
+Both views yield the same posterior; which one is cheaper depends only on whether there are fewer features or fewer observations.
 
 Evaluating the features at the observation points through $cal(R)$ gives the design matrix
 $
   amat(Phi) = amat(Phi)(X_b) in CC^(F times N_b),
 $
-whose columns hold the feature values at the conditioning points. Each observation is a noisy linear readout of the weight, so the data vector obeys the observation model
+whose columns hold the feature values at the conditioning points.
+Each observation is a noisy linear readout of the weight,
+so the data vector obeys the observation model
 $
   hv = amat(Phi)^herm avec(w) + avec(eta), quad avec(eta) tilde cal(C N)(0, sigma_n^2 amat(I)),
 $
-in which the regularization $sigma_n^2$ of the previous section reappears as the observation-noise variance. Together with the Gaussian weight prior $avec(w) tilde cal(C N)(0, amat(W))$, this is a standard Bayesian linear regression for the weight.
+in which the regularization $sigma_n^2$ of the previous section reappears as the observation-noise variance.
+Together with the Gaussian weight prior $avec(w) tilde cal(C N)(0, amat(W))$,
+this is a standard Bayesian linear regression for the weight.
 
 Its solution is the Gaussian weight posterior
 $
@@ -224,36 +241,77 @@ $
   quad
   avec(w)_star = amat(A)^(-1) amat(Phi) hv \/ sigma_n^2.
 $
-The precision $amat(A)$ is the prior precision $amat(W)^(-1)$ regularized by the data term $amat(Phi) amat(Phi)^herm \/ sigma_n^2$. Mapping the inferred weights back through the features gives the posterior mean field $Ev_star (xv) = amat(Phi)(xv)^herm avec(w)_star$.
+The precision $amat(A)$ is the prior precision $amat(W)^(-1)$ regularized by the data term $amat(Phi) amat(Phi)^herm \/ sigma_n^2$.
+Mapping the inferred weights back through the features gives the posterior mean field $Ev_star (xv) = amat(Phi)(xv)^herm avec(w)_star$.
 
-This weight-space posterior is the function-space posterior in disguise. Under the same quadrature the prior kernel collapses to the finite feature product $amat(K)(xv, yv) = amat(Phi)(xv)^herm amat(W) amat(Phi)(yv)$. Substituting it into the function-space mean and covariance and applying the Woodbury matrix-inversion lemma reproduces the weight-space expressions above, so the two formulations give identical posterior means and covariances.
+This weight-space posterior is the function-space posterior in disguise.
+Under the same quadrature the prior kernel collapses to the finite feature product $amat(K)(xv, yv) = amat(Phi)(xv)^herm amat(W) amat(Phi)(yv)$.
+Substituting it into the function-space mean and covariance and applying the Woodbury matrix-inversion lemma reproduces the weight-space expressions above,
+so the two formulations give identical posterior means and covariances.
 
-The distinction is purely computational. The function-space solve inverts the $N_b times N_b$ Gram matrix $amat(K)_(b b) + sigma_n^2 amat(I)$, while the weight-space solve inverts the $F times F$ precision $amat(A)$. The EP construction makes the feature count $F = 2 N_s$ explicit and often modest, whereas the boundary value problem conditions on many points, so whenever $F < N_b$ the weight-space solve is the cheaper one, with a cost set by the number of features rather than the number of observations.
+The distinction is purely computational.
+The function-space solve inverts the $N_b times N_b$ Gram matrix $amat(K)_(b b) + sigma_n^2 amat(I)$,
+while the weight-space solve inverts the $F times F$ precision $amat(A)$.
+The EP construction makes the feature count $F = 2 N_s$ explicit and often modest,
+whereas the boundary value problem conditions on many points,
+so whenever $F < N_b$ the weight-space solve is the cheaper one,
+with a cost set by the number of features rather than the number of observations.
 
 ==== Hyperparameters
 
-The model has three hyperparameters: the spectral directions $kv_j$, the prior weights $amat(W)$, and the regularization parameter $sigma_n$. In a Gaussian process these can be tuned by maximizing the marginal likelihood of the data, usually by gradient descent on its negative logarithm. We instead fix them on principled grounds. The directions come from the Fibonacci sphere, whose even coverage we prefer to keep. The prior weights are set to $amat(W) = amat(I)$, treating all spectral directions equally. The regularization parameter is held fixed, since maximizing the marginal likelihood would drive it toward the floor set by the ill-conditioned feature system rather than toward a value that reflects the data, as discussed in the conclusion. In all benchmark runs it is fixed to $sigma_n^2 = e^(-12) approx 6.1 times 10^(-6)$, that is $sigma_n = e^(-6) approx 2.5 times 10^(-3)$.
+The model has three hyperparameters: the spectral directions $kv_j$,
+the prior weights $amat(W)$, and the regularization parameter $sigma_n$.
+In a Gaussian process these can be tuned by maximizing the marginal likelihood of the data,
+usually by gradient descent on its negative logarithm.
+We instead fix them on principled grounds.
+The directions come from the Fibonacci sphere, whose even coverage we prefer to keep.
+The prior weights are set to $amat(W) = amat(I)$, treating all spectral directions equally.
+The regularization parameter is held fixed,
+since maximizing the marginal likelihood would drive it toward the floor set by the ill-conditioned feature system rather than toward a value that reflects the data,
+as discussed in the conclusion.
+In all benchmark runs it is fixed to $sigma_n^2 = e^(-12) approx 6.1 times 10^(-6)$,
+that is $sigma_n = e^(-6) approx 2.5 times 10^(-3)$.
 
 === Implementation `maxwellgp`
 
-The prior and posterior above are implemented in the `maxwellgp` library of #cite(<felix>, form: "prose"), written in Python and JAX, general and problem-independent.
-The observation functional $cal(R)$ is supplied to the library and realized through the feature map. Only $cal(R)$ changes between applications, while the plane-wave features, the prior weights, the directions, and the posterior solve are identical.
+The prior and posterior above are implemented in the `maxwellgp` library of #cite(<felix>, form: "prose"),
+written in Python and JAX, general and problem-independent.
+The observation functional $cal(R)$ is supplied to the library and realized through the feature map.
+Only $cal(R)$ changes between applications,
+while the plane-wave features, the prior weights,
+the directions, and the posterior solve are identical.
 
 === EPGP for Boundary Value Problems
 
-The prior already solves the PDE in the interior, so conditioning turns it into a boundary value problem solver: observing the prescribed boundary trace yields the posterior field consistent with it.
-The relevant functional is the tangential trace $cal(R) = pi_t$, evaluated at $N_b$ points on the boundary $partial D$, each carrying its outward unit normal $nn$.
+The prior already solves the PDE in the interior,
+so conditioning turns it into a boundary value problem solver:
+observing the prescribed boundary trace yields the posterior field consistent with it.
+The relevant functional is the tangential trace $cal(R) = pi_t$,
+evaluated at $N_b$ points on the boundary $partial D$,
+each carrying its outward unit normal $nn$.
 
-Although the prescribed boundary data is exact, we keep $sigma_n^2 > 0$. The finite feature space cannot represent the trace exactly, and the plane-wave Gram matrix is ill-conditioned, so a small noise acts as a Tikhonov regularizer that stabilizes the solve.
+Although the prescribed boundary data is exact, we keep $sigma_n^2 > 0$.
+The finite feature space cannot represent the trace exactly,
+and the plane-wave Gram matrix is ill-conditioned,
+so a small noise acts as a Tikhonov regularizer that stabilizes the solve.
 
-Convergence is governed by two parameters, the number of spectral directions $N_s$ and the number of boundary conditioning points $N_b$.
+Convergence is governed by two parameters,
+the number of spectral directions $N_s$ and the number of boundary conditioning points $N_b$.
 
 === EPGP for Cavity Scattering
 
-The `cavity-maxwellgp` layer specializes the BVP solver to the cavity scattering problem. The cavity enters only through the boundary data, and the prior is unchanged.
-Each transmitter dipole sets a scattered-field boundary trace $hv = -pi_t Ev^i$. Conditioning on it at the $N_b$ boundary points enforces the PEC condition and yields the posterior scattered field $Ev^s_star$, whose tangential trace at the receivers fills one column of the reaction operator.
+The `cavity-maxwellgp` layer specializes the BVP solver to the cavity scattering problem.
+The cavity enters only through the boundary data, and the prior is unchanged.
+Each transmitter dipole sets a scattered-field boundary trace $hv = -pi_t Ev^i$.
+Conditioning on it at the $N_b$ boundary points enforces the PEC condition and yields the posterior scattered field $Ev^s_star$,
+whose tangential trace at the receivers fills one column of the reaction operator.
 
-The $M = 2 N_Lambda$ transmitters share the same $N_b$ conditioning points and differ only in their boundary values $hv$. The conditioning matrix $amat(A)$ is therefore identical across transmitters, and only the right-hand side changes. We factor $amat(A)$ once and reuse the factorization for all $M$ excitations. The posterior covariance depends only on the conditioning points, not on the boundary values, so it is shared by all transmitters and computed once.
+The $M = 2 N_Lambda$ transmitters share the same $N_b$ conditioning points and differ only in their boundary values $hv$.
+The conditioning matrix $amat(A)$ is therefore identical across transmitters,
+and only the right-hand side changes.
+We factor $amat(A)$ once and reuse the factorization for all $M$ excitations.
+The posterior covariance depends only on the conditioning points,
+not on the boundary values, so it is shared by all transmitters and computed once.
 
 
 
@@ -331,7 +389,8 @@ This is an electric field integral equation (EFIE) in indirect single-layer form
 As a first-kind Fredholm integral equation, it is inherently ill-conditioned.
 
 
-The electric field solution is obtained by applying the single-layer potential to the density, and the BVP solution operator is then formally
+The electric field solution is obtained by applying the single-layer potential to the density,
+and the BVP solution operator is then formally
 $
   cal(S) = Psi_"SL" cal(V)^(-1).
 $
@@ -372,20 +431,25 @@ $
   r = pv dot (pi_t^Lambda Ev^s) (zv) = pv dot (pi_t^Lambda cal(S) (-gamma_times Ev^i)) (zv).
 $
 
-Notice the trace asymmetry: the density is solved against the rotated trace $gamma_times$ on the cavity boundary $partial D$, but the measurement reads the tangential projection trace $pi_t^Lambda$ on the dipole surface $Lambda$.
+Notice the trace asymmetry: the density is solved against the rotated trace $gamma_times$ on the cavity boundary $partial D$,
+but the measurement reads the tangential projection trace $pi_t^Lambda$ on the dipole surface $Lambda$.
 
 ==== Reaction Operator
 
-Each of the $M = 2 N_Lambda$ transmitter dipoles, two polarizations per point on $Lambda$, generates a different incident field and hence a different right-hand side $avec(h)_times = -gamma_times Ev^i$ of the EFIE.
+Each of the $M = 2 N_Lambda$ transmitter dipoles,
+two polarizations per point on $Lambda$,
+generates a different incident field and hence a different right-hand side $avec(h)_times = -gamma_times Ev^i$ of the EFIE.
 
-By using an LU decomposition of the single-layer matrix, we can reuse the expensive factorization for each right-hand side.
+By using an LU decomposition of the single-layer matrix,
+we can reuse the expensive factorization for each right-hand side.
 
 Evaluating the resulting scattered field at the receivers and projecting onto the polarization frame fills one column of the reaction operator.
 
 
 === Implementation `Bembel`
 
-The formulation is discretized with the `Bembel` library of #cite(<bembel>, form: "prose"), described by its authors as:
+The formulation is discretized with the `Bembel` library of #cite(<bembel>, form: "prose"),
+described by its authors as:
 
 #quote(block: true, attribution: [@bembel])[
   \[`Bembel` is\] the C++ library featuring higher order isogeometric Galerkin boundary element
@@ -398,21 +462,28 @@ The formulation is discretized with the `Bembel` library of #cite(<bembel>, form
 
 ==== Geometry
 
-`Bembel` uses a NURBS boundary representation, where our cavity geometries can be represented exactly. We use a NURBS representation of a sphere and scale it to the cavity semi-axes for both our geometries.
+`Bembel` uses a NURBS boundary representation,
+where our cavity geometries can be represented exactly.
+We use a NURBS representation of a sphere and scale it to the cavity semi-axes for both our geometries.
 
 ==== Galerkin Discretization
 
-We discretize the EFIE by a Galerkin method, which discretizes the operator equation, not merely the unknown. The density is expanded in a finite basis $avec(phi)_1, dots, avec(phi)_N$,
+We discretize the EFIE by a Galerkin method,
+which discretizes the operator equation, not merely the unknown.
+The density is expanded in a finite basis $avec(phi)_1, dots, avec(phi)_N$,
 $
   avec(j) approx sum_(i = 1)^N j_i avec(phi)_i,
 $
-and the EFIE is tested against the same basis. The continuous equation $cal(V) avec(j) = avec(h)_times$ becomes a linear system for the coefficients,
+and the EFIE is tested against the same basis.
+The continuous equation $cal(V) avec(j) = avec(h)_times$ becomes a linear system for the coefficients,
 $
   amat(V) jv = bv
   quad
   bv_i = integral_(partial D) avec(phi)_i dot avec(h)_times dif s,
 $
-in which the single-layer operator $cal(V)$ is replaced by its Galerkin matrix $amat(V)$. Its entries are the single-layer bilinear form on pairs of basis functions. Integrating the gradients of the dyadic Green's function by parts onto the basis functions reduces it to a double surface integral over the scalar fundamental solution $Phi$ #cite(<buffa>, supplement: [Sec. 5]),
+in which the single-layer operator $cal(V)$ is replaced by its Galerkin matrix $amat(V)$.
+Its entries are the single-layer bilinear form on pairs of basis functions.
+Integrating the gradients of the dyadic Green's function by parts onto the basis functions reduces it to a double surface integral over the scalar fundamental solution $Phi$ #cite(<buffa>, supplement: [Sec. 5]),
 $
   amat(V)_(a b) = i k integral_(partial D) integral_(partial D) Phi(xv, yv) (avec(phi)_a (xv) dot avec(phi)_b (yv) - 1/k^2 div_Gamma avec(phi)_a (xv) div_Gamma avec(phi)_b (yv)) dif s(yv) dif s(xv).
 $
@@ -426,19 +497,25 @@ space of $cal(V)$.
 
 ==== Linear Solver
 
-`Bembel` provides no preconditioner, such as a Calderón projector, so an iterative solver is unattractive. We rely on direct solves instead.
+`Bembel` provides no preconditioner, such as a Calderón projector,
+so an iterative solver is unattractive.
+We rely on direct solves instead.
 
-Furthermore we do not use any matrix compression techniques like fast-multipole or hierarchical matrices, because we need high-fidelity reference solutions to compare with the EPGP solutions.
+Furthermore we do not use any matrix compression techniques like fast-multipole or hierarchical matrices,
+because we need high-fidelity reference solutions to compare with the EPGP solutions.
 Hence we assemble the dense matrix and solve it by a direct LU factorization.
 
 ==== Time-Harmonic Convention
 
-`Bembel` uses the opposite time-harmonic convention to ours, $e^(-i k r)$ instead of $e^(+i k r)$.
+`Bembel` uses the opposite time-harmonic convention to ours,
+$e^(-i k r)$ instead of $e^(+i k r)$.
 To reconcile this, we conjugate the `Bembel` output to restore the $e^(+i k r)$ convention.
 
 ==== Refinement and Convergence
 
-Convergence is governed by the polynomial degree $p$ and the refinement level $m$, equivalently the mesh width $h$.
-For a smooth boundary and smooth solution, $h$-refinement converges algebraically and $p$-refinement geometrically.
+Convergence is governed by the polynomial degree $p$ and the refinement level $m$,
+equivalently the mesh width $h$.
+For a smooth boundary and smooth solution,
+$h$-refinement converges algebraically and $p$-refinement geometrically.
 The ill-conditioning of the first-kind operator worsens under mesh refinement.
 

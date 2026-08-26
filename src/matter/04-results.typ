@@ -13,10 +13,17 @@
 
 = Benchmark Results
 
-We present results for two cavity geometries, which differ in what we can validate against. The spherical cavity admits a closed-form operator and is used to check each solver against ground truth; the ellipsoidal cavity admits none and is treated by cross-validation.
-Each geometry is treated in turn, covering the EPGP solver, the BEM solver, and, for the ellipsoid, a direct comparison of the two.
+We present results for two cavity geometries, which differ in what we can validate against.
+The spherical cavity admits a closed-form operator and is used to check each solver against ground truth;
+the ellipsoidal cavity admits none and is treated by cross-validation.
+Each geometry is treated in turn, covering the EPGP solver,
+the BEM solver, and, for the ellipsoid, a direct comparison of the two.
 
-Two relative error measures are used throughout. The reciprocity error $rho$ is reference-free: reciprocity forces the true operator to be symmetric, and $rho$ measures the violation of that symmetry. It is a necessary but not sufficient check.
+Two relative error measures are used throughout.
+The reciprocity error $rho$ is reference-free:
+reciprocity forces the true operator to be symmetric,
+and $rho$ measures the violation of that symmetry.
+It is a necessary but not sufficient check.
 The reference error $epsilon$ is the distance to a trusted reference operator $amat(T)_"ref"$,
 which is the analytic operator $amat(T)_"anal"$ on the sphere and the high-fidelity BEM operator $amat(T)_"BEM"$ on the ellipsoid.
 $
@@ -25,7 +32,8 @@ $
 $
 
 We use the Frobenius norm to quantify distance between operators.
-The operator norm is bounded by the Frobenius norm, so convergence in $epsilon$ implies convergence in the operator norm #cite(<hornjohnson>, supplement: [p. 370]).
+The operator norm is bounded by the Frobenius norm,
+so convergence in $epsilon$ implies convergence in the operator norm #cite(<hornjohnson>, supplement: [p. 370]).
 $
   norm(amat(T))_"op" <= norm(amat(T))_"F".
 $
@@ -33,17 +41,40 @@ $
 == Spherical Cavity
 
 The spherical cavity is a PEC sphere of radius $R = 4$.
-It admits a closed-form reaction operator of unlimited accuracy, which serves as ground truth for both solvers.
+It admits a closed-form reaction operator of unlimited accuracy,
+which serves as ground truth for both solvers.
 
 === EPGP Field
 
-We begin with a qualitative look at the EPGP solution for a single transmitter dipole at $zv = (0, 0, 1)$ on $Lambda$, polarized along $x$. Being a probabilistic solver, the EPGP returns a full posterior over the scattered field, a Gaussian summarized by its mean and its covariance: the mean is the point estimate of the field, and the covariance is its uncertainty. We visualize both on the $x z$-plane at $y = 0$ through the cavity, the dipole location marked in green. The field was computed at the highest grid resolution $N_s = 1024$, $N_b = 8192$.
+We begin with a qualitative look at the EPGP solution for a single transmitter dipole at $zv = (0, 0, 1)$ on $Lambda$, polarized along $x$.
+Being a probabilistic solver, the EPGP returns a full posterior over the scattered field,
+a Gaussian summarized by its mean and its covariance:
+the mean is the point estimate of the field,
+and the covariance is its uncertainty.
+We visualize both on the $x z$-plane at $y = 0$ through the cavity,
+the dipole location marked in green.
+The field was computed at the highest grid resolution $N_s = 1024$, $N_b = 8192$.
 
 ==== Mean
 
-@fig:sphere-field shows the posterior mean field. The top row is the real part of the $x$-component as a heatmap, the middle row a line-integral-convolution (LIC) texture whose streaks follow the local field direction, and the bottom row the time-averaged Poynting vector, which measures the flow of energy. The three columns are the incident, scattered, and total field. The incident field is the dipole near field, sharply localized at the source. Scattering off the wall produces the scattered field, and together they form the total field.
+@fig:sphere-field shows the posterior mean field.
+The top row is the real part of the $x$-component as a heatmap,
+the middle row a line-integral-convolution (LIC) texture whose streaks follow the local field direction,
+and the bottom row the time-averaged Poynting vector,
+which measures the flow of energy.
+The three columns are the incident, scattered, and total field.
+The incident field is the dipole near field, sharply localized at the source.
+Scattering off the wall produces the scattered field, and together they form the total field.
 
-The figure matches physical expectations. The scattered wavefronts are concentric and the LIC texture forms smooth rings, and the spherical symmetry of the cavity is clearly visible. The total field is a pure standing wave: its time-averaged Poynting vector $avec(S) = 1/2 Re(Ev times conj(Hv))$ vanishes throughout the cavity, while the incident dipole field alone carries a nonzero outward energy flux. In a lossless cavity at a non-resonant frequency, no net power can be radiated through the perfectly conducting wall or absorbed in the interior, so the incident flow is cancelled exactly and the steady-state field is purely reactive.
+The figure matches physical expectations.
+The scattered wavefronts are concentric and the LIC texture forms smooth rings,
+and the spherical symmetry of the cavity is clearly visible.
+The total field is a pure standing wave:
+its time-averaged Poynting vector $avec(S) = 1/2 Re(Ev times conj(Hv))$ vanishes throughout the cavity,
+while the incident dipole field alone carries a nonzero outward energy flux.
+In a lossless cavity at a non-resonant frequency,
+no net power can be radiated through the perfectly conducting wall or absorbed in the interior,
+so the incident flow is cancelled exactly and the steady-state field is purely reactive.
 
 #figure(
   grid(
@@ -58,9 +89,19 @@ The figure matches physical expectations. The scattered wavefronts are concentri
 
 ==== Uncertainty
 
-The mean is paired with a posterior uncertainty, the standard deviation of the field about that mean. Only the scattered field is inferred and thus carries uncertainty. The incident field is exact, so the total field's uncertainty is identical to the scattered field's. @fig:sphere-field-std maps this standard deviation over the same slice as @fig:sphere-field. It is on the order of $10^(-3)$ in the chosen normalization, in which the dipole sources carry unit polarization, so it bears the same physical dimension as the field it quantifies. It forms concentric rings that grow from the center toward the wall.
+The mean is paired with a posterior uncertainty,
+the standard deviation of the field about that mean.
+Only the scattered field is inferred and thus carries uncertainty.
+The incident field is exact, so the total field's uncertainty is identical to the scattered field's.
+@fig:sphere-field-std maps this standard deviation over the same slice as @fig:sphere-field.
+It is on the order of $10^(-3)$ in the chosen normalization,
+in which the dipole sources carry unit polarization,
+so it bears the same physical dimension as the field it quantifies.
+It forms concentric rings that grow from the center toward the wall.
 
-This pattern is fixed by the conditioning geometry alone, independent of the measured data. The map therefore shows how well the boundary data determine the field, not the size of the true reconstruction error.
+This pattern is fixed by the conditioning geometry alone, independent of the measured data.
+The map therefore shows how well the boundary data determine the field,
+not the size of the true reconstruction error.
 
 #figure(
   image("../../res/epgp_sphere_field_std.png", width: 40%),
@@ -69,9 +110,26 @@ This pattern is fixed by the conditioning geometry alone, independent of the mea
 
 === EPGP Operator
 
-Having inspected the field, we turn to the reaction operator itself. @fig:sphere-operator shows its magnitude alongside the posterior uncertainty. The left panel is a heatmap of the magnitude $|amat(T)|$, a $64 times 64$ matrix over receiver $i$ and transmitter $j$. The $64$ rows and columns correspond to the $32$ surface points on $Lambda$, each carrying two tangential polarizations, so consecutive index pairs share a point on $Lambda$. The largest entries lie along the diagonal, consistent with each dipole coupling most strongly to itself and its near neighbours. The right panel is a heatmap of the per-receiver posterior standard deviation $sigma_i = sqrt(amat(Sigma)_(i i))$, which depends on the receiver but not the transmitter.
+Having inspected the field, we turn to the reaction operator itself.
+@fig:sphere-operator shows its magnitude alongside the posterior uncertainty.
+The left panel is a heatmap of the magnitude $|amat(T)|$,
+a $64 times 64$ matrix over receiver $i$ and transmitter $j$.
+The $64$ rows and columns correspond to the $32$ surface points on $Lambda$,
+each carrying two tangential polarizations,
+so consecutive index pairs share a point on $Lambda$.
+The largest entries lie along the diagonal,
+consistent with each dipole coupling most strongly to itself and its near neighbours.
+The right panel is a heatmap of the per-receiver posterior standard deviation $sigma_i = sqrt(amat(Sigma)_(i i))$,
+which depends on the receiver but not the transmitter.
 
-This is because the posterior covariance is fixed only by where we condition and where we evaluate, not by the measured values. We always condition at the same boundary points for every transmitter, and only the boundary values change, so all transmitters share the same covariance. The receiver, by contrast, is the evaluation point, so the uncertainty can in general vary from receiver to receiver. On the sphere, symmetry makes all receivers equivalent, so here $sigma$ is uniform across the panel.
+This is because the posterior covariance is fixed only by where we condition and where we evaluate,
+not by the measured values.
+We always condition at the same boundary points for every transmitter,
+and only the boundary values change, so all transmitters share the same covariance.
+The receiver, by contrast, is the evaluation point,
+so the uncertainty can in general vary from receiver to receiver.
+On the sphere, symmetry makes all receivers equivalent,
+so here $sigma$ is uniform across the panel.
 
 #figure(
   image("../../res/sphere_uq_operator.png"),
@@ -80,7 +138,15 @@ This is because the posterior covariance is fixed only by where we condition and
 
 ==== Convergence
 
-We now quantify the operator's accuracy as the resolution grows. @fig:sphere-epgp-conv plots the reference error $epsilon$ against the number of spectral features $N_s$, one curve per boundary-point count $N_b$. The figure exhibits a crossover between two error regimes. For small $N_s$ all curves coincide: the error is dominated by truncation of the spectral representation and is essentially independent of the number of boundary observations. Once the spectral approximation is sufficiently rich, past $N_s approx 200$, the error becomes limited by the boundary discretization, producing an $N_b$-dependent floor. The finest curve reaches $epsilon approx 1.3 times 10^(-10)$ at $N_s = 1024$ and $N_b = 8192$.
+We now quantify the operator's accuracy as the resolution grows.
+@fig:sphere-epgp-conv plots the reference error $epsilon$ against the number of spectral features $N_s$,
+one curve per boundary-point count $N_b$.
+The figure exhibits a crossover between two error regimes.
+For small $N_s$ all curves coincide: the error is dominated by truncation of the spectral representation and is essentially independent of the number of boundary observations.
+Once the spectral approximation is sufficiently rich,
+past $N_s approx 200$, the error becomes limited by the boundary discretization,
+producing an $N_b$-dependent floor.
+The finest curve reaches $epsilon approx 1.3 times 10^(-10)$ at $N_s = 1024$ and $N_b = 8192$.
 
 #figure(
   image("../../res/epgp_sphere_convergence.svg", width: 55%),
@@ -89,9 +155,22 @@ We now quantify the operator's accuracy as the resolution grows. @fig:sphere-epg
 
 ==== Noise Influence
 
-A free parameter of the solver is the assumed boundary noise $sigma_n$, which regularizes the conditioning. @fig:sphere-noise sweeps it. We show the sweep for the sphere, where the true reconstruction error is available against the analytic operator. The ellipsoid behaves the same. More noise means stronger regularization, so both the reconstruction error and the predicted uncertainty grow. On the log-log axes the growth is nearly a straight line, indicating a power-law dependence on $sigma_n$.
+A free parameter of the solver is the assumed boundary noise $sigma_n$,
+which regularizes the conditioning.
+@fig:sphere-noise sweeps it.
+We show the sweep for the sphere, where the true reconstruction error is available against the analytic operator.
+The ellipsoid behaves the same.
+More noise means stronger regularization,
+so both the reconstruction error and the predicted uncertainty grow.
+On the log-log axes the growth is nearly a straight line,
+indicating a power-law dependence on $sigma_n$.
 
-Both rise because $sigma_n$ drives them: it inflates the predicted variance directly and, through stronger regularization, also worsens the reconstruction. Their covariation does not mean that uncertainty tracks the reconstruction error. The predicted uncertainty is thus governed largely by the assumed noise, which is what makes its calibration delicate.
+Both rise because $sigma_n$ drives them:
+it inflates the predicted variance directly and,
+through stronger regularization, also worsens the reconstruction.
+Their covariation does not mean that uncertainty tracks the reconstruction error.
+The predicted uncertainty is thus governed largely by the assumed noise,
+which is what makes its calibration delicate.
 
 #figure(
   image("../../res/sphere_noise.svg", width: 68%),
@@ -100,11 +179,25 @@ Both rise because $sigma_n$ drives them: it inflates the predicted variance dire
 
 === BEM Operator
 
-The BEM is deterministic, so it returns the operator without an uncertainty estimate. We assess its accuracy by convergence against the analytic reference.
+The BEM is deterministic, so it returns the operator without an uncertainty estimate.
+We assess its accuracy by convergence against the analytic reference.
 
 ==== Convergence
 
-@fig:sphere-bem-conv splits this convergence into two panels, each a family of curves over one fixed parameter. The left panel performs $h$-refinement, varying the mesh level $m$ at each fixed polynomial degree $p$, plotted against degrees of freedom on log--log axes. Algebraic convergence appears as a straight line there, and each curve is one, with a slope that steepens with $p$; a $prop N^(-3\/2)$ reference line is included for comparison. The right panel performs $p$-refinement, varying $p$ at each fixed mesh level, plotted against $p$ on a semilog axis. Geometric convergence appears as a straight line there, and each curve is one. The two refinements thus behave as the theory predicts, and the finest resolutions reach $epsilon approx 3 times 10^(-12)$. The only exception is the $p = 5$, $m = 4$ point, which ticks back up as it reaches the floor of attainable accuracy.
+@fig:sphere-bem-conv splits this convergence into two panels,
+each a family of curves over one fixed parameter.
+The left panel performs $h$-refinement, varying the mesh level $m$ at each fixed polynomial degree $p$,
+plotted against degrees of freedom on log--log axes.
+Algebraic convergence appears as a straight line there,
+and each curve is one, with a slope that steepens with $p$;
+a $prop N^(-3\/2)$ reference line is included for comparison.
+The right panel performs $p$-refinement,
+varying $p$ at each fixed mesh level, plotted against $p$ on a semilog axis.
+Geometric convergence appears as a straight line there, and each curve is one.
+The two refinements thus behave as the theory predicts,
+and the finest resolutions reach $epsilon approx 3 times 10^(-12)$.
+The only exception is the $p = 5$, $m = 4$ point,
+which ticks back up as it reaches the floor of attainable accuracy.
 
 #figure(
   image("../../res/bem_sphere_convergence.svg"),
@@ -113,7 +206,15 @@ The BEM is deterministic, so it returns the operator without an uncertainty esti
 
 === Wavenumber Sweep
 
-The benchmark fixes $k = 2$. A cavity resonance, where the interior boundary value problem is not uniquely solvable, would make the reconstruction ill-posed, so we check that $k = 2$ avoids one. We detect resonances with the subspace-angle diagnostic #cite(<betcke>). At wavenumber $k$ we evaluate the $F$ plane-wave features both on the boundary and in the interior: the matrix $amat(Phi)_b in CC^(3 N_b times F)$ collects their tangential traces at $N_b$ boundary points, and $amat(Phi)_i in CC^(6 N_i times F)$ their full six-component fields at $N_i$ interior points. We orthonormalize the columns of the stacked matrix by a thin QR factorization and partition the orthonormal factor conformally,
+The benchmark fixes $k = 2$.
+A cavity resonance, where the interior boundary value problem is not uniquely solvable,
+would make the reconstruction ill-posed,
+so we check that $k = 2$ avoids one.
+We detect resonances with the subspace-angle diagnostic #cite(<betcke>).
+At wavenumber $k$ we evaluate the $F$ plane-wave features both on the boundary and in the interior:
+the matrix $amat(Phi)_b in CC^(3 N_b times F)$ collects their tangential traces at $N_b$ boundary points,
+and $amat(Phi)_i in CC^(6 N_i times F)$ their full six-component fields at $N_i$ interior points.
+We orthonormalize the columns of the stacked matrix by a thin QR factorization and partition the orthonormal factor conformally,
 $
   mat(amat(Phi)_b; amat(Phi)_i) = amat(Q) amat(R), quad amat(Q) = mat(amat(Q)_b; amat(Q)_i),
 $
@@ -121,9 +222,15 @@ then record the smallest singular value of the boundary block,
 $
   sigma_min := sigma_min (amat(Q)_b).
 $
-Including the interior block normalizes the boundary trace against the field's interior magnitude, so $sigma_min$ measures how nearly some non-trivial interior field attains a zero boundary trace. It therefore collapses toward zero at a cavity resonance and stays bounded away from it otherwise.
+Including the interior block normalizes the boundary trace against the field's interior magnitude,
+so $sigma_min$ measures how nearly some non-trivial interior field attains a zero boundary trace.
+It therefore collapses toward zero at a cavity resonance and stays bounded away from it otherwise.
 
-@fig:sphere-ksweep shows the sweep on the sphere over $k in [1.5, 2.5]$. Every dip of $sigma_min$ coincides with an analytic resonance of the sphere, shown dashed, so the diagnostic locates resonances correctly. The benchmark wavenumber $k = 2$ sits at a local maximum, far from any resonance, confirming that it is non-resonant.
+@fig:sphere-ksweep shows the sweep on the sphere over $k in [1.5, 2.5]$.
+Every dip of $sigma_min$ coincides with an analytic resonance of the sphere,
+shown dashed, so the diagnostic locates resonances correctly.
+The benchmark wavenumber $k = 2$ sits at a local maximum,
+far from any resonance, confirming that it is non-resonant.
 
 #figure(
   image("../../res/sphere_epgp_ksweep.svg", width: 78%),
@@ -132,15 +239,31 @@ Including the interior block normalizes the boundary trace against the field's i
 
 == Ellipsoidal Cavity
 
-The ellipsoidal cavity has semi-axes $(4, 4, 6)$, keeping the same interior surface $Lambda$ and wavenumber $k = 2$. Unlike the sphere, it admits no analytic operator, so the high-fidelity BEM solution serves as the reference.
+The ellipsoidal cavity has semi-axes $(4, 4, 6)$,
+keeping the same interior surface $Lambda$ and wavenumber $k = 2$.
+Unlike the sphere, it admits no analytic operator,
+so the high-fidelity BEM solution serves as the reference.
 
 === EPGP Field
 
-We repeat the qualitative inspection of the previous section, visualizing the EPGP posterior for the same transmitter dipole at $zv = (0, 0, 1)$ on $Lambda$, polarized along $x$, on the same $x z$-plane through the cavity. The elongated geometry breaks the spherical symmetry, and the contrast with the sphere is the point of interest.
+We repeat the qualitative inspection of the previous section,
+visualizing the EPGP posterior for the same transmitter dipole at $zv = (0, 0, 1)$ on $Lambda$,
+polarized along $x$, on the same $x z$-plane through the cavity.
+The elongated geometry breaks the spherical symmetry,
+and the contrast with the sphere is the point of interest.
 
 ==== Mean
 
-@fig:ellipse-field shows the posterior mean field in the same layout as before: the real part of the $x$-component as a heatmap on top and the LIC texture below, for the incident, scattered, and total field. The broken symmetry is clearly visible. The incident field is the same as before, since it is the same dipole, but the scattered field no longer shows the concentric wavefronts of the sphere. Instead it has a more intricate pattern, stretched along the long axis of the cavity, and the same is seen in the LIC texture. The total field is again the sum of the two.
+@fig:ellipse-field shows the posterior mean field in the same layout as before:
+the real part of the $x$-component as a heatmap on top and the LIC texture below,
+for the incident, scattered, and total field.
+The broken symmetry is clearly visible.
+The incident field is the same as before,
+since it is the same dipole, but the scattered field no longer shows the concentric wavefronts of the sphere.
+Instead it has a more intricate pattern,
+stretched along the long axis of the cavity,
+and the same is seen in the LIC texture.
+The total field is again the sum of the two.
 
 #figure(
   grid(
@@ -154,7 +277,11 @@ We repeat the qualitative inspection of the previous section, visualizing the EP
 
 ==== Uncertainty
 
-@fig:ellipse-field-std maps the posterior uncertainty over the same slice. The broken symmetry makes it richer than on the sphere: instead of concentric rings the standard deviation forms separate off-axis lobes, and its scale is an order of magnitude larger, of order $10^(-2)$. As on the sphere, the pattern is fixed by the conditioning geometry alone and reports how well the boundary data determine the field rather than the true reconstruction error.
+@fig:ellipse-field-std maps the posterior uncertainty over the same slice.
+The broken symmetry makes it richer than on the sphere:
+instead of concentric rings the standard deviation forms separate off-axis lobes,
+and its scale is an order of magnitude larger, of order $10^(-2)$.
+As on the sphere, the pattern is fixed by the conditioning geometry alone and reports how well the boundary data determine the field rather than the true reconstruction error.
 
 #figure(
   image("../../res/epgp_ellipse_field_std.png", width: 50%),
@@ -163,7 +290,16 @@ We repeat the qualitative inspection of the previous section, visualizing the EP
 
 === EPGP Operator
 
-As on the sphere, @fig:ellipse-operator shows the operator magnitude beside the posterior uncertainty. The magnitude $|amat(T)|$ keeps the same diagonal structure of strong self- and near-coupling. The uncertainty, however, is no longer uniform: the elongated geometry breaks the equivalence of receivers, so $sigma$ now varies from receiver to receiver, visible as the horizontal banding. It grows for receivers deeper inside the cavity, toward the elongated $z$-axis and away from the wall. As in the field maps, this uncertainty is set by where we condition and evaluate, not by the measured data.
+As on the sphere, @fig:ellipse-operator shows the operator magnitude beside the posterior uncertainty.
+The magnitude $|amat(T)|$ keeps the same diagonal structure of strong self- and near-coupling.
+The uncertainty, however, is no longer uniform:
+the elongated geometry breaks the equivalence of receivers,
+so $sigma$ now varies from receiver to receiver,
+visible as the horizontal banding.
+It grows for receivers deeper inside the cavity,
+toward the elongated $z$-axis and away from the wall.
+As in the field maps, this uncertainty is set by where we condition and evaluate,
+not by the measured data.
 
 #figure(
   image("../../res/ellipse_uq_operator.png", width: 90%),
@@ -172,7 +308,14 @@ As on the sphere, @fig:ellipse-operator shows the operator magnitude beside the 
 
 ==== Convergence
 
-With no analytic operator available, we track accuracy through the reciprocity error $rho$, which needs no reference. @fig:ellipse-epgp-conv plots $rho$ against the number of spectral features $N_s$. It decreases steadily and floors at $rho approx 3 times 10^(-11)$, confirming that the EPGP operator is symmetric to that level. The cross-validation reference error $epsilon$ against the BEM reference is reported in the table below. @tab:ellipse-epgp lists the corresponding runs at the finest $N_b$, together with their runtime, memory, and conditioning.
+With no analytic operator available, we track accuracy through the reciprocity error $rho$,
+which needs no reference.
+@fig:ellipse-epgp-conv plots $rho$ against the number of spectral features $N_s$.
+It decreases steadily and floors at $rho approx 3 times 10^(-11)$,
+confirming that the EPGP operator is symmetric to that level.
+The cross-validation reference error $epsilon$ against the BEM reference is reported in the table below.
+@tab:ellipse-epgp lists the corresponding runs at the finest $N_b$,
+together with their runtime, memory, and conditioning.
 
 #figure(
   image("../../res/epgp_ellipse_convergence.svg", width: 68%),
@@ -181,11 +324,18 @@ With no analytic operator available, we track accuracy through the reciprocity e
 
 === BEM Operator
 
-The BEM operator is the reference for this geometry. As for the EPGP, the absence of an analytic operator leaves only the reciprocity error $rho$ as a self-contained measure.
+The BEM operator is the reference for this geometry.
+As for the EPGP, the absence of an analytic operator leaves only the reciprocity error $rho$ as a self-contained measure.
 
 ==== Convergence
 
-@fig:ellipse-bem-conv plots the BEM reciprocity error $rho$ over the $p times m$ grid, and @tab:ellipse-bem lists every run with its degrees of freedom, runtime, memory, and conditioning. Here only $rho$ is available, which sees the antisymmetric part of the error and so cannot certify a convergence order, but its decay is consistent with the algebraic $h$-refinement and geometric $p$-refinement established on the sphere. The most refined run, $p = 5$ and $m = 4$ with $4800$ degrees of freedom, reaches $rho approx 1.4 times 10^(-10)$ and serves as the reference operator $amat(T)_"BEM"$ for this geometry.
+@fig:ellipse-bem-conv plots the BEM reciprocity error $rho$ over the $p times m$ grid,
+and @tab:ellipse-bem lists every run with its degrees of freedom,
+runtime, memory, and conditioning.
+Here only $rho$ is available, which sees the antisymmetric part of the error and so cannot certify a convergence order,
+but its decay is consistent with the algebraic $h$-refinement and geometric $p$-refinement established on the sphere.
+The most refined run, $p = 5$ and $m = 4$ with $4800$ degrees of freedom,
+reaches $rho approx 1.4 times 10^(-10)$ and serves as the reference operator $amat(T)_"BEM"$ for this geometry.
 
 #figure(
   image("../../res/bem_ellipse_convergence.svg", width: 94%),
@@ -194,7 +344,12 @@ The BEM operator is the reference for this geometry. As for the EPGP, the absenc
 
 === Wavenumber Sweep
 
-The $k$-sweep on the ellipsoid is shown in @fig:ellipse-ksweep. Unlike the sphere the benchmark wavenumber sits close to one: $k = 2$ lies only $Delta k approx 0.0018$ above an interior resonance near $k approx 1.998$, where $sigma_min$ dips to $approx 1.3 times 10^(-3)$. The dip is small but nonzero, so the boundary value problem remains solvable and both solvers converge cleanly. The benchmark is thus operationally non-resonant, though by a narrow margin.
+The $k$-sweep on the ellipsoid is shown in @fig:ellipse-ksweep.
+Unlike the sphere the benchmark wavenumber sits close to one:
+$k = 2$ lies only $Delta k approx 0.0018$ above an interior resonance near $k approx 1.998$,
+where $sigma_min$ dips to $approx 1.3 times 10^(-3)$.
+The dip is small but nonzero, so the boundary value problem remains solvable and both solvers converge cleanly.
+The benchmark is thus operationally non-resonant, though by a narrow margin.
 
 #figure(
   image("../../res/ellipse_epgp_ksweep.svg", width: 78%),
@@ -203,23 +358,53 @@ The $k$-sweep on the ellipsoid is shown in @fig:ellipse-ksweep. Unlike the spher
 
 === Comparison
 
-Having validated each solver on its own, we now compare them directly, first in accuracy and then in cost.
+Having validated each solver on its own,
+we now compare them directly, first in accuracy and then in cost.
 
 ==== Cross-Validation
 
-The two solvers share no numerical machinery, so their agreement is strong evidence for both. We quantify it by the reference error $epsilon$ of the EPGP operator against the BEM reference $amat(T)_"BEM"$. It decreases monotonically with $N_s$, reaching $epsilon approx 9 times 10^(-9)$ at $N_s = 1024$, and is still decreasing there, so $9 times 10^(-9)$ is an upper bound on the relative difference: the two operators are at least this close.
+The two solvers share no numerical machinery, so their agreement is strong evidence for both.
+We quantify it by the reference error $epsilon$ of the EPGP operator against the BEM reference $amat(T)_"BEM"$.
+It decreases monotonically with $N_s$, reaching $epsilon approx 9 times 10^(-9)$ at $N_s = 1024$,
+and is still decreasing there, so $9 times 10^(-9)$ is an upper bound on the relative difference:
+the two operators are at least this close.
 
-Together with the independent certification of each solver on the analytic sphere, this is the central result of the benchmark. Two methodologically unrelated solvers, each validated on its own and then shown to agree on a geometry with no ground truth, give strong combined evidence that both compute the correct reaction operator.
+Together with the independent certification of each solver on the analytic sphere,
+this is the central result of the benchmark.
+Two methodologically unrelated solvers, each validated on its own and then shown to agree on a geometry with no ground truth,
+give strong combined evidence that both compute the correct reaction operator.
 
 ==== Accuracy--Runtime Trade-off
 
-All runs were carried out on the Euler cluster#footnote[Euler is the central high-performance computing cluster of ETH Zürich; see #link("https://scicomp.ethz.ch/wiki/Euler")[`scicomp.ethz.ch/wiki/Euler`].], each on a single exclusive AMD EPYC 7742 node with 128 cores, and wall time was recorded per run. For the EPGP the recorded time includes the JAX just-in-time compilation and the Python startup, so it is a conservative measure.
+All runs were carried out on the Euler cluster#footnote[Euler is the central high-performance computing cluster of ETH Zürich; see #link("https://scicomp.ethz.ch/wiki/Euler")[`scicomp.ethz.ch/wiki/Euler`].],
+each on a single exclusive AMD EPYC 7742 node with 128 cores,
+and wall time was recorded per run.
+For the EPGP the recorded time includes the JAX just-in-time compilation and the Python startup,
+so it is a conservative measure.
 
-@fig:ellipse-pareto plots reciprocity error against wall time for both solvers. The faint points are all grid runs and the solid line is each solver's Pareto front. The two fronts have very different shapes. The EPGP front is nearly vertical, between $approx 6$ and $18$ s: its reciprocity error improves by orders of magnitude at almost fixed wall time, because the cost is dominated by the one-off factorization. The BEM front is a staircase that descends only with large increases in wall time, reaching $rho approx 1.4 times 10^(-10)$ at $approx 1600$ s at the finest grid run, with $p = 5$ and $m = 4$.
+@fig:ellipse-pareto plots reciprocity error against wall time for both solvers.
+The faint points are all grid runs and the solid line is each solver's Pareto front.
+The two fronts have very different shapes.
+The EPGP front is nearly vertical, between $approx 6$ and $18$ s:
+its reciprocity error improves by orders of magnitude at almost fixed wall time,
+because the cost is dominated by the one-off factorization.
+The BEM front is a staircase that descends only with large increases in wall time,
+reaching $rho approx 1.4 times 10^(-10)$ at $approx 1600$ s at the finest grid run,
+with $p = 5$ and $m = 4$.
 
-At the same reciprocity error the EPGP is two to three orders of magnitude faster, reaching $rho approx 10^(-9)$ to $10^(-10)$ in about $10$ s. The BEM is cheaper only at loose tolerance. For any demanding accuracy the EPGP is the cheaper solver.
+At the same reciprocity error the EPGP is two to three orders of magnitude faster,
+reaching $rho approx 10^(-9)$ to $10^(-10)$ in about $10$ s.
+The BEM is cheaper only at loose tolerance.
+For any demanding accuracy the EPGP is the cheaper solver.
 
-These wall times reflect two particular implementations, a compiled C++ solver and a Python/JAX one, so the absolute factor mixes implementation quality with algorithmic cost. The implementation-independent comparison is asymptotic. Both solvers factor their system once and reuse it across the $M = 64$ dipole right-hand sides. The dense BEM factorization costs $cal(O)(N^3)$ in the $N tilde p^2 4^m$ surface degrees of freedom, while the EPGP system assembly costs $cal(O)(N_s^2 N_b)$ and its factorization $cal(O)(N_s^3)$; since $N_b > N_s$ in practice, assembly dominates.
+These wall times reflect two particular implementations,
+a compiled C++ solver and a Python/JAX one,
+so the absolute factor mixes implementation quality with algorithmic cost.
+The implementation-independent comparison is asymptotic.
+Both solvers factor their system once and reuse it across the $M = 64$ dipole right-hand sides.
+The dense BEM factorization costs $cal(O)(N^3)$ in the $N tilde p^2 4^m$ surface degrees of freedom,
+while the EPGP system assembly costs $cal(O)(N_s^2 N_b)$ and its factorization $cal(O)(N_s^3)$;
+since $N_b > N_s$ in practice, assembly dominates.
 
 #figure(
   image("../../res/pareto_ellipse.svg"),
