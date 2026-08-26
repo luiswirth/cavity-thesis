@@ -11,18 +11,15 @@ requested by Kurz, and it is low priority; the paper takes precedence.
 
 ## V2
 
-`.v2/KURZ_REVIEW.md` is the authority on the revision. It carries every one of
-Kurz's annotations verbatim, the triage, and the fix for each, plus his
-governing instruction not to invest excessive time. Read it before touching
-anything V2-related.
-
-All items there are checked off, but that pass was LLM-driven and awaits Luis's
-own read-through and hand corrections. The prose is not yet where it should be.
+Kurz's review lives in `maxwellgp-project/refs/kurz-review/`: his mail, his
+commented PDF, and a verbatim extract of its annotations. Read it before
+touching anything V2-related, and judge against it rather than against any
+later working notes.
 
 Do not run new experiments for V2. Where a comment asks for a result that would
-prove an interpretive claim, soften the claim to a conjecture instead. Items
-tagged `[PAPER]` in that file are out of scope here and have been migrated to a
-`SIAM_Journal` issue.
+prove an interpretive claim, weaken the claim to a conjecture instead of
+defending it. Items belonging to the paper are tracked in `SIAM_Journal`
+issues.
 
 ## Writing
 
