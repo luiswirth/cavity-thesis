@@ -60,18 +60,24 @@ The field was computed at the highest grid resolution $N_s = 1024$, $N_b = 8192$
 @fig:sphere-field shows the posterior mean field.
 The top row is the real part of the $x$-component as a heatmap,
 the middle row a line-integral-convolution (LIC) texture whose streaks follow the local field direction,
-and the bottom row the time-averaged Poynting vector,
+and the bottom row the time-averaged Poynting vector $avec(S) = 1/2 Re(Ev times conj(Hv))$,
 which measures the flow of energy.
 The three columns are the incident, scattered, and total field.
 The incident field is the dipole near field, sharply localized at the source.
 Scattering off the wall produces the scattered field, and together they form the total field.
 
-The figure matches physical expectations.
-The scattered wavefronts are concentric and the LIC texture forms smooth rings,
-and the spherical symmetry of the cavity is clearly visible.
-The total field is a pure standing wave:
-its time-averaged Poynting vector $avec(S) = 1/2 Re(Ev times conj(Hv))$ vanishes throughout the cavity,
-while the incident dipole field alone carries a nonzero outward energy flux.
+The spherical symmetry of the cavity is clearly visible in the first two rows:
+the scattered wavefronts are concentric and the LIC texture forms smooth rings.
+
+The last row is a physical check on the solution.
+The incident field carries energy radially outward from the dipole,
+and the scattered field forms a recirculating pattern of its own,
+but in the total field the two combine to give $avec(S) = 0$ throughout the cavity.
+This is the expected steady state of a lossless PEC cavity at a non-resonant wavenumber:
+energy can neither escape through the wall nor be absorbed inside,
+so no net power flows and the field is a pure standing wave.
+The cancellation is not termwise, since $avec(S)$ is quadratic in the field and the two parts interfere.
+Nothing in the solver enforces it, so recovering it is a consistency check on the posterior mean.
 
 #figure(
   grid(
