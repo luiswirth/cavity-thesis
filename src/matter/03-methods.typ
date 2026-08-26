@@ -179,12 +179,18 @@ the field through explicit finite features.
 
 ==== Finite Spectral Features
 
-We approximate the integral over $V_k$ by a finite sum over $N_s$ spectral
-directions $kv_j in V_k$, drawn from the same Fibonacci sphere construction as the dipole locations.
+We approximate the integral over $V_k$ by a finite sum over $N_s$ spectral directions $kv_j in V_k$.
+The characteristic variety is itself a sphere, $V_k = k SS^2$,
+so the Fibonacci construction that placed the dipoles on $Lambda$ serves here unchanged,
+rescaled from the unit sphere to radius $k$.
+The two uses are the same problem on two different spheres,
+one in space and one in the Fourier domain.#footnote[The two are implemented separately, in `cavity-benchmark` for $Lambda$ and in `maxwellgp` for $V_k$. Their golden-angle forms differ by a full turn per index, which on the half-integer indices offsets the azimuth by $pi$, so the two point sets agree up to a rotation about the $z$-axis.]
 
 For each direction we pick an orthonormal basis $av_(j 1), av_(j 2)$ of the transverse plane,
-taking as pivot the coordinate axis $avec(c)_j$ least aligned with $kv_j$
-and setting $av_(j 1) prop kv_j times avec(c)_j$ and $av_(j 2) prop kv_j times av_(j 1)$.
+by the same pivot-and-cross-product construction used for the tangent basis on $Lambda$,
+with the wavevector now in the role of the normal.#footnote[The two implementations pick the pivot differently: on $Lambda$ a fixed coordinate axis is swapped for another once it comes close to parallel with the normal, while here the least-aligned axis is taken outright. Either rule yields an admissible pivot.]
+Taking as pivot the coordinate axis $avec(c)_j$ least aligned with $kv_j$,
+we set $av_(j 1) prop kv_j times avec(c)_j$ and $av_(j 2) prop kv_j times av_(j 1)$.
 This recovers the projector as an outer-product sum,
 $
   amat(Pi)_(kv_j) = sum_(a = 1)^2 av_(j a) av_(j a)^herm,
