@@ -1,9 +1,8 @@
 #import "../setup.typ": *
-#import "../setup-math.typ": hl, hlx, hlb
 
 = Use of Generative AI
 
-#hl[
+
 In line with good scientific practice, this appendix makes explicit how
 generative AI tools were used in the preparation of this thesis.
 
@@ -21,4 +20,4 @@ where necessary corrected by the author, who takes full responsibility for the
 content of this thesis. No AI tool was used as a source of factual or physical
 claims without independent verification against the cited literature or the
 computed results.
-]
+
