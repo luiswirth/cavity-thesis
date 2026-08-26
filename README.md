@@ -12,6 +12,8 @@ For the implementation itself, see
 
 ## Building the thesis
 
-Requires [Typst](https://typst.app/).
-- `./build.sh` compiles `out/thesis.pdf`;
-- `./watch.sh` recompiles on save. 
+The devShell carries Typst and the [dottyp](https://github.com/luiswirth/dottyp)
+notation library the document imports, so `direnv allow` or `nix develop` is all
+the setup there is.
+- `just build` compiles `out/thesis.pdf`;
+- `just watch` recompiles on save.
