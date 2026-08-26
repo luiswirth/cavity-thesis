@@ -1,4 +1,4 @@
-#import "../setup-math.typ": *
+#import "../setup.typ": *
 
 #show heading.where(level: 3): set heading(outlined: false)
 

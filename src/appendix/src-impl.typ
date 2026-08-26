@@ -20,7 +20,7 @@ regression core, and tangential-trace conditioning.
 #[
   #set text(size: 20pt)
   #set align(center)
-  #weblink("https://github.com/luiswirth/maxwellgp/tree/semester-thesis")[`github:luiswirth/maxwellgp`]
+  #link("https://github.com/luiswirth/maxwellgp/tree/semester-thesis")[`github:luiswirth/maxwellgp`]
 ]
 
 == `cavity-maxwellgp`
@@ -31,7 +31,7 @@ and the reaction-operator assembly.
 #[
   #set text(size: 20pt)
   #set align(center)
-  #weblink("https://github.com/luiswirth/cavity-maxwellgp/tree/semester-thesis")[`github:luiswirth/cavity-maxwellgp`]
+  #link("https://github.com/luiswirth/cavity-maxwellgp/tree/semester-thesis")[`github:luiswirth/cavity-maxwellgp`]
 ]
 
 == `cavity-bem`
@@ -41,7 +41,7 @@ The deterministic boundary-element reference solver, built on Bembel.
 #[
   #set text(size: 20pt)
   #set align(center)
-  #weblink("https://github.com/luiswirth/cavity-bem/tree/semester-thesis")[`github:luiswirth/cavity-bem`]
+  #link("https://github.com/luiswirth/cavity-bem/tree/semester-thesis")[`github:luiswirth/cavity-bem`]
 ]
 
 == `cavity-benchmark`
@@ -54,5 +54,5 @@ Generates all visualizations, such as plots and animations.
 #[
   #set text(size: 20pt)
   #set align(center)
-  #weblink("https://github.com/luiswirth/cavity-benchmark/tree/semester-thesis")[`github:luiswirth/cavity-benchmark`]
+  #link("https://github.com/luiswirth/cavity-benchmark/tree/semester-thesis")[`github:luiswirth/cavity-benchmark`]
 ]
