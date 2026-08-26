@@ -1,5 +1,9 @@
 #import "setup.typ": *
-#show: thesis-template
+#show: thesis-document.with(
+  title: "BEM Benchmark of the Ehrenpreis-Palamodov Gaussian Process for Maxwell Cavity Scattering",
+  author: "Luis Wirth",
+  fonts: thesis-fonts,
+)
 
 #preface-style[
   #include "title.typ"
@@ -17,6 +21,7 @@
 #appendix-style[
   #include "appendix/src-impl.typ"
   #include "appendix/src-doc.typ"
+  #include "appendix/ai-usage.typ"
 ]
 
 #postface-style[

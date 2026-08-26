@@ -6,12 +6,14 @@ Kurz, for Computational Science and Engineering (CSE) at ETH Zürich.
 
 For the implementation itself, see
 - [maxwellgp](https://github.com/luiswirth/maxwellgp), the Maxwell-constrained EPGP framework.
-- [cavity-epgp](https://github.com/luiswirth/cavity-epgp), the cavity-specific EPGP solver built on maxwellgp.
+- [cavity-maxwellgp](https://github.com/luiswirth/cavity-maxwellgp), the cavity-specific EPGP solver built on maxwellgp.
 - [cavity-bem](https://github.com/luiswirth/cavity-bem), the BEM reference solver for the PEC cavity.
 - [cavity-benchmark](https://github.com/luiswirth/cavity-benchmark), the cross-validation and benchmarking harness.
 
 ## Building the thesis
 
-Requires [Typst](https://typst.app/).
-- `./build.sh` compiles `out/thesis.pdf`;
-- `./watch.sh` recompiles on save. 
+The devShell carries Typst and the [dottyp](https://github.com/luiswirth/dottyp)
+notation library the document imports, so `direnv allow` or `nix develop` is all
+the setup there is.
+- `just build` compiles `out/thesis.pdf`;
+- `just watch` recompiles on save.
