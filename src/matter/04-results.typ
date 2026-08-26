@@ -72,9 +72,6 @@ and the spherical symmetry of the cavity is clearly visible.
 The total field is a pure standing wave:
 its time-averaged Poynting vector $avec(S) = 1/2 Re(Ev times conj(Hv))$ vanishes throughout the cavity,
 while the incident dipole field alone carries a nonzero outward energy flux.
-In a lossless cavity at a non-resonant frequency,
-no net power can be radiated through the perfectly conducting wall or absorbed in the interior,
-so the incident flow is cancelled exactly and the steady-state field is purely reactive.
 
 #figure(
   grid(
@@ -98,6 +95,9 @@ It is on the order of $10^(-3)$ in the chosen normalization,
 in which the dipole sources carry unit polarization,
 so it bears the same physical dimension as the field it quantifies.
 It forms concentric rings that grow from the center toward the wall.
+A possible explanation is that we condition only on the tangential part of the field,
+so at the wall its normal component is left free and stays uncertain,
+while in the interior the field equations and the plane-wave prior tie the components together.
 
 This pattern is fixed by the conditioning geometry alone, independent of the measured data.
 The map therefore shows how well the boundary data determine the field,
@@ -146,6 +146,7 @@ For small $N_s$ all curves coincide: the error is dominated by truncation of the
 Once the spectral approximation is sufficiently rich,
 past $N_s approx 200$, the error becomes limited by the boundary discretization,
 producing an $N_b$-dependent floor.
+Both axes are logarithmic, so the plot does not resolve whether the decay before that floor is algebraic or exponential in $N_s$.
 The finest curve reaches $epsilon approx 1.3 times 10^(-10)$ at $N_s = 1024$ and $N_b = 8192$.
 
 #figure(
@@ -254,7 +255,7 @@ and the contrast with the sphere is the point of interest.
 
 ==== Mean
 
-@fig:ellipse-field shows the posterior mean field in the same layout as before:
+@fig:ellipse-field shows the posterior mean field,
 the real part of the $x$-component as a heatmap on top and the LIC texture below,
 for the incident, scattered, and total field.
 The broken symmetry is clearly visible.
@@ -297,7 +298,8 @@ the elongated geometry breaks the equivalence of receivers,
 so $sigma$ now varies from receiver to receiver,
 visible as the horizontal banding.
 It grows for receivers deeper inside the cavity,
-toward the elongated $z$-axis and away from the wall.
+toward the elongated $z$-axis and away from the wall,
+suggesting that the boundary data constrains receivers close to the wall more strongly than those deeper inside the cavity.
 As in the field maps, this uncertainty is set by where we condition and evaluate,
 not by the measured data.
 
