@@ -329,9 +329,8 @@ $
 To compute with $cal(T)$ we discretize it on a finite set of dipoles.
 Since each tangent space $T_zv Lambda$ is two-dimensional, we need a basis to coordinatize it.
 We sample $N_Lambda$ points on $Lambda$ and assign each an orthonormal tangent basis ${en_1 (zv), en_2 (zv)}$.
-The basis comes from a fixed reference vector $avec(c)$ that is nowhere parallel to the outward normal $nn_Lambda$:
-projecting it onto the tangent plane and normalizing gives $en_1 prop pi_t^Lambda avec(c)$,
-and $en_2 = nn_Lambda times en_1$ completes the pair.
+The basis is built from a pivot vector $avec(c)$, the coordinate axis least aligned with the outward normal $nn_Lambda (zv)$:
+the cross products $en_1 prop avec(c) times nn_Lambda$ and $en_2 = nn_Lambda times en_1$ are both tangent to $Lambda$ and mutually orthogonal.
 
 We have two polarization vectors per point,
 each point thus carries two dipoles, one per polarization,
