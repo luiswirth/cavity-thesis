@@ -28,16 +28,18 @@ register, short declarative sentences, everything stated once.
 
 - Voice: impersonal, with the authorial "we" where appropriate.
 - Present tense for method and results, past tense for what was actually run.
-- Fixed spellings: EPGP, PEC, wavenumber as one word.
+- Fixed spellings: EPGP, PEC, wavenumber as one word, curl-curl hyphenated.
+- An en dash joins two things that keep their separate identities, as in
+  Ehrenpreis--Palamodov and accuracy--runtime. A compound modifier takes a
+  hyphen.
 - Headings are short noun phrases with no leading article.
-- Do not use bold or italic to stress a word. Bold is wanted in one place only:
-  marking a term central to this thesis where it is first introduced. Do not
-  bold foil or contrast terms mentioned only for context, and do not introduce
-  an abbreviation for a term that is never reused.
+- Bold marks a technical keyword where it is first introduced. Italic stresses a
+  word only where the stress earns it. A canonical, informative abbreviation may
+  be introduced without being reused.
 - Name equations in prose rather than citing them by number. No forward
   references.
-- Result numbers appear only in the results chapter. The abstract is the sole
-  exception.
+- Result numbers appear only in the results chapter, the abstract, and the
+  conclusion summary.
 - Place a mathematical symbol immediately after the noun it names, never before.
 - Define each newly introduced object locally, preferably by naming it in prose
   rather than in a separate note.
