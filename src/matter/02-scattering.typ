@@ -432,7 +432,7 @@ operator $amat(T)$ have analytic formulas, which serve as exact reference
 solutions to validate both numerical solvers.
 
 We do not re-derive the analytic solution here.
-We refer to #cite(<tai>, supplement: [Ch. 10]) for the full derivation and record the resulting formulas below.
+We refer to #cite(<tai>, supplement: [Sec. 10-4]) for the full derivation and record the resulting formulas below.
 
 The interior fields expand in the regular Hansen multipoles, the TM-type
 $avec(N)_(l m)$ and the TE-type $avec(M)_(l m)$. On a sphere of radius $r$
