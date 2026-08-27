@@ -243,7 +243,7 @@ $
 
 Exchanging the two roles leaves the measured response unchanged.
 This is the Lorentz (Rayleigh--Carson) reciprocity property,
-a consequence of the symmetry of the curl--curl Green's operator #cite(<colton>, supplement: [Ch. 6]),
+a consequence of the symmetry of the curl--curl Green's operator #cite(<colton>, supplement: [Sec. 6.6]),
 $
   r(delta_t, delta_r) = r(delta_r, delta_t).
 $
