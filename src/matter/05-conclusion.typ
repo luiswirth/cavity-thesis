@@ -1,5 +1,7 @@
 #import "../setup.typ": *
 
+#show heading.where(level: 3): set heading(outlined: false)
+
 = Conclusion and Outlook
 
 == Summary
@@ -31,7 +33,7 @@ uncertainty-aware surrogate for the interior cavity reaction operator.
 
 == Limitations
 
-==== Validation Scope
+=== Validation Scope
 
 The validation rests most firmly on the spherical cavity,
 where each solver is checked directly against the analytic operator.
@@ -54,7 +56,7 @@ The benchmark is also confined to a single wavenumber and geometry pair.
 A wavenumber sweep confirms that $k = 2$ avoids the cavity resonances,
 but the accuracy itself is validated only at $k = 2$.
 
-==== Cost Comparison
+=== Cost Comparison
 
 The cost comparison should be read with care.
 Both solvers ran on identical hardware, but the absolute wall times reflect two particular implementations,
@@ -76,7 +78,7 @@ The two solvers also parallelize differently,
 and we did not study how the comparison scales with core count.
 A fairer comparison, controlling for these factors and counting operations or memory rather than wall time, is left to future work.
 
-==== Uncertainty Quantification
+=== Uncertainty Quantification
 
 The uncertainty quantification is descriptive and correctly ranks where the field is well or poorly determined by the boundary data,
 growing in the regions the data constrains least.
@@ -104,7 +106,7 @@ though better integration accuracy does not by itself guarantee a better-conditi
 We see two natural directions to extend this work,
 one that sharpens the EPGP's spectral discretization and one that changes how the reaction operator is assembled.
 
-==== Spherical Designs and Lebedev Quadrature
+=== Spherical Designs and Lebedev Quadrature
 
 The EPGP draws its wavevector directions from a Fibonacci sphere, a quasi-Monte Carlo rule.
 A more principled choice is the Lebedev quadrature #cite(<lebedev>),
@@ -116,7 +118,7 @@ since the conditioning is governed by the correlations among the plane-wave feat
 Should the conditioning improve, the lower condition number would in turn let the assumed noise drop further,
 which is the main obstacle to calibrated uncertainty.
 
-==== Operator-Learning Perspective
+=== Operator-Learning Perspective
 
 The reaction operator is currently assembled one column at a time.
 Each transmitter dipole is a separate conditioning of the same shared prior, solved independently.
