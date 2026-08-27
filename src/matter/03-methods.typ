@@ -215,6 +215,11 @@ Any other orthonormal pair spanning the same plane gives the same outer-product 
 and with isotropic weights $amat(W) = amat(I)$ the kernel sees the features only through it,
 so prior and posterior are unchanged.
 
+Sampling $Lambda$ and sampling $V_k$ are thus one construction carried out twice:
+place points on a sphere, then frame the plane perpendicular to the radius at each of them.
+That plane carries the dipole polarizations in space and the wave amplitudes in the Fourier domain,
+and its dimension is the factor of two in both $M = 2 N_Lambda$ and $F = 2 N_s$.
+
 ==== Weight-Space Posterior
 
 The explicit features admit a second, equivalent form of the same posterior.
