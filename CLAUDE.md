@@ -6,20 +6,11 @@ described in the `maxwellgp-project` workspace. General writing and code
 guidelines are in the global `~/.claude/CLAUDE.md`, which is authoritative; this
 file carries only what is specific to the thesis.
 
-The thesis was submitted 2026-07-01. The only remaining work is the V2 revision
-requested by Kurz, and it is low priority; the paper takes precedence.
-
-## V2
-
-Kurz's review lives in `maxwellgp-project/refs/kurz-review/`: his mail, his
-commented PDF, and a verbatim extract of its annotations. Read it before
-touching anything V2-related, and judge against it rather than against any
-later working notes.
-
-Do not run new experiments for V2. Where a comment asks for a result that would
-prove an interpretive claim, weaken the claim to a conjecture instead of
-defending it. Items belonging to the paper are tracked in `SIAM_Journal`
-issues.
+The thesis was submitted 2026-07-01 and revised once, as the V2 that Kurz asked
+for; both states are tagged. It is finished, and the paper takes precedence over
+anything further. The review that shaped V2 is in
+`maxwellgp-project/refs/kurz-review/`. Work belonging to the paper is tracked in
+`SIAM_Journal` issues.
 
 ## Writing
 
@@ -65,5 +56,5 @@ the two directly.
 
 - `./watch.sh` runs continuously and auto-compiles. Never run `./build.sh`
   merely to check that the document compiles.
-- The repository is tagged `semester-thesis` at the submitted state and the
-  appendix links to that tag. It must not move; a finished V2 gets its own tag.
+- The repository is tagged `semester-thesis` at the submitted state and `v2` at
+  the revision. The appendix links to `semester-thesis`. Neither tag moves.
