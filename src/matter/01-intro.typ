@@ -103,7 +103,7 @@ This thesis makes the following contributions.
   Built a benchmark harness `cavity-benchmark`.
   Demonstrated convergence of the EPGP and BEM solvers against the analytic solution on the spherical cavity.
   Demonstrated agreement between the two solvers on the ellipsoidal cavity, which has no analytic solution.
-  Reported a 2D convergence grid and an accuracy-runtime trade-off.
+  Reported a 2D convergence grid and an accuracy--runtime trade-off.
   Performed uncertainty quantification of the EPGP surrogate.
 
 All solver code and the experiment scripts are openly available on GitHub,

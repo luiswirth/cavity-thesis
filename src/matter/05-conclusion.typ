@@ -97,7 +97,7 @@ Below a certain noise level the system becomes too ill-conditioned to solve stab
 and the floating-point floor, rather than the data,
 determines the smallest usable $sigma_n$.
 A more principled quadrature might relieve this,
-though, as noted below, better integration accuracy does not by itself guarantee a better-conditioned feature matrix.
+though better integration accuracy does not by itself guarantee a better-conditioned feature matrix.
 
 == Future Work
 
