@@ -14,8 +14,8 @@
 = Benchmark Results
 
 We present results for two cavity geometries, which differ in what we can validate against.
-The spherical cavity admits a closed-form operator and is used to check each solver against ground truth;
-the ellipsoidal cavity admits none and is treated by cross-validation.
+The spherical cavity admits a closed-form operator and is used to check each solver against ground truth.
+The ellipsoidal cavity admits none and is treated by cross-validation.
 Each geometry is treated in turn, covering the EPGP solver,
 the BEM solver, and, for the ellipsoid, a direct comparison of the two.
 
@@ -25,7 +25,7 @@ reciprocity forces the true operator to be symmetric,
 and $rho$ measures the violation of that symmetry.
 It is a necessary but not sufficient check.
 The reference error $epsilon$ is the distance to a trusted reference operator $amat(T)_"ref"$,
-which is the analytic operator $amat(T)_"anal"$ on the sphere and the high-fidelity BEM operator $amat(T)_"BEM"$ on the ellipsoid.
+which is the analytic operator $amat(T)_"anal"$ on the sphere and the high-fidelity BEM operator $amat(T)_"BEM"$ on the ellipsoid,
 $
   rho := norm(amat(T) - amat(T)^transp) / norm(amat(T)) quad quad
   epsilon := norm(amat(T) - amat(T)_"ref") / norm(amat(T)_"ref").
@@ -33,10 +33,10 @@ $
 
 We use the Frobenius norm to quantify distance between operators.
 The operator norm is bounded by the Frobenius norm,
+$
+  norm(amat(T))_"op" <= norm(amat(T))_"F",
+$
 so convergence in $epsilon$ implies convergence in the operator norm #cite(<hornjohnson>, supplement: [Sec. 5.6]).
-$
-  norm(amat(T))_"op" <= norm(amat(T))_"F".
-$
 
 == Spherical Cavity
 
@@ -87,7 +87,7 @@ Nothing in the solver enforces it, so recovering it is a consistency check on th
     image("../../res/epgp_sphere_field_lic.png"),
     image("../../res/epgp_sphere_field_poynting.png"),
   ),
-  caption: [EPGP field on the spherical cavity slice: the real part of the $x$-component, the line-integral-convolution texture, and the time-averaged Poynting vector, for the incident, scattered, and total field.],
+  caption: [EPGP field on the spherical cavity slice.],
 ) <fig:sphere-field>
 
 ==== Uncertainty
@@ -124,7 +124,7 @@ The $64$ rows and columns correspond to the $32$ surface points on $Lambda$,
 each carrying two tangential polarizations,
 so consecutive index pairs share a point on $Lambda$.
 The largest entries lie along the diagonal,
-consistent with each dipole coupling most strongly to itself and its near neighbours.
+consistent with each dipole coupling most strongly to itself and its near neighbors.
 The right panel is a heatmap of the per-receiver posterior standard deviation $sigma_i = sqrt(amat(Sigma)_(i i))$,
 which depends on the receiver but not the transmitter.
 
@@ -181,7 +181,7 @@ which is what makes its calibration delicate.
 
 #figure(
   image("../../res/sphere_noise.svg", width: 68%),
-  caption: [Reconstruction error and predicted uncertainty vs assumed noise, spherical cavity.],
+  caption: [Reconstruction error and predicted uncertainty versus assumed noise, spherical cavity.],
 ) <fig:sphere-noise>
 
 === BEM Operator
@@ -196,8 +196,8 @@ each a family of curves over one fixed parameter.
 The left panel performs $h$-refinement, varying the mesh level $m$ at each fixed polynomial degree $p$,
 plotted against degrees of freedom on log--log axes.
 Algebraic convergence appears as a straight line there,
-and each curve is one, with a slope that steepens with $p$;
-a $prop N^(-3\/2)$ reference line is included for comparison.
+and each curve is one, with a slope that steepens with $p$.
+A $prop N^(-3\/2)$ reference line is included for comparison.
 The right panel performs $p$-refinement,
 varying $p$ at each fixed mesh level, plotted against $p$ on a semilog axis.
 Geometric convergence appears as a straight line there, and each curve is one.
@@ -327,7 +327,7 @@ together with their runtime, memory, and conditioning.
 
 #figure(
   image("../../res/epgp_ellipse_convergence.svg", width: 68%),
-  caption: [EPGP reciprocity error on the ellipsoidal cavity versus $N_s$ (no analytic reference; cross-validation error $epsilon$ in @tab:ellipse-epgp).],
+  caption: [EPGP reciprocity error on the ellipsoidal cavity versus $N_s$.],
 ) <fig:ellipse-epgp-conv>
 
 === BEM Operator
@@ -384,7 +384,7 @@ give strong combined evidence that both compute the correct reaction operator.
 
 ==== Accuracy--Runtime Trade-off
 
-All runs were carried out on the Euler cluster#footnote[Euler is the central high-performance computing cluster of ETH Zürich; see #link("https://scicomp.ethz.ch/wiki/Euler")[`scicomp.ethz.ch/wiki/Euler`].],
+All runs were carried out on the Euler cluster#footnote[Euler is the central high-performance computing cluster of ETH Zürich, see #link("https://scicomp.ethz.ch/wiki/Euler")[`scicomp.ethz.ch/wiki/Euler`].],
 each on a single exclusive AMD EPYC 7742 node with 128 cores,
 and wall time was recorded per run.
 For the EPGP the recorded time includes the JAX just-in-time compilation and the Python startup,
@@ -411,12 +411,12 @@ so the absolute factor mixes implementation quality with algorithmic cost.
 The implementation-independent comparison is asymptotic.
 Both solvers factor their system once and reuse it across the $M = 64$ dipole right-hand sides.
 The dense BEM factorization costs $cal(O)(N^3)$ in the $N tilde p^2 4^m$ surface degrees of freedom,
-while the EPGP system assembly costs $cal(O)(N_s^2 N_b)$ and its factorization $cal(O)(N_s^3)$;
-since $N_b > N_s$ in practice, assembly dominates.
+while the EPGP system assembly costs $cal(O)(N_s^2 N_b)$ and its factorization $cal(O)(N_s^3)$.
+Since $N_b > N_s$ in practice, assembly dominates.
 
 #figure(
   image("../../res/pareto_ellipse.svg"),
-  caption: [Reciprocity error vs wall time for BEM and EPGP on the ellipsoidal cavity.],
+  caption: [Reciprocity error versus wall time for BEM and EPGP on the ellipsoidal cavity.],
 ) <fig:ellipse-pareto>
 
 #page(flipped: true, margin: 1.3cm)[

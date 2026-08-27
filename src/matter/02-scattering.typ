@@ -55,7 +55,7 @@ Eliminating the magnetic field via
 $
   Hv = 1/(i omega mu) curl Ev,
 $
-gives the curl--curl equation for the electric field $Ev$
+gives the curl-curl equation for the electric field $Ev$
 $
   curl curl Ev - k^2 Ev = 0,
 $
@@ -81,7 +81,7 @@ creating an unknown scattered field $Ev^s$.
 A receiver dipole $delta_r$ then reads back the field.
 Physically the receiver sees the total field $Ev = Ev^i + Ev^s$ which is a superposition of the incident and scattered part,
 but the incident field is split off, leaving the scattered field as the quantity of interest,
-which satisfies the source-free curl--curl equation in the interior.
+which satisfies the source-free curl-curl equation in the interior.
 
 The object of study is the mapping from a transmitter dipole to the measured response at a receiver dipole.
 
@@ -152,12 +152,12 @@ Here the distance to the source is $r := norm(rv)$, with separation vector $rv :
 An oscillating Hertzian dipole $delta^2 = (zv, pv)$ is a current source with density $Jv(xv, t) = pv delta_zv exp(-i omega t)$ at a point $zv in D$,
 together with a polarization vector $pv in RR^3$ that gives the dipole's orientation and strength.
 
-The electric field $Ev^i$ radiated by a dipole is obtained by applying the curl--curl operator to the Hertz vector potential $Phi pv$
+The electric field $Ev^i$ radiated by a dipole is obtained by applying the curl-curl operator to the Hertz vector potential $Phi pv$
 $
   Ev^i (xv; delta) = i/k curl_xv curl_xv (Phi(xv; zv) pv).
 $
 
-We can rewrite this expression by factoring out the polarization vector $pv$ by linearity of the curl--curl operator,
+We can rewrite this expression by factoring out the polarization vector $pv$ by linearity of the curl-curl operator,
 $
   Ev^i (xv; delta) = amat(G)(xv; zv) pv.
 $
@@ -175,7 +175,7 @@ $
 where $rn rn^transp$ is the outer product of the unit separation vector $rn := rv \/ r$ and $amat(I)$ is the $3 times 3$ identity matrix.
 
 
-=== Scattered Field and curl--curl BVP
+=== Scattered Field and curl-curl BVP
 
 Our cavity $D subset.eq RR^3$ is a smooth, bounded domain.
 The incident field $Ev^i$ is reflected by the cavity boundary $partial D$ and creates a scattered field $Ev^s$.
@@ -207,7 +207,7 @@ $
 
 ==== Interior BVP
 
-The full BVP is then to find the scattered field $Ev^s: D -> CC^3$ in the interior of the cavity $D$ such that the curl--curl equation is satisfied in the interior and the PEC boundary condition is satisfied on the wall.
+The full BVP is then to find the scattered field $Ev^s: D -> CC^3$ in the interior of the cavity $D$ such that the curl-curl equation is satisfied in the interior and the PEC boundary condition is satisfied on the wall,
 $
   curl curl Ev^s - k^2 Ev^s &= 0 quad "in" D
   \
@@ -215,7 +215,7 @@ $
 $
 
 This BVP is well-defined only when $k^2$ is not a cavity resonance,
-i.e. not an eigenvalue of the curl--curl operator.
+i.e. not an eigenvalue of the curl-curl operator.
 Otherwise the BVP solution operator $cal(S): avec(h) |-> Ev^s$ becomes singular.
 
 
@@ -243,7 +243,7 @@ $
 
 Exchanging the two roles leaves the measured response unchanged.
 This is the Lorentz (Rayleigh--Carson) reciprocity property,
-a consequence of the symmetry of the curl--curl Green's operator #cite(<colton>, supplement: [Sec. 6.6]),
+a consequence of the symmetry of the curl-curl Green's operator #cite(<colton>, supplement: [Sec. 6.6]),
 $
   r(delta_t, delta_r) = r(delta_r, delta_t).
 $
@@ -288,7 +288,7 @@ $
 $
 
 Reading the scattered field back on $Lambda$ gives the response density $avec(m): Lambda -> T Lambda$,
-the tangential projection trace of the scattered field.
+the tangential projection trace of the scattered field,
 $
   avec(m) := pi_t^Lambda Ev^s [avec(g)].
 $
@@ -357,7 +357,7 @@ We now fix the concrete geometry of our benchmark problem.
 The geometry is mostly taken from #cite(<cavity>, form: "prose").
 
 We fix the wavenumber $k = 2$.
-The dipole surface $Lambda$ is the unit sphere.
+The dipole surface $Lambda$ is the unit sphere,
 $
   Lambda := { xv in RR^3 mid(:) norm(xv) = 1 } subset.eq D.
 $
@@ -393,7 +393,7 @@ It is a smooth, convex, and simply connected domain.
 
 Its boundary $partial D$ is an ellipsoidal surface with semi-axes $avec(a) = (a_1, a_2, a_3) = (4, 4, 6)$.
 
-The interior of the ellipsoid is the domain $D$ in which the interior BVP is solved.
+The interior of the ellipsoid is the domain $D$ in which the interior BVP is solved,
 $
   D := { (x_1, x_2, x_3) in RR^3 mid(:) (x_1/a_1)^2 + (x_2/a_2)^2 + (x_3/a_3)^2 < 1 }.
 $
@@ -413,7 +413,7 @@ It is a smooth, convex, and simply connected domain.
 Its boundary $partial D$ is a spherical surface with radius $R = 4$.
 It is obtained from the ellipsoid by shrinking all semi-axes to the shortest, $a_1 = a_2 = 4$.
 
-The interior of the sphere is the domain $D$ in which the interior BVP is solved.
+The interior of the sphere is the domain $D$ in which the interior BVP is solved,
 $
   D := { xv in RR^3 mid(:) norm(xv) < R } quad R = 4.
 $
@@ -426,18 +426,15 @@ $
 #pagebreak(weak: true)
 ==== Analytic Solution
 
-Thanks to the spherical symmetry, the interior BVP is separable and hence has
-a closed form solution. Therefore both scattered field $Ev^s$ and the reaction
-operator $amat(T)$ have analytic formulas, which serve as exact reference
-solutions to validate both numerical solvers.
+Thanks to the spherical symmetry, the interior BVP is separable and hence has a closed form solution.
+Therefore both scattered field $Ev^s$ and the reaction operator $amat(T)$ have analytic formulas,
+which serve as exact reference solutions to validate both numerical solvers.
 
 We do not re-derive the analytic solution here.
 We refer to #cite(<tai>, supplement: [Sec. 10-4]) for the full derivation and record the resulting formulas below.
 
-The interior fields expand in the regular Hansen multipoles, the TM-type
-$avec(N)_(l m)$ and the TE-type $avec(M)_(l m)$. On a sphere of radius $r$
-their tangential traces reduce to the tangential vector spherical harmonics
-$avec(Psi)_(l m)$ and $avec(Phi)_(l m)$,
+The interior fields expand in the regular Hansen multipoles, the TM-type $avec(N)_(l m)$ and the TE-type $avec(M)_(l m)$.
+On a sphere of radius $r$ their tangential traces reduce to the tangential vector spherical harmonics $avec(Psi)_(l m)$ and $avec(Phi)_(l m)$,
 $
   pi_t avec(N)_(l m) = (psi'_l (k r))/(k r) avec(Psi)_(l m)
   wide
@@ -466,8 +463,8 @@ $
   b_(l m) = -1/(j_l (k R)) q_(l m).
 $
 
-Evaluating the scattered field on the dipole surface $Lambda$ at $r = r_0$ and
-taking its tangential trace gives the measured response,
+Evaluating the scattered field on the dipole surface $Lambda$ at $r = r_0$
+and taking its tangential trace gives the measured response,
 $
   pi_t^Lambda Ev^s
   = -sum_(l m) (
