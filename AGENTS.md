@@ -1,4 +1,4 @@
-# CLAUDE.md
+# AGENTS.md
 
 Guidance for working on this thesis. Layout, build and the results pipeline are
 in the README. The wider project, of which this thesis is one component, is
