@@ -3,19 +3,19 @@
 Guidance for working on this thesis. Layout, build and the results pipeline are
 in the README. The wider project, of which this thesis is one component, is
 described in the `maxwellgp-project` workspace. General writing and code
-guidelines are in the global `~/.claude/CLAUDE.md`, which is authoritative; this
+guidelines are in the global `~/.claude/CLAUDE.md`, which is authoritative. This
 file carries only what is specific to the thesis.
 
 The thesis was submitted 2026-07-01 and revised once, as the V2 that Kurz asked
-for; both states are tagged. It is finished, and the paper takes precedence over
+for. Both states are tagged. It is finished, and the paper takes precedence over
 anything further. The review that shaped V2 is in
 `maxwellgp-project/refs/kurz-review/`. Work belonging to the paper is tracked in
 `SIAM_Journal` issues.
 
 ## Writing
 
-Concision is the mandate: this is pass/fail, not publication prose. Lean, direct
-register, short declarative sentences, everything stated once.
+Keep it concise: the thesis is pass/fail, not a publication. Plain, direct
+language, short declarative sentences, everything stated once.
 
 - Voice: impersonal, with the authorial "we" where appropriate.
 - Present tense for method and results, past tense for what was actually run.
@@ -25,7 +25,7 @@ register, short declarative sentences, everything stated once.
   hyphen.
 - Headings are short noun phrases with no leading article.
 - Bold marks a technical keyword where it is first introduced. Italic stresses a
-  word only where the stress earns it. A canonical, informative abbreviation may
+  word only where the stress is needed. A canonical, informative abbreviation may
   be introduced without being reused.
 - Name equations in prose rather than citing them by number. No forward
   references.
@@ -38,7 +38,7 @@ register, short declarative sentences, everything stated once.
   and state any unverified interpretation as explicit conjecture.
 - Solver sections contain only solver-specific equations. Do not restate shared
   definitions.
-- Typst labels only where cross-referenced; strip orphans.
+- Typst labels only where cross-referenced. Remove unused ones.
 - Prefer Typst code mode `{...}` over content mode `[...]` where the body is
   mostly commands, so no stray hashes.
 
