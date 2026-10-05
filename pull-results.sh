@@ -3,7 +3,7 @@
 # Run from the cavity-thesis root. Set BENCH to the cavity-benchmark checkout
 # (defaults to a sibling directory):  BENCH=/path/to/cavity-benchmark ./pull-results.sh
 set -euo pipefail
-BENCH="${BENCH:-../cavity-benchmark}"
+BENCH="${BENCH:-../benchmark}"
 FIGS=$BENCH/out/figs
 
 cp "$FIGS/pareto_sphere.svg"            res/
