@@ -7,11 +7,11 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 jobs:
   deploy:
-    uses: luiswirth/typst-deploy/.github/workflows/typst-deploy.yml@v3
+    uses: luiswirth/typst-deploy/.github/workflows/typst-deploy.yml@v4
     with:
-      documents: src/main.typ cavity-thesis.pdf
+      documents: |
+        src/main.typ cavity-thesis.pdf
+    secrets: inherit
