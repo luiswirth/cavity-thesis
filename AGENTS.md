@@ -2,15 +2,14 @@
 
 Guidance for working on this thesis. Layout, build and the results pipeline are
 in the README. The wider project, of which this thesis is one component, is
-described in the `maxwellgp` workspace. General writing and code
-guidelines are in the global `~/.claude/CLAUDE.md`, which is authoritative. This
-file carries only what is specific to the thesis.
+described in the `maxwellgp` workspace. This file carries only what is specific
+to the thesis.
 
 The thesis was submitted 2026-07-01 and revised once, as the V2 that Kurz asked
 for. Both states are tagged. It is finished, and the paper takes precedence over
 anything further. The review that shaped V2 is in
-`../../refs/kurz-review/`. Work belonging to the paper is tracked in
-`SIAM_Journal` issues.
+`../../project/refs/kurz/thesis-review/`. Work belonging to the paper is tracked
+in `maxwellgp-paper` issues.
 
 ## Writing
 
