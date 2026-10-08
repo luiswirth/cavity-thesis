@@ -1,15 +1,11 @@
 # AGENTS.md
 
 Guidance for working on this thesis. Layout, build and the results pipeline are
-in the README. The wider project, of which this thesis is one component, is
-described in the `maxwellgp` workspace. This file carries only what is specific
-to the thesis.
+in the README.
 
 The thesis was submitted 2026-07-01 and revised once, as the V2 that Kurz asked
-for. Both states are tagged. It is finished, and the paper takes precedence over
-anything further. The review that shaped V2 is in
-`../../project/refs/kurz/thesis-review/`. Work belonging to the paper is tracked
-in `maxwellgp-paper` issues.
+for. It is finished. The review that shaped V2 is in
+`../../project/refs/kurz/thesis-review/`.
 
 ## Writing
 
