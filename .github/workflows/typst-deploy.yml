@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   deploy:
-    uses: luiswirth/typst-deploy/.github/workflows/typst-deploy.yml@v4
+    uses: luiswirth/typst-deploy/.github/workflows/typst-deploy.yml@v5
     with:
       documents: |
         src/main.typ cavity-thesis.pdf
