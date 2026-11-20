@@ -1,6 +1,9 @@
+---
+description: "My finished ETH semester thesis, the numerical validation of MaxwellGP in a cavity. Use when the thesis or its results come up."
+---
+
 # Cavity thesis
 
-My finished ETH semester thesis, the numerical validation of MaxwellGP in a cavity.
 Guidance for working on this thesis. Layout, build and the results pipeline are
 in the README.
 
