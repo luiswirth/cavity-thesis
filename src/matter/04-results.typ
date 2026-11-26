@@ -153,7 +153,8 @@ Once the spectral approximation is sufficiently rich,
 past $N_s approx 200$, the error becomes limited by the boundary discretization,
 producing an $N_b$-dependent floor.
 Both axes are logarithmic, so the plot does not resolve whether the decay before that floor is algebraic or exponential in $N_s$.
-The finest curve reaches $epsilon approx 1.3 times 10^(-10)$ at $N_s = 1024$ and $N_b = 8192$.
+The floor halves with each doubling of $N_b$.
+The finest curve reaches $epsilon approx 1.6 times 10^(-7)$ from $N_s = 256$ on, at $N_b = 8192$.
 
 #figure(
   image("../../res/epgp_sphere_convergence.svg", width: 55%),
@@ -319,7 +320,7 @@ not by the measured data.
 With no analytic operator available, we track accuracy through the reciprocity error $rho$,
 which needs no reference.
 @fig:ellipse-epgp-conv plots $rho$ against the number of spectral features $N_s$.
-It decreases steadily and floors at $rho approx 3 times 10^(-11)$,
+It decreases steadily and floors at $rho approx 2.3 times 10^(-8)$,
 confirming that the EPGP operator is symmetric to that level.
 The cross-validation reference error $epsilon$ against the BEM reference is reported in the table below.
 @tab:ellipse-epgp lists the corresponding runs at the finest $N_b$,
@@ -373,9 +374,8 @@ we now compare them directly, first in accuracy and then in cost.
 
 The two solvers share no numerical machinery, so their agreement is strong evidence for both.
 We quantify it by the reference error $epsilon$ of the EPGP operator against the BEM reference $amat(T)_"BEM"$.
-It decreases monotonically with $N_s$, reaching $epsilon approx 9 times 10^(-9)$ at $N_s = 1024$,
-and is still decreasing there, so $9 times 10^(-9)$ is an upper bound on the relative difference:
-the two operators are at least this close.
+It decreases with $N_s$ and levels off at $epsilon approx 8.4 times 10^(-6)$ from $N_s = 384$ on,
+so the two operators are at least this close.
 
 Together with the independent certification of each solver on the analytic sphere,
 this is the central result of the benchmark.
@@ -387,6 +387,8 @@ give strong combined evidence that both compute the correct reaction operator.
 All runs were carried out on the Euler cluster#footnote[Euler is the central high-performance computing cluster of ETH Zürich, see #link("https://scicomp.ethz.ch/wiki/Euler")[`scicomp.ethz.ch/wiki/Euler`].],
 each on a single exclusive AMD EPYC 7742 node with 128 cores,
 and wall time was recorded per run.
+The EPGP operators were later recomputed with the quadrature weights on another machine.
+This leaves the operation count unchanged, so the EPGP wall times are those recorded on Euler.
 For the EPGP the recorded time includes the JAX just-in-time compilation and the Python startup,
 so it is a conservative measure.
 
@@ -400,10 +402,9 @@ The BEM front is a staircase that descends only with large increases in wall tim
 reaching $rho approx 1.4 times 10^(-10)$ at $approx 1600$ s at the finest grid run,
 with $p = 5$ and $m = 4$.
 
-At the same reciprocity error the EPGP is two to three orders of magnitude faster,
-reaching $rho approx 10^(-9)$ to $10^(-10)$ in about $10$ s.
-The BEM is cheaper only at loose tolerance.
-For any demanding accuracy the EPGP is the cheaper solver.
+Down to its floor the EPGP is up to two orders of magnitude faster at the same reciprocity error,
+reaching $rho approx 2.3 times 10^(-8)$ in about $8$ s, where the BEM needs about $530$ s.
+Below that floor only the BEM reaches.
 
 These wall times reflect two particular implementations,
 a compiled C++ solver and a Python/JAX one,

@@ -147,7 +147,7 @@ We discretize the EP integral by quadrature, which both makes the kernel computa
 
 ==== Finite Spectral Features
 
-We approximate the integral over $V_k$ by a finite sum over $N_s$ spectral directions $kv_j in V_k$.
+We take $dif kv$ on $V_k$ to be the uniform probability measure and approximate the integral by an equal-weight quadrature over $N_s$ spectral directions $kv_j in V_k$, each of weight $1 \/ N_s$.
 The characteristic variety is itself a sphere, $V_k = k SS^2$, so the Fibonacci construction that placed the dipoles on $Lambda$ serves here unchanged, rescaled from the unit sphere to radius $k$.
 The two uses are the same problem on two different spheres, one in space and one in the Fourier domain.#footnote[The two are implemented separately, in `cavity-benchmark` for $Lambda$ and in `maxwellgp` for $V_k$.
 Their golden-angle forms differ by a full turn per index, which on the half-integer indices offsets the azimuth by $pi$, so the two point sets agree up to a rotation about the $z$-axis.]
@@ -170,14 +170,14 @@ $
 $
 
 These coefficients carry the prior.
-Gathering them in $avec(w) in CC^F$, the Gaussian measure becomes a finite complex Gaussian,
+Gathering them in $avec(w) in CC^F$, the Gaussian measure becomes a finite complex Gaussian, whose covariance $amat(W)$ includes the quadrature weight,
 $
   avec(w) tilde cal(C N)(0, amat(W)).
 $
 Every feature is a transverse plane wave, so this finite prior is still supported entirely on the solution space.
 
 The choice of transverse basis does not matter.
-Any other orthonormal pair spanning the same plane gives the same outer-product sum, and with isotropic weights $amat(W) = amat(I)$ the kernel sees the features only through it, so prior and posterior are unchanged.
+Any other orthonormal pair spanning the same plane gives the same outer-product sum, and with isotropic weights $amat(W) prop amat(I)$ the kernel sees the features only through it, so prior and posterior are unchanged.
 
 Sampling $Lambda$ and sampling $V_k$ are thus one construction carried out twice: place points on a sphere, then frame the plane perpendicular to the radius at each of them.
 That plane carries the dipole polarizations in space and the wave amplitudes in the Fourier domain, and its dimension is the factor of two in both $M = 2 N_Lambda$ and $F = 2 N_s$.
@@ -234,7 +234,8 @@ The model has three hyperparameters: the spectral directions $kv_j$, the prior w
 In a Gaussian process these can be tuned by maximizing the marginal likelihood of the data, usually by gradient descent on its negative logarithm.
 We instead fix them on principled grounds.
 The directions come from the Fibonacci sphere, whose even coverage we prefer to keep.
-The prior weights are set to $amat(W) = amat(I)$, treating all spectral directions equally.
+The prior weights are set to $amat(W) = amat(I) \/ N_s$, treating all spectral directions equally.
+The prior thus approximates the same Gaussian process for every $N_s$.
 The regularization parameter is held fixed, since maximizing the marginal likelihood would drive it toward the floor set by the ill-conditioned feature system rather than toward a value that reflects the data, as discussed in the conclusion.
 In all benchmark runs it is fixed to $sigma_n^2 = e^(-12) approx 6.1 times 10^(-6)$, that is $sigma_n = e^(-6) approx 2.5 times 10^(-3)$.
 

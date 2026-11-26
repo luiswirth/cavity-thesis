@@ -17,9 +17,9 @@
   We reconstruct this operator with the EPGP and compare it against an independent boundary element method (BEM) reference using Bembel #cite(<bembel>).
   We investigate two cavity geometries.
   On the spherical cavity, where the reaction operator is available in closed form,
-  both solvers match it to a relative Frobenius-norm error between $10^(-10)$ and $10^(-12)$.
+  the BEM matches it to a relative Frobenius-norm error of about $10^(-12)$ and the EPGP to about $10^(-7)$.
   On the ellipsoidal cavity, which admits no analytic solution,
-  the EPGP agrees with the BEM reference to a relative Frobenius-norm error of about $10^(-8)$.
+  the EPGP agrees with the BEM reference to a relative Frobenius-norm error of about $10^(-5)$.
   This establishes the EPGP as an accurate, Maxwell-consistent solver for the interior cavity problem
   and certifies the reaction operator as a robust reference benchmark.
   We further study convergence, the accuracy--runtime trade-off, and uncertainty quantification.
