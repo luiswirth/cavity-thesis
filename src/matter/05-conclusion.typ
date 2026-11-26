@@ -12,10 +12,10 @@ a spectral plane-wave EPGP and a boundary-element BEM,
 and the two were compared.
 
 On the spherical cavity, where the analytic operator is available,
-BEM matches the ground truth to $approx 3 times 10^(-12)$ and EPGP to $approx 1.3 times 10^(-10)$ in relative Frobenius-norm error $epsilon$,
+BEM matches the ground truth to $approx 3 times 10^(-12)$ and EPGP to $approx 1.6 times 10^(-7)$ in relative Frobenius-norm error $epsilon$,
 certifying each independently.
 On the ellipsoidal cavity, where no analytic solution exists,
-the two solvers agree to about $10^(-8)$ in the same relative Frobenius norm.
+the two solvers agree to about $10^(-5)$ in the same relative Frobenius norm.
 Since both were already certified on the sphere,
 this agreement carries over to a geometry with no ground truth.
 The agreement of a boundary-integral and a spectral plane-wave method,
@@ -23,8 +23,8 @@ which share no numerical machinery, validates the EPGP on this geometry and cert
 
 Beyond matching the reference, the EPGP satisfies the time-harmonic Maxwell equations exactly by construction,
 needs no surface mesh, and provides a posterior uncertainty estimate as a byproduct.
-It is also the cheaper solver at any demanding tolerance,
-reaching a given reciprocity error two to three orders of magnitude faster than the BEM in our experiments.
+It is also the cheaper solver down to its accuracy floor,
+reaching a given reciprocity error up to two orders of magnitude faster than the BEM in our experiments.
 This speed comparison should be read with the caveats in the Limitations:
 the BEM was run unoptimized, without fast-multipole acceleration or matrix compression,
 so the absolute factor mixes implementation quality with algorithmic cost.

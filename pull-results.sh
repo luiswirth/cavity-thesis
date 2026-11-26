@@ -24,8 +24,6 @@ cp "$FIGS/ellipse_noise.svg"            res/
 cp "$FIGS/sphere_noise.svg"             res/
 cp "$FIGS/ellipse_epgp_ksweep.svg"      res/
 cp "$FIGS/sphere_epgp_ksweep.svg"       res/
-cp "$FIGS/ellipse_bem_ksweep.svg"       res/
-cp "$FIGS/sphere_bem_ksweep.svg"        res/
 
 cp "$BENCH/out/epgp/grid/ellipse/results.csv" res/ellipse_epgp_results.csv
 cp "$BENCH/out/epgp/grid/sphere/results.csv"  res/sphere_epgp_results.csv
